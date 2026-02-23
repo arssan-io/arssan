@@ -173,53 +173,126 @@ export function Hero({ lang, dict }: HeroProps) {
   ];
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col pt-24 md:pt-28">
+    <section className="relative min-h-[100svh] flex flex-col pt-20 sm:pt-24 md:pt-28">
       <FloatingShapes shapes={heroShapes} />
-      <div className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-5 sm:px-8 flex flex-col">
+      <div className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-5 sm:px-8 flex flex-col justify-between">
         {/* Tagline */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="py-4 md:py-5"
+          className="py-3 sm:py-4 md:py-5 text-center md:text-start"
         >
-          <span className="text-xs sm:text-sm font-medium tracking-[0.15em] uppercase text-black/45">
+          <span className="text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.15em] uppercase text-black/45">
             {dict.hero.tagline}
           </span>
         </motion.div>
 
         {/* Two-column split */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0">
           {/* LEFT: headline + CTA */}
-          <div className="flex flex-col justify-center md:pe-12 lg:pe-16 md:border-e md:border-black/10">
-            <div className="mb-8 md:mb-10">
-              {titleLines.map((line, idx) => (
-                <div key={idx} className="overflow-hidden pb-2">
-                  <motion.h1
-                    className="text-[clamp(2.75rem,9vw,6rem)] font-bold leading-[1.15] tracking-tight"
-                    initial={{ y: "120%" }}
-                    animate={{ y: "0%" }}
-                    transition={{
-                      delay: 0.25 + idx * 0.1,
-                      duration: 1.1,
-                      ease,
-                    }}
-                  >
-                    {line}
-                  </motion.h1>
-                </div>
-              ))}
+          <div className="flex flex-col justify-center items-center md:items-start md:pe-12 lg:pe-16 md:border-e md:border-black/10">
+            {/* Background grid/graphics behind the title */}
+            <div className="relative">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 1.5 }}
+                className="absolute inset-0 -inset-x-6 sm:-inset-x-10 -inset-y-4 sm:-inset-y-8 pointer-events-none"
+              >
+                {/* Dot grid pattern */}
+                <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="hero-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+                      <circle cx="1" cy="1" r="0.8" fill="black" opacity="0.07" />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#hero-dots)" />
+                </svg>
+
+                {/* Concentric circles - top-right area */}
+                <svg className="absolute -top-8 -end-4 sm:-top-12 sm:-end-8 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="100" cy="100" r="95" stroke="black" strokeWidth="0.5" opacity="0.05" />
+                  <circle cx="100" cy="100" r="70" stroke="black" strokeWidth="0.5" opacity="0.06" />
+                  <circle cx="100" cy="100" r="45" stroke="black" strokeWidth="0.5" opacity="0.07" />
+                  <circle cx="100" cy="100" r="20" stroke="black" strokeWidth="0.6" opacity="0.08" />
+                </svg>
+
+                {/* Diagonal accent lines - bottom-left */}
+                <svg className="absolute -bottom-4 -start-4 sm:-bottom-6 sm:-start-6 w-28 h-28 sm:w-36 sm:h-36" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="0" y1="120" x2="120" y2="0" stroke="black" strokeWidth="0.5" opacity="0.05" />
+                  <line x1="0" y1="90" x2="90" y2="0" stroke="black" strokeWidth="0.5" opacity="0.06" />
+                  <line x1="0" y1="60" x2="60" y2="0" stroke="black" strokeWidth="0.5" opacity="0.07" />
+                  <line x1="0" y1="30" x2="30" y2="0" stroke="black" strokeWidth="0.5" opacity="0.08" />
+                </svg>
+
+                {/* Crosshair marker - center accent */}
+                <svg className="absolute top-1/2 start-0 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 hidden sm:block" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="20" y1="5" x2="20" y2="35" stroke="black" strokeWidth="0.6" opacity="0.1" />
+                  <line x1="5" y1="20" x2="35" y2="20" stroke="black" strokeWidth="0.6" opacity="0.1" />
+                  <circle cx="20" cy="20" r="3" stroke="black" strokeWidth="0.6" opacity="0.1" />
+                </svg>
+
+                {/* Corner brackets */}
+                <svg className="absolute top-0 start-0 w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 8V0H8" stroke="black" strokeWidth="0.8" opacity="0.1" />
+                </svg>
+                <svg className="absolute bottom-0 end-0 w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 16V24H16" stroke="black" strokeWidth="0.8" opacity="0.1" />
+                </svg>
+
+                {/* Large subtle plus sign accent */}
+                <motion.svg
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  transition={{ delay: 1, duration: 1.5, ease }}
+                  className="absolute -bottom-6 end-1/4 w-6 h-6 sm:w-8 sm:h-8"
+                  viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line x1="16" y1="4" x2="16" y2="28" stroke="black" strokeWidth="1" opacity="0.08" />
+                  <line x1="4" y1="16" x2="28" y2="16" stroke="black" strokeWidth="1" opacity="0.08" />
+                </motion.svg>
+              </motion.div>
+
+              <div className="mb-6 sm:mb-8 md:mb-10 relative">
+                {titleLines.map((line, idx) => (
+                  <div key={idx} className="overflow-hidden pb-4">
+                    <motion.h1
+                      className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.15] tracking-tight text-center md:text-start"
+                      initial={{ y: "120%" }}
+                      animate={{ y: "0%" }}
+                      transition={{
+                        delay: 0.25 + idx * 0.1,
+                        duration: 1.1,
+                        ease,
+                      }}
+                    >
+                      {line}
+                    </motion.h1>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Mobile description — visible only on small screens, placed closer to heading */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.7, ease }}
+              className="md:hidden text-sm text-black/50 leading-relaxed mb-6 max-w-xs text-center"
+            >
+              {dict.hero.description}
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.7, ease }}
-              className="flex items-center gap-5"
+              className="flex items-center justify-center md:justify-start gap-5"
             >
               <a
                 href={`/${lang}#services`}
-                className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-wider uppercase bg-black text-white rounded-full px-7 py-3.5 active:scale-95 hover:scale-[1.03] hover:shadow-lg transition-all duration-300"
+                className="inline-flex items-center gap-2.5 text-[13px] sm:text-sm font-semibold tracking-wider uppercase bg-black text-white rounded-full px-6 sm:px-7 py-3 sm:py-3.5 active:scale-95 hover:scale-[1.03] hover:shadow-lg transition-all duration-300"
               >
                 {dict.hero.cta}
                 <svg
@@ -250,16 +323,17 @@ export function Hero({ lang, dict }: HeroProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="border-t border-black/10 py-5 flex items-center justify-between"
+          className="border-t border-black/10 py-4 sm:py-5 flex items-center justify-between mt-auto"
         >
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.7, ease }}
-            className="text-xs sm:text-sm text-black/35 leading-relaxed max-w-sm"
+            className="hidden md:block text-sm text-black/45 leading-relaxed max-w-sm"
           >
             {dict.hero.description}
           </motion.p>
+
           <motion.div
             animate={{ y: [0, 4, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
