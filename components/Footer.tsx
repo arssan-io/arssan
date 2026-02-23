@@ -67,9 +67,9 @@ export function Footer({ lang, dict }: FooterProps) {
   ];
 
   const socialLinks = [
-    { label: "Instagram", href: "https://instagram.com/arssan", icon: IconInstagram },
-    { label: "X", href: "https://x.com/arssan", icon: IconX },
-    { label: "Facebook", href: "https://facebook.com/arssan", icon: IconFacebook },
+    { label: "Instagram", href: "https://instagram.com/arssan.co", icon: IconInstagram },
+    { label: "X", href: "https://x.com/arssan_co", icon: IconX },
+    { label: "Facebook", href: "https://facebook.com/arssan.co", icon: IconFacebook },
   ];
 
   return (
