@@ -36,80 +36,81 @@ export function Header({ lang, dict }: HeaderProps) {
   ];
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-xl border-b border-black/[0.06]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between">
-        {/* Logo */}
-        <Link href={`/${lang}`} className="flex items-center relative z-50">
-          <img
-            src="/images/Logo.svg"
-            alt="Arsan"
-            className="h-8 sm:h-9 w-auto"
-          />
-        </Link>
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+            ? "bg-white/80 backdrop-blur-xl border-b border-black/[0.06]"
+            : "bg-transparent"
+          }`}
+      >
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between">
+          {/* Logo */}
+          <Link href={`/${lang}`} className="flex items-center relative z-50">
+            <img
+              src="/images/Logo.svg"
+              alt="Arsan"
+              className="h-8 sm:h-9 w-auto"
+            />
+          </Link>
 
-        {/* Desktop: pill-grouped nav (center) */}
-        <nav className="hidden md:flex items-center gap-0.5 rounded-full border border-black/[0.08] bg-black/[0.02] px-1 py-1">
-          {navItems.map((item) => (
+          {/* Desktop: pill-grouped nav (center) */}
+          <nav className="hidden md:flex items-center gap-0.5 rounded-full border border-black/[0.08] bg-black/[0.02] px-1 py-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-[13px] font-medium px-4 py-1.5 rounded-full hover:bg-black/[0.05] transition-colors duration-200"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop: right actions */}
+          <div className="hidden md:flex items-center gap-3">
             <Link
-              key={item.href}
-              href={item.href}
-              className="text-[13px] font-medium px-4 py-1.5 rounded-full hover:bg-black/[0.05] transition-colors duration-200"
+              href={`/${otherLang}`}
+              className="text-[13px] font-medium text-black/60 hover:text-black transition-colors duration-200"
             >
-              {item.label}
+              {dict.language.switch}
             </Link>
-          ))}
-        </nav>
+            <Link
+              href={`/${lang}#contact`}
+              className="text-[13px] font-medium rounded-full border border-black/15 px-4 py-1.5 hover:bg-black hover:text-white hover:border-black transition-all duration-200"
+            >
+              {dict.nav.contact}
+            </Link>
+          </div>
 
-        {/* Desktop: right actions */}
-        <div className="hidden md:flex items-center gap-3">
-          <Link
-            href={`/${otherLang}`}
-            className="text-[13px] font-medium text-black/60 hover:text-black transition-colors duration-200"
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden flex flex-col gap-1.5 p-2.5 -me-2.5 relative z-50"
+            aria-label="Toggle menu"
           >
-            {dict.language.switch}
-          </Link>
-          <Link
-            href={`/${lang}#contact`}
-            className="text-[13px] font-medium rounded-full border border-black/15 px-4 py-1.5 hover:bg-black hover:text-white hover:border-black transition-all duration-200"
-          >
-            {dict.nav.contact}
-          </Link>
+            <motion.span
+              animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className="block w-5 h-0.5 bg-black origin-center"
+            />
+            <motion.span
+              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+              transition={{ duration: 0.15 }}
+              className="block w-5 h-0.5 bg-black"
+            />
+            <motion.span
+              animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className="block w-5 h-0.5 bg-black origin-center"
+            />
+          </button>
         </div>
+      </motion.header>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden flex flex-col gap-1.5 p-2.5 -me-2.5 relative z-50"
-          aria-label="Toggle menu"
-        >
-          <motion.span
-            animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.25 }}
-            className="block w-5 h-0.5 bg-black origin-center"
-          />
-          <motion.span
-            animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.15 }}
-            className="block w-5 h-0.5 bg-black"
-          />
-          <motion.span
-            animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.25 }}
-            className="block w-5 h-0.5 bg-black origin-center"
-          />
-        </button>
-      </div>
-
-      {/* Mobile fullscreen overlay */}
+      {/* Mobile fullscreen overlay — placed outside header to avoid backdrop-blur stacking issues */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -117,7 +118,7 @@ export function Header({ lang, dict }: HeaderProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center"
+            className="md:hidden fixed inset-0 bg-white z-[45] flex flex-col items-center justify-center"
           >
             <nav className="flex flex-col items-center gap-6">
               <motion.div
@@ -175,6 +176,6 @@ export function Header({ lang, dict }: HeaderProps) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }
