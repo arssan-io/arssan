@@ -1,4 +1,4 @@
-import { Space_Grotesk } from "next/font/google";
+import { Space_Grotesk, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { isRtl, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import { Header } from "@/components/Header";
@@ -9,6 +9,13 @@ import { Footer } from "@/components/Footer";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-ibm-plex-arabic",
   display: "swap",
 });
 
@@ -38,9 +45,9 @@ export default async function LangLayout({
   const dict = await getDictionary(locale);
 
   return (
-    <html lang={locale} dir={rtl ? "rtl" : "ltr"} className={spaceGrotesk.variable}>
+    <html lang={locale} dir={rtl ? "rtl" : "ltr"} className={`${spaceGrotesk.variable} ${ibmPlexSansArabic.variable}`}>
       <body
-        className={`${rtl ? "font-zarid" : "font-space"} antialiased bg-white text-black`}
+        className={`${rtl ? "font-ibm-plex-arabic" : "font-space"} antialiased bg-white text-black`}
       >
         <CustomCursor />
         <Header lang={locale} dict={dict} />
