@@ -194,9 +194,9 @@ export function Hero({ lang, dict }: HeroProps) {
           <div className="flex flex-col justify-center md:pe-12 lg:pe-16 md:border-e md:border-black/10">
             <div className="mb-8 md:mb-10">
               {titleLines.map((line, idx) => (
-                <div key={idx} className="overflow-hidden">
+                <div key={idx} className="overflow-hidden pb-2">
                   <motion.h1
-                    className="text-[clamp(2.75rem,9vw,6rem)] font-bold leading-[1.08] tracking-tight"
+                    className="text-[clamp(2.75rem,9vw,6rem)] font-bold leading-[1.15] tracking-tight"
                     initial={{ y: "120%" }}
                     animate={{ y: "0%" }}
                     transition={{
