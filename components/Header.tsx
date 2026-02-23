@@ -42,8 +42,8 @@ export function Header({ lang, dict }: HeaderProps) {
         animate={{ y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-            ? "bg-white/80 backdrop-blur-xl border-b border-black/[0.06]"
-            : "bg-transparent"
+          ? "bg-white/80 backdrop-blur-xl border-b border-black/[0.06]"
+          : "bg-transparent"
           }`}
       >
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between">
@@ -51,7 +51,7 @@ export function Header({ lang, dict }: HeaderProps) {
           <Link href={`/${lang}`} className="flex items-center relative z-50">
             <img
               src="/images/Logo.svg"
-              alt="Arsan"
+              alt="Arssan"
               className="h-8 sm:h-9 w-auto"
             />
           </Link>

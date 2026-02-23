@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Arsan | Professional Web Design & Development",
-    "description": "Arsan - A specialized agency for professional web design, development, and SEO optimization"
+    "title": "Arssan | Professional Web Design & Development",
+    "description": "Arssan - A specialized agency for professional web design, development, and SEO optimization"
   },
   "nav": {
     "home": "Home",
@@ -50,17 +50,32 @@
     "design": {
       "title": "UI/UX Design",
       "description": "We craft elegant user interfaces and seamless experiences that captivate your customers and achieve your business goals. We focus on simplicity, beauty, and usability, paying attention to the finest details to create an unforgettable visual experience that builds user trust and increases conversion rates.",
-      "features": ["Modern Interface Design", "Optimized User Experience", "Interactive Prototypes", "Responsive Design for All Devices"]
+      "features": [
+        "Modern Interface Design",
+        "Optimized User Experience",
+        "Interactive Prototypes",
+        "Responsive Design for All Devices"
+      ]
     },
     "development": {
       "title": "Web Development",
       "description": "We build high-performance websites and web applications using the latest frameworks and technologies. Clean code, blazing speed, and guaranteed scalability. We rely on software engineering best practices to ensure long-term stability and ease of maintenance and future development.",
-      "features": ["React / Next.js", "Blazing Fast Performance", "Scalable Architecture", "CMS Integration"]
+      "features": [
+        "React / Next.js",
+        "Blazing Fast Performance",
+        "Scalable Architecture",
+        "CMS Integration"
+      ]
     },
     "seo": {
       "title": "Search Engine Optimization",
       "description": "We put your website at the top of search results through advanced SEO strategies and optimized content that attracts visitors and converts them into customers. We work on both technical and content optimization to build a strong, sustainable digital presence that drives continuous organic traffic growth.",
-      "features": ["Comprehensive Technical SEO", "Keyword Strategy", "Site Speed Optimization", "Regular Performance Reports"]
+      "features": [
+        "Comprehensive Technical SEO",
+        "Keyword Strategy",
+        "Site Speed Optimization",
+        "Regular Performance Reports"
+      ]
     }
   },
   "pricing": {
@@ -124,7 +139,7 @@
     ]
   },
   "footer": {
-    "bio": "Arsan is a digital agency specializing in professional web design and development. We combine visual creativity with technical excellence to build exceptional digital experiences that drive your business growth.",
+    "bio": "Arssan is a digital agency specializing in professional web design and development. We combine visual creativity with technical excellence to build exceptional digital experiences that drive your business growth.",
     "description": "A specialized agency for professional web design and development",
     "rights": "All rights reserved",
     "links": {

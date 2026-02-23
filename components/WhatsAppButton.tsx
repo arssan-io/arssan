@@ -11,7 +11,7 @@ interface WhatsAppButtonProps {
 export function WhatsAppButton({ dict }: WhatsAppButtonProps) {
   return (
     <motion.a
-      href="https://wa.me/966500000000"
+      href="https://wa.me/46700265645"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={dict.whatsapp.tooltip}

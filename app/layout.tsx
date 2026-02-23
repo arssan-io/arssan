@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "أرسان | Arsan",
+  title: "أرسان | Arssan",
   description: "وكالة متخصصة في تصميم وتطوير المواقع الإلكترونية الاحترافية",
 };
 

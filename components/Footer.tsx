@@ -74,28 +74,6 @@ export function Footer({ lang, dict }: FooterProps) {
 
   return (
     <footer className="bg-black text-white">
-      {/* Top CTA band */}
-      <div className="border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12 md:py-16 flex flex-col md:flex-row items-center justify-between gap-6">
-          <AnimateInView>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-center md:text-start">
-              {lang === "ar" ? "مستعد لبناء مشروعك الرقمي؟" : "Ready to build your digital project?"}
-            </h3>
-          </AnimateInView>
-          <AnimateInView>
-            <Link
-              href={`/${lang}#contact`}
-              className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-wider uppercase bg-white text-black rounded-full px-7 py-3.5 hover:bg-white/90 active:scale-95 transition-all duration-300 whitespace-nowrap"
-            >
-              {dict.nav.contact}
-              <svg className="w-4 h-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-          </AnimateInView>
-        </div>
-      </div>
-
       {/* Main footer content */}
       <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12 md:py-16">
         <AnimateInView>
@@ -105,7 +83,7 @@ export function Footer({ lang, dict }: FooterProps) {
             <div className="flex flex-col items-center text-center pb-8 border-b border-white/[0.08]">
               <img
                 src="/images/Logo.svg"
-                alt="Arsan"
+                alt="Arssan"
                 className="h-9 w-auto mb-5 invert"
               />
               <p className="text-sm text-white/45 leading-relaxed max-w-xs mb-6">
@@ -181,12 +159,12 @@ export function Footer({ lang, dict }: FooterProps) {
                 </li>
                 <li>
                   <a
-                    href="https://wa.me/966500000000"
+                    href="https://wa.me/46700265645"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-white/45 hover:text-white transition-colors duration-300"
                   >
-                    <span dir="ltr" className="inline-block">+966 50 000 0000</span>
+                    <span dir="ltr" className="inline-block">+46 70 026 56 45</span>
                   </a>
                 </li>
               </ul>
@@ -199,7 +177,7 @@ export function Footer({ lang, dict }: FooterProps) {
             <div>
               <img
                 src="/images/Logo.svg"
-                alt="Arsan"
+                alt="Arssan"
                 className="h-9 w-auto mb-5 invert"
               />
               <p className="text-sm text-white/45 leading-relaxed max-w-xs mb-6">
@@ -275,12 +253,12 @@ export function Footer({ lang, dict }: FooterProps) {
                 </li>
                 <li>
                   <a
-                    href="https://wa.me/966500000000"
+                    href="https://wa.me/46700265645"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-white/45 hover:text-white transition-colors duration-300"
                   >
-                    <span dir="ltr" className="inline-block">+966 50 000 0000</span>
+                    <span dir="ltr" className="inline-block">+46 70 026 56 45</span>
                   </a>
                 </li>
               </ul>
@@ -292,7 +270,7 @@ export function Footer({ lang, dict }: FooterProps) {
       <div className="border-t border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-5 flex items-center justify-center">
           <p className="text-xs text-white/25">
-            &copy; {year} Arsan. {dict.footer.rights}.
+            &copy; {year} Arssan. {dict.footer.rights}.
           </p>
         </div>
       </div>

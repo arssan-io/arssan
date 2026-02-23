@@ -1,6 +1,6 @@
-# Arsan | أرسان
+# Arssan | أرسان
 
-A modern, bilingual (Arabic/English) corporate landing page for **Arsan** — a specialized web design and development agency.
+A modern, bilingual (Arabic/English) corporate landing page for **Arssan** — a specialized web design and development agency.
 
 ## Tech Stack
 

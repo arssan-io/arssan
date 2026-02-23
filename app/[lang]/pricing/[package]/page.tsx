@@ -38,9 +38,8 @@ export default async function PricingPackagePage({
           className="inline-flex items-center gap-2 text-sm text-black/50 hover:text-black transition-colors duration-300 mb-10 group"
         >
           <svg
-            className={`w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1 ${
-              locale === "ar" ? "rotate-180" : ""
-            }`}
+            className={`w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1 ${locale === "ar" ? "rotate-180" : ""
+              }`}
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
@@ -110,7 +109,7 @@ export default async function PricingPackagePage({
           </ul>
 
           <a
-            href="https://wa.me/966500000000"
+            href="https://wa.me/46700265645"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-center text-sm font-semibold tracking-wider uppercase py-3.5 bg-black text-white rounded-full hover:opacity-80 transition-opacity duration-300 active:scale-95"
