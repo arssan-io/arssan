@@ -1,4 +1,4 @@
-import { Space_Grotesk, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Space_Grotesk, Readex_Pro, Bebas_Neue, IBM_Plex_Mono } from "next/font/google";
 import { isRtl, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import { Header } from "@/components/Header";
@@ -12,10 +12,24 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
-const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-ibm-plex-arabic",
+const readexPro = Readex_Pro({
+  subsets: ["arabic", "latin"],
+  weight: ["200", "300", "400", "500", "600", "700"],
+  variable: "--font-readex-pro",
+  display: "swap",
+});
+
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-bebas-neue",
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-plex-mono",
   display: "swap",
 });
 
@@ -45,9 +59,13 @@ export default async function LangLayout({
   const dict = await getDictionary(locale);
 
   return (
-    <html lang={locale} dir={rtl ? "rtl" : "ltr"} className={`${spaceGrotesk.variable} ${ibmPlexSansArabic.variable}`}>
+    <html
+      lang={locale}
+      dir={rtl ? "rtl" : "ltr"}
+      className={`${spaceGrotesk.variable} ${readexPro.variable} ${bebasNeue.variable} ${ibmPlexMono.variable}`}
+    >
       <body
-        className={`${rtl ? "font-ibm-plex-arabic" : "font-space"} antialiased bg-white text-black`}
+        className={`${rtl ? "font-readex-pro" : "font-space"} antialiased bg-[#f8f8f8] text-[#3c3a3e] selection:bg-[#161616] selection:text-[#f8f8f8]`}
       >
         <CustomCursor />
         <Header lang={locale} dict={dict} />
