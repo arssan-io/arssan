@@ -16,12 +16,13 @@ export default async function PricingPackagePage({
 
   if (!pkg) {
     return (
-      <div className="min-h-[100svh] flex items-center justify-center px-5">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-6">404</h1>
+      <div className="min-h-[100svh] flex items-center justify-center px-5 bg-[#161616] text-white">
+        <div className="text-center font-mono">
+          <h1 className="text-6xl font-bold mb-4 text-[#ff6436]">404</h1>
+          <p className="text-[#a2a2a2] mb-6 uppercase tracking-wider text-xs">PACKAGE NOT FOUND</p>
           <Link
             href={`/${locale}`}
-            className="text-sm rounded-full border border-black/15 px-6 py-3 hover:bg-black hover:text-white hover:border-black transition-all duration-300"
+            className="text-xs uppercase tracking-wider rounded-full border border-white/20 px-6 py-3 hover:bg-white hover:text-[#161616] transition-all duration-300"
           >
             {dict.nav.home}
           </Link>
@@ -31,77 +32,53 @@ export default async function PricingPackagePage({
   }
 
   return (
-    <div className="min-h-[100svh] pt-28 pb-16 md:pt-32 md:pb-20">
+    <div className="min-h-[100svh] pt-28 pb-16 md:pt-36 md:pb-24 bg-[#f8f8f8] text-[#3c3a3e]">
       <div className="max-w-2xl mx-auto px-5 sm:px-8">
         <Link
           href={`/${locale}#pricing`}
-          className="inline-flex items-center gap-2 text-sm text-black/50 hover:text-black transition-colors duration-300 mb-10 group"
+          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#7b7a7c] hover:text-[#161616] transition-colors duration-300 mb-8 group"
         >
-          <svg
-            className={`w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1 ${locale === "ar" ? "rotate-180" : ""
-              }`}
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-            />
-          </svg>
-          {dict.pricing.badge}
+          <span className="text-[#ff6436] group-hover:-translate-x-1 rtl:group-hover:translate-x-1 transition-transform">
+            ←
+          </span>
+          <span>{dict.pricing.badge}</span>
         </Link>
 
-        <div className="border border-black/10 rounded-2xl p-6 sm:p-8 md:p-12">
+        <div className="border border-[#c9c7cc] bg-white rounded-none p-8 sm:p-10 md:p-12 shadow-sm">
           {pkg.popular && (
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase bg-black text-white rounded-full px-5 py-1.5 mb-6">
-              {pkg.cta}
-            </span>
+            <div className="inline-flex items-center gap-2 bg-[#161616] text-[#ff6436] font-mono text-[11px] font-semibold tracking-widest uppercase rounded-full px-4 py-1 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6436] animate-pulse"></span>
+              <span>{pkg.cta}</span>
+            </div>
           )}
 
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#161616] mb-3">
             {pkg.name}
           </h1>
 
-          <p className="text-black/55 text-base sm:text-lg mb-8 leading-relaxed">
+          <p className="text-[#7b7a7c] text-base sm:text-lg mb-8 leading-relaxed font-normal">
             {pkg.description}
           </p>
 
-          <div className="flex items-baseline gap-2 mb-8 pb-8 border-b border-black/10">
-            <span className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+          <div className="flex items-baseline gap-2 mb-8 pb-8 border-b border-[#c9c7cc]/60 font-mono">
+            <span className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#161616]">
               {pkg.price}
             </span>
-            <div className="flex flex-col">
-              <span className="text-sm font-semibold text-black/70">
-                {pkg.currency}
-              </span>
-              <span className="text-xs text-black/40">{pkg.period}</span>
+            <div className="flex flex-col text-xs uppercase tracking-wider">
+              <span className="font-semibold text-[#ff6436]">{pkg.currency}</span>
+              <span className="text-[#a2a2a2]">{pkg.period}</span>
             </div>
           </div>
 
-          <h2 className="text-xs font-semibold tracking-[0.15em] uppercase mb-6 text-black/40">
-            {locale === "ar" ? "المميزات المشمولة" : "What's Included"}
+          <h2 className="text-xs font-mono font-semibold tracking-widest uppercase mb-6 text-[#7b7a7c]">
+            {locale === "ar" ? "[ المميزات المشمولة ]" : "[ WHAT'S INCLUDED ]"}
           </h2>
 
-          <ul className="space-y-3.5 mb-10">
+          <ul className="space-y-3.5 mb-10 font-mono text-xs sm:text-sm">
             {pkg.features.map((feature: string) => (
               <li key={feature} className="flex items-start gap-3">
-                <svg
-                  className="flex-shrink-0 w-4 h-4 mt-0.5 text-black/40"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2.5}
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m4.5 12.75 6 6 9-13.5"
-                  />
-                </svg>
-                <span className="text-sm text-black/65 leading-snug">
+                <span className="text-[#ff6436] font-bold mt-0.5">+</span>
+                <span className="text-[#3c3a3e] leading-snug">
                   {feature}
                 </span>
               </li>
@@ -112,9 +89,9 @@ export default async function PricingPackagePage({
             href="https://wa.me/46700265645"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-center text-sm font-semibold tracking-wider uppercase py-3.5 bg-black text-white rounded-full hover:opacity-80 transition-opacity duration-300 active:scale-95"
+            className="block text-center font-mono text-xs sm:text-sm font-semibold tracking-wider uppercase py-4 bg-[#161616] text-white rounded-full hover:bg-[#ff6436] hover:text-[#161616] transition-all duration-300 active:scale-95"
           >
-            {dict.nav.contact}
+            {dict.nav.contact} →
           </a>
         </div>
       </div>

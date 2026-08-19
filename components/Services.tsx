@@ -43,56 +43,82 @@ export function Services({ dict }: ServicesProps) {
   ];
 
   return (
-    <section id="services" className="relative py-20 md:py-32 bg-black text-white">
+    <section id="services" className="relative py-24 md:py-36 bg-[#161616] text-white overflow-hidden border-b border-white/10">
       <FloatingShapes shapes={servicesShapes} color="text-white" />
-      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
-        <AnimateInView className="text-center mb-14 md:mb-20">
-          <span className="inline-block text-xs sm:text-sm font-medium tracking-[0.2em] uppercase border border-white/20 rounded-full px-5 py-2 sm:px-6 sm:py-2.5 mb-5 text-white/50">
-            {dict.services.badge}
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-5">
-            {dict.services.title}
-          </h2>
-          <p className="text-base sm:text-lg text-white/50 max-w-xl mx-auto leading-relaxed">
-            {dict.services.subtitle}
-          </p>
+
+      {/* Ghosted Typographic Background Watermark */}
+      <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 pointer-events-none select-none overflow-hidden opacity-[0.03] z-0">
+        <span className="font-display text-[160px] sm:text-[220px] md:text-[320px] uppercase font-bold tracking-tight text-white leading-none whitespace-nowrap">
+          SERVICES
+        </span>
+      </div>
+
+      <div className="relative z-10 max-w-[1200px] mx-auto px-5 sm:px-8">
+        {/* Section Header */}
+        <AnimateInView className="mb-12 md:mb-24">
+          <div className="flex flex-col items-start text-start">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/[0.04] text-[12px] font-mono tracking-widest text-white uppercase mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6436]"></span>
+              <span>{dict.services.badge}</span>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-end justify-between w-full gap-4 md:gap-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-white">
+                {dict.services.title}
+              </h2>
+              <p className="text-sm sm:text-base text-[#a2a2a2] max-w-md leading-relaxed font-normal">
+                {dict.services.subtitle}
+              </p>
+            </div>
+          </div>
         </AnimateInView>
 
-        <div className="space-y-4 md:space-y-5">
+        {/* Sharp Brutalist Service Blocks */}
+        <div className="space-y-4">
           {services.map((service, idx) => (
-            <AnimateInView key={service.key} variant="fadeUp" delay={idx * 0.08}>
+            <AnimateInView key={service.key} variant="fadeUp" delay={idx * 0.1}>
               <motion.div
                 whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                className="group rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 sm:p-8 md:p-10 hover:bg-white/[0.06] hover:border-white/[0.14] transition-colors duration-500"
+                transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+                className="group relative rounded-none border border-white/10 bg-white/[0.02] p-6 sm:p-10 md:p-12 hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300 text-start"
               >
-                <div className="md:flex md:items-start md:gap-10">
-                  <div className="flex items-center gap-4 mb-5 md:mb-0 md:flex-col md:items-start md:gap-3 md:w-24 md:flex-shrink-0">
-                    <span className="text-sm font-mono text-white/20">
+                <div className="md:flex md:items-start md:gap-12">
+                  {/* Left Column: Number & Icon */}
+                  <div className="flex items-center gap-4 mb-6 md:mb-0 md:flex-col md:items-start md:gap-4 md:w-28 md:flex-shrink-0 font-mono">
+                    <span className="text-3xl font-bold text-white/30 group-hover:text-[#ff6436] transition-colors">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
-                    <div className="w-9 h-9 rounded-lg bg-white/[0.07] flex items-center justify-center text-white/50 group-hover:bg-white/[0.12] group-hover:text-white/70 transition-all duration-500">
+                    <div className="w-10 h-10 rounded-none border border-white/15 bg-white/[0.04] flex items-center justify-center text-white/70 group-hover:text-white group-hover:border-[#ff6436] transition-all duration-300">
                       {service.icon}
                     </div>
                   </div>
+
+                  {/* Right Column: Title, Description, and Ghost Glass Tags */}
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-3">
+                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-4">
                       {service.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-white/45 leading-relaxed mb-6">
+                    <p className="text-sm sm:text-base text-[#a2a2a2] leading-relaxed mb-8 font-normal max-w-3xl">
                       {service.description}
                     </p>
-                    <div className="flex flex-wrap gap-2">
+
+                    {/* Metadata Ghost Glass Tags (0px radius) */}
+                    <div className="flex flex-wrap gap-2.5 font-mono text-[11px] sm:text-xs">
                       {service.features.map((feature) => (
                         <span
                           key={feature}
-                          className="text-xs sm:text-sm text-white/55 bg-white/[0.05] rounded-full px-3 py-1.5 group-hover:bg-white/[0.08] transition-colors duration-500"
+                          className="rounded-none border border-white/15 bg-white/[0.04] text-white/80 px-3 py-1.5 uppercase tracking-wider group-hover:border-white/30 transition-colors"
                         >
-                          {feature}
+                          + {feature}
                         </span>
                       ))}
                     </div>
                   </div>
+                </div>
+
+                {/* Corner hairline crosshair */}
+                <div className="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] text-[#ff6436]">
+                  [ ACTIVE ]
                 </div>
               </motion.div>
             </AnimateInView>

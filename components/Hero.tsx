@@ -7,6 +7,9 @@ import { FloatingShapes, heroShapes } from "./FloatingShapes";
 interface HeroProps {
   lang: Locale;
   dict: {
+    nav: {
+      contact: string;
+    };
     hero: {
       tagline: string;
       title_line1: string;
@@ -21,151 +24,106 @@ interface HeroProps {
   };
 }
 
-const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const easeBrutal = [0.32, 0.72, 0, 1] as [number, number, number, number];
 
-function HeroArtwork() {
+function MonumentDisplayMonitor({ lang }: { lang: Locale }) {
+  const isAr = lang === "ar";
+
   return (
-    <motion.svg
-      viewBox="0 0 480 420"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-auto"
+    <motion.div
+      initial={{ opacity: 0, y: 25, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.9, delay: 0.35, ease: easeBrutal }}
+      className="relative w-full max-w-[540px] mx-auto select-none mt-4 lg:mt-0"
     >
-      {/* Dot grid background */}
-      <motion.g
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 2 }}
-      >
-        {Array.from({ length: 11 }).map((_, r) =>
-          Array.from({ length: 10 }).map((_, c) => (
-            <circle
-              key={`d${r}-${c}`}
-              cx={24 + c * 48}
-              cy={10 + r * 40}
-              r={0.7}
-              fill="black"
-              opacity={0.07}
+      {/* Perspective Monitor Stand & Screen */}
+      <div className="relative rounded-none border border-white/15 bg-[#121212]/95 backdrop-blur-md shadow-2xl p-3.5 sm:p-5">
+        {/* Terminal / Device Header Bar */}
+        <div className="flex items-center justify-between pb-2.5 sm:pb-3 mb-3 sm:mb-4 border-b border-white/10 font-mono text-[10px] sm:text-[11px] text-[#a2a2a2]">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#ff6436]"></span>
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white/20"></span>
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white/20"></span>
+            <span className="ms-1.5 sm:ms-2 text-white/50 uppercase tracking-widest text-[9px] sm:text-[10px]">
+              ARSSAN.SYS // V2.6
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span className="text-[9px] sm:text-[10px] tracking-wider text-emerald-400 font-semibold">ONLINE</span>
+          </div>
+        </div>
+
+        {/* Code / Wireframe Screen Content */}
+        <div className="space-y-2.5 sm:space-y-3 font-mono text-xs text-white/80">
+          {/* Wireframe Hero Preview Box */}
+          <div className="border border-white/10 bg-white/[0.02] p-3 sm:p-4 relative overflow-hidden">
+            {/* Grid background */}
+            <div
+              className="absolute inset-0 opacity-[0.07]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+                backgroundSize: "16px 16px",
+              }}
             />
-          ))
-        )}
-      </motion.g>
 
-      {/* Large browser window (back layer) */}
-      <motion.g
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 1.1, ease }}
-      >
-        <rect x="55" y="15" width="410" height="295" rx="12" stroke="black" strokeWidth="1" opacity="0.18" />
-        <line x1="55" y1="50" x2="465" y2="50" stroke="black" strokeWidth="0.6" opacity="0.12" />
-        <circle cx="76" cy="33" r="4" stroke="black" strokeWidth="0.7" opacity="0.18" />
-        <circle cx="90" cy="33" r="4" stroke="black" strokeWidth="0.7" opacity="0.18" />
-        <circle cx="104" cy="33" r="4" stroke="black" strokeWidth="0.7" opacity="0.18" />
-        <rect x="135" y="26" width="170" height="14" rx="7" stroke="black" strokeWidth="0.5" opacity="0.1" />
+            <div className="relative z-10 space-y-2.5 sm:space-y-3">
+              <div className="flex items-center justify-between text-[9px] sm:text-[10px]">
+                <span className="text-[#ff6436] tracking-widest uppercase font-medium">
+                  [ PIPELINE_OUTPUT ]
+                </span>
+                <span className="text-[#7b7a7c]">60 FPS // ULTRA</span>
+              </div>
 
-        {/* Heading wireframe */}
-        <rect x="80" y="72" width="200" height="14" rx="3" fill="black" opacity="0.06" />
-        <rect x="80" y="98" width="320" height="5" rx="2" fill="black" opacity="0.035" />
-        <rect x="80" y="110" width="280" height="5" rx="2" fill="black" opacity="0.03" />
-        <rect x="80" y="122" width="300" height="5" rx="2" fill="black" opacity="0.025" />
+              {/* Simulated Typography Layer */}
+              <div className="h-9 sm:h-10 bg-white/5 border border-white/10 flex items-center justify-between px-2.5 sm:px-3">
+                <span className="font-bold text-white text-[11px] sm:text-xs tracking-tight uppercase truncate pe-2">
+                  {isAr ? "استوديو أرسان الرقمي" : "ARSSAN DIGITAL ARCHITECTURE"}
+                </span>
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#ff6436] flex-shrink-0"></span>
+              </div>
 
-        {/* Three wireframe cards */}
-        <rect x="80" y="150" width="115" height="90" rx="8" stroke="black" strokeWidth="0.7" opacity="0.1" />
-        <rect x="92" y="170" width="50" height="5" rx="2" fill="black" opacity="0.06" />
-        <rect x="92" y="181" width="80" height="4" rx="2" fill="black" opacity="0.03" />
-        <rect x="92" y="214" width="45" height="14" rx="7" fill="black" opacity="0.05" />
+              {/* Three Service Columns in Preview */}
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-0.5">
+                <div className="border border-white/10 bg-black/40 p-1.5 sm:p-2 text-center">
+                  <span className="text-[8px] sm:text-[9px] text-[#a2a2a2] uppercase block">UI / UX</span>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-white">01</span>
+                </div>
+                <div className="border border-white/10 bg-black/40 p-1.5 sm:p-2 text-center">
+                  <span className="text-[8px] sm:text-[9px] text-[#a2a2a2] uppercase block">DEV</span>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-white">02</span>
+                </div>
+                <div className="border border-white/10 bg-black/40 p-1.5 sm:p-2 text-center">
+                  <span className="text-[8px] sm:text-[9px] text-[#a2a2a2] uppercase block">SEO</span>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-white">03</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <rect x="205" y="150" width="115" height="90" rx="8" stroke="black" strokeWidth="0.7" opacity="0.1" />
-        <rect x="217" y="170" width="50" height="5" rx="2" fill="black" opacity="0.06" />
-        <rect x="217" y="181" width="80" height="4" rx="2" fill="black" opacity="0.03" />
-        <rect x="217" y="214" width="45" height="14" rx="7" fill="black" opacity="0.05" />
+          {/* Interactive Live Metrics Bar */}
+          <div className="flex items-center justify-between pt-1.5 sm:pt-2 text-[10px] sm:text-[11px] text-[#a2a2a2] border-t border-white/10">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span>LATENCY: <strong className="text-white">12ms</strong></span>
+              <span className="hidden sm:inline">RENDER: <strong className="text-white">Next.js 16</strong></span>
+            </div>
+            <span className="text-[#ff6436] font-semibold">[ READY ]</span>
+          </div>
+        </div>
 
-        <rect x="330" y="150" width="115" height="90" rx="8" stroke="black" strokeWidth="0.7" opacity="0.1" />
-        <rect x="342" y="170" width="50" height="5" rx="2" fill="black" opacity="0.06" />
-        <rect x="342" y="181" width="80" height="4" rx="2" fill="black" opacity="0.03" />
-        <rect x="342" y="214" width="45" height="14" rx="7" fill="black" opacity="0.05" />
-
-        {/* Footer bar */}
-        <rect x="80" y="265" width="360" height="25" rx="5" stroke="black" strokeWidth="0.4" opacity="0.06" />
-      </motion.g>
-
-      {/* Small overlapping browser (front-left) */}
-      <motion.g
-        initial={{ opacity: 0, x: -35 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1, duration: 1, ease }}
-      >
-        <rect x="5" y="105" width="250" height="235" rx="12" fill="white" stroke="black" strokeWidth="1.2" opacity="0.85" />
-        <line x1="5" y1="135" x2="255" y2="135" stroke="black" strokeWidth="0.6" opacity="0.12" />
-        <circle cx="24" cy="120" r="3.5" stroke="black" strokeWidth="0.7" opacity="0.22" />
-        <circle cx="36" cy="120" r="3.5" stroke="black" strokeWidth="0.7" opacity="0.22" />
-        <circle cx="48" cy="120" r="3.5" stroke="black" strokeWidth="0.7" opacity="0.22" />
-
-        {/* Page wireframe content */}
-        <rect x="26" y="152" width="110" height="10" rx="2" fill="black" opacity="0.08" />
-        <rect x="26" y="172" width="200" height="4" rx="2" fill="black" opacity="0.04" />
-        <rect x="26" y="182" width="170" height="4" rx="2" fill="black" opacity="0.035" />
-        <rect x="26" y="200" width="205" height="55" rx="8" stroke="black" strokeWidth="0.6" opacity="0.08" />
-        <rect x="26" y="270" width="85" height="28" rx="14" fill="black" opacity="0.07" />
-        <rect x="120" y="270" width="85" height="28" rx="14" stroke="black" strokeWidth="0.6" opacity="0.08" />
-        <rect x="26" y="310" width="140" height="4" rx="2" fill="black" opacity="0.03" />
-        <rect x="26" y="320" width="100" height="4" rx="2" fill="black" opacity="0.025" />
-      </motion.g>
-
-      {/* Phone frame (right) */}
-      <motion.g
-        initial={{ opacity: 0, y: 35 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 1, ease }}
-      >
-        <rect x="345" y="125" width="130" height="268" rx="20" fill="white" stroke="black" strokeWidth="1.3" />
-        <rect x="390" y="135" width="40" height="5" rx="2.5" fill="black" opacity="0.06" />
-
-        {/* Phone content */}
-        <rect x="362" y="160" width="96" height="10" rx="2" fill="black" opacity="0.07" />
-        <rect x="362" y="178" width="72" height="4" rx="2" fill="black" opacity="0.04" />
-        <rect x="362" y="200" width="96" height="65" rx="8" stroke="black" strokeWidth="0.6" opacity="0.08" />
-        <rect x="374" y="220" width="40" height="4" rx="2" fill="black" opacity="0.04" />
-        <rect x="374" y="230" width="60" height="4" rx="2" fill="black" opacity="0.03" />
-        <rect x="374" y="246" width="30" height="10" rx="5" fill="black" opacity="0.05" />
-        <rect x="362" y="280" width="96" height="65" rx="8" stroke="black" strokeWidth="0.6" opacity="0.08" />
-        <rect x="374" y="300" width="40" height="4" rx="2" fill="black" opacity="0.04" />
-        <rect x="374" y="310" width="60" height="4" rx="2" fill="black" opacity="0.03" />
-        <rect x="374" y="326" width="30" height="10" rx="5" fill="black" opacity="0.05" />
-
-        {/* Home indicator */}
-        <rect x="387" y="380" width="46" height="4" rx="2" fill="black" opacity="0.08" />
-      </motion.g>
-
-      {/* Cursor pointer */}
-      <motion.g
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.5, duration: 0.5, ease }}
-        style={{ transformOrigin: "285px 82px" }}
-      >
-        <path
-          d="M282 78 L282 108 L291 100 L300 114 L306 110 L297 97 L308 97 Z"
-          fill="black"
-          opacity="0.55"
-        />
-      </motion.g>
-
-      {/* Decorative dashed rings */}
-      <motion.g
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.7, duration: 1.5 }}
-      >
-        <circle cx="35" cy="55" r="28" stroke="black" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.06" />
-        <circle cx="460" cy="400" r="40" stroke="black" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.05" />
-      </motion.g>
-    </motion.svg>
+        {/* Outer Corner Crosshairs */}
+        <div className="absolute -top-1 -left-1 sm:-top-1.5 sm:-left-1.5 w-2.5 h-2.5 sm:w-3 sm:h-3 border-t-2 border-l-2 border-white/40"></div>
+        <div className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-2.5 h-2.5 sm:w-3 sm:h-3 border-t-2 border-r-2 border-white/40"></div>
+        <div className="absolute -bottom-1 -left-1 sm:-bottom-1.5 sm:-left-1.5 w-2.5 h-2.5 sm:w-3 sm:h-3 border-b-2 border-l-2 border-white/40"></div>
+        <div className="absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 w-2.5 h-2.5 sm:w-3 sm:h-3 border-b-2 border-r-2 border-white/40"></div>
+      </div>
+    </motion.div>
   );
 }
 
 export function Hero({ lang, dict }: HeroProps) {
+  const isAr = lang === "ar";
   const titleLines = [
     dict.hero.title_line1,
     dict.hero.title_line2,
@@ -173,187 +131,137 @@ export function Hero({ lang, dict }: HeroProps) {
   ];
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col pt-20 sm:pt-24 md:pt-28">
-      <FloatingShapes shapes={heroShapes} />
-      <div className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-5 sm:px-8 flex flex-col justify-between">
-        {/* Tagline */}
+    <section className="relative min-h-[100svh] bg-[#161616] text-white flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 overflow-hidden">
+      {/* Background Floating Subtle Geometry */}
+      <FloatingShapes shapes={heroShapes} color="text-white" />
+
+      {/* Hero Content Container */}
+      <div className="relative z-10 max-w-[1200px] mx-auto w-full px-5 sm:px-8 flex-1 flex flex-col justify-center py-6 sm:py-8 md:py-12 text-start">
+        {/* Top Metadata Badge */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="py-3 sm:py-4 md:py-5 text-center md:text-start"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: easeBrutal }}
+          className="flex items-center gap-3 mb-5 sm:mb-8"
         >
-          <span className="text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.15em] uppercase text-black/45">
-            {dict.hero.tagline}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/[0.04] text-[11px] font-mono tracking-widest text-[#c9c7cc] uppercase">
+            <span className="w-2 h-2 rounded-full bg-[#ff6436]"></span>
+            <span>{dict.hero.tagline}</span>
+          </div>
+
+          <span className="hidden sm:inline-block text-[11px] font-mono text-[#7b7a7c] tracking-widest uppercase">
+            [ 24°42&apos;N 46°40&apos;E ]
           </span>
         </motion.div>
 
-        {/* Two-column split */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0">
-          {/* LEFT: headline + CTA */}
-          <div className="flex flex-col justify-center items-center md:items-start md:pe-12 lg:pe-16 md:border-e md:border-black/10">
-            {/* Background grid/graphics behind the title */}
-            <div className="relative">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 1.5 }}
-                className="absolute inset-0 -inset-x-6 sm:-inset-x-10 -inset-y-4 sm:-inset-y-8 pointer-events-none"
-              >
-                {/* Dot grid pattern */}
-                <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <pattern id="hero-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-                      <circle cx="1" cy="1" r="0.8" fill="black" opacity="0.07" />
-                    </pattern>
-                  </defs>
-                  <rect width="100%" height="100%" fill="url(#hero-dots)" />
-                </svg>
-
-                {/* Concentric circles - top-right area */}
-                <svg className="absolute -top-8 -end-4 sm:-top-12 sm:-end-8 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="100" cy="100" r="95" stroke="black" strokeWidth="0.5" opacity="0.05" />
-                  <circle cx="100" cy="100" r="70" stroke="black" strokeWidth="0.5" opacity="0.06" />
-                  <circle cx="100" cy="100" r="45" stroke="black" strokeWidth="0.5" opacity="0.07" />
-                  <circle cx="100" cy="100" r="20" stroke="black" strokeWidth="0.6" opacity="0.08" />
-                </svg>
-
-                {/* Diagonal accent lines - bottom-left */}
-                <svg className="absolute -bottom-4 -start-4 sm:-bottom-6 sm:-start-6 w-28 h-28 sm:w-36 sm:h-36" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <line x1="0" y1="120" x2="120" y2="0" stroke="black" strokeWidth="0.5" opacity="0.05" />
-                  <line x1="0" y1="90" x2="90" y2="0" stroke="black" strokeWidth="0.5" opacity="0.06" />
-                  <line x1="0" y1="60" x2="60" y2="0" stroke="black" strokeWidth="0.5" opacity="0.07" />
-                  <line x1="0" y1="30" x2="30" y2="0" stroke="black" strokeWidth="0.5" opacity="0.08" />
-                </svg>
-
-                {/* Crosshair marker - center accent */}
-                <svg className="absolute top-1/2 start-0 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 hidden sm:block" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <line x1="20" y1="5" x2="20" y2="35" stroke="black" strokeWidth="0.6" opacity="0.1" />
-                  <line x1="5" y1="20" x2="35" y2="20" stroke="black" strokeWidth="0.6" opacity="0.1" />
-                  <circle cx="20" cy="20" r="3" stroke="black" strokeWidth="0.6" opacity="0.1" />
-                </svg>
-
-                {/* Corner brackets */}
-                <svg className="absolute top-0 start-0 w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 8V0H8" stroke="black" strokeWidth="0.8" opacity="0.1" />
-                </svg>
-                <svg className="absolute bottom-0 end-0 w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M24 16V24H16" stroke="black" strokeWidth="0.8" opacity="0.1" />
-                </svg>
-
-                {/* Large subtle plus sign accent */}
-                <motion.svg
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  transition={{ delay: 1, duration: 1.5, ease }}
-                  className="absolute -bottom-6 end-1/4 w-6 h-6 sm:w-8 sm:h-8"
-                  viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
-                >
-                  <line x1="16" y1="4" x2="16" y2="28" stroke="black" strokeWidth="1" opacity="0.08" />
-                  <line x1="4" y1="16" x2="28" y2="16" stroke="black" strokeWidth="1" opacity="0.08" />
-                </motion.svg>
-              </motion.div>
-
-              <div className="mb-6 sm:mb-8 md:mb-10 relative">
-                {titleLines.map((line, idx) => (
-                  <div key={idx} className="overflow-hidden pb-4">
-                    <motion.h1
-                      className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.15] tracking-tight text-center md:text-start"
-                      initial={{ y: "120%" }}
-                      animate={{ y: "0%" }}
-                      transition={{
-                        delay: 0.25 + idx * 0.1,
-                        duration: 1.1,
-                        ease,
-                      }}
-                    >
-                      {line}
-                    </motion.h1>
-                  </div>
-                ))}
-              </div>
+        {/* Grid Split: Typographic Monument + Technical Screen */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Monument Display Headline & CTA (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            {/* Monument Headline */}
+            <div className="mb-4 sm:mb-6 space-y-1">
+              {titleLines.map((line, idx) => (
+                <div key={idx} className={isAr ? "py-0.5" : "overflow-hidden pb-1"}>
+                  <motion.h1
+                    initial={isAr ? { opacity: 0, y: 20 } : { y: "100%", opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      delay: 0.18 + idx * 0.1,
+                      duration: 0.85,
+                      ease: easeBrutal,
+                    }}
+                    className={`font-bold tracking-tight text-display-gradient pb-1 ${
+                      isAr
+                        ? "text-5xl sm:text-7xl md:text-8xl lg:text-[7.25rem] leading-[1.14] sm:leading-[1.08]"
+                        : "text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-display uppercase leading-[0.9] tracking-[-0.01em]"
+                    }`}
+                  >
+                    {line}
+                  </motion.h1>
+                </div>
+              ))}
             </div>
 
-            {/* Mobile description — visible only on small screens, placed closer to heading */}
+            {/* Editorial Lead Paragraph */}
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.7, ease }}
-              className="md:hidden text-sm text-black/50 leading-relaxed mb-6 max-w-xs text-center"
+              transition={{ delay: 0.45, duration: 0.8, ease: easeBrutal }}
+              className="text-sm sm:text-base md:text-lg text-[#a2a2a2] leading-relaxed max-w-xl mb-6 sm:mb-8 font-normal"
             >
               {dict.hero.description}
             </motion.p>
 
+            {/* Interactive Pill CTA Buttons (Mobile Full-Width Responsive) */}
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.7, ease }}
-              className="flex items-center justify-center md:justify-start gap-5"
+              transition={{ delay: 0.6, duration: 0.8, ease: easeBrutal }}
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 font-mono text-xs sm:text-sm uppercase tracking-wider"
             >
               <a
                 href={`/${lang}#services`}
-                className="inline-flex items-center gap-2.5 text-[13px] sm:text-sm font-semibold tracking-wider uppercase bg-black text-white rounded-full px-6 sm:px-7 py-3 sm:py-3.5 active:scale-95 hover:scale-[1.03] hover:shadow-lg transition-all duration-300"
+                className="group flex items-center justify-center gap-2.5 bg-white text-[#161616] font-semibold px-6 sm:px-8 py-3.5 rounded-full hover:bg-[#ff6436] hover:text-[#161616] transition-all duration-300 active:scale-95 text-center"
               >
-                {dict.hero.cta}
-                <svg
-                  className="w-4 h-4 rtl:rotate-180"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                  />
-                </svg>
+                <span className="w-2 h-2 rounded-full bg-[#ff6436] group-hover:bg-[#161616] transition-colors"></span>
+                <span>{dict.hero.cta}</span>
+              </a>
+
+              <a
+                href="https://wa.me/46700265645"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 text-white/80 hover:text-white px-6 py-3.5 rounded-full border border-white/20 hover:border-white/50 transition-all duration-300 text-center"
+              >
+                <span className="text-[#ff6436]">●</span>
+                <span>{dict.nav.contact}</span>
               </a>
             </motion.div>
           </div>
 
-          {/* RIGHT: artwork illustration */}
-          <div className="hidden md:flex items-center justify-center md:ps-8 lg:ps-12">
-            <HeroArtwork />
+          {/* Right Column: 3D Monitor / Terminal Mockup (5 cols) */}
+          <div className="lg:col-span-5">
+            <MonumentDisplayMonitor lang={lang} />
           </div>
         </div>
-
-        {/* Bottom bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="border-t border-black/10 py-4 sm:py-5 flex items-center justify-between mt-auto"
-        >
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.7, ease }}
-            className="hidden md:block text-sm text-black/45 leading-relaxed max-w-sm"
-          >
-            {dict.hero.description}
-          </motion.p>
-
-          <motion.div
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <svg
-              className="w-5 h-5 text-black/25 flex-shrink-0 ms-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-              />
-            </svg>
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Bottom Structural Bar with Pipeline Indicators */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.85, duration: 0.8 }}
+        className="relative z-10 border-t border-white/10 py-3.5 sm:py-5 bg-black/50 backdrop-blur-sm"
+      >
+        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 font-mono text-[10px] sm:text-[11px] text-[#7b7a7c]">
+          {/* Pipeline badges (Grid on mobile for immaculate alignment) */}
+          <div className="grid grid-cols-3 sm:flex sm:items-center gap-2 sm:gap-6 uppercase tracking-wider w-full sm:w-auto text-center sm:text-start">
+            <span className="flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 text-white/70">
+              <span className="text-[#ff6436]">01</span> {dict.hero.pipeline_design}
+            </span>
+            <span className="hidden sm:inline text-white/20">/</span>
+            <span className="flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 text-white/70">
+              <span className="text-[#ff6436]">02</span> {dict.hero.pipeline_dev}
+            </span>
+            <span className="hidden sm:inline text-white/20">/</span>
+            <span className="flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 text-white/70">
+              <span className="text-[#ff6436]">03</span> {dict.hero.pipeline_seo}
+            </span>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="hidden sm:flex items-center gap-2 text-white/40">
+            <span className="uppercase tracking-widest text-[10px]">SCROLL</span>
+            <motion.span
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="text-[#ff6436]"
+            >
+              ↓
+            </motion.span>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
