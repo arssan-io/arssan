@@ -5,8 +5,8 @@ import { AnimateInView } from "./AnimateInView";
 export function Divider() {
   return (
     <AnimateInView variant="fadeIn">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="h-px w-full bg-black/15" />
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8">
+        <div className="h-px w-full bg-[#c9c7cc]/60" />
       </div>
     </AnimateInView>
   );
