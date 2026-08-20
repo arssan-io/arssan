@@ -87,10 +87,12 @@ export function Header({ lang, dict }: HeaderProps) {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-3 font-mono text-[12px]">
+          <div className="hidden md:flex items-center gap-3 text-[12px]">
             <Link
               href={`/${otherLang}`}
-              className="text-[#a2a2a2] hover:text-white px-2.5 py-1 transition-colors uppercase tracking-wider"
+              className={`text-[#a2a2a2] hover:text-white px-2.5 py-1 transition-colors uppercase tracking-wider ${
+                otherLang === "ar" ? "font-readex-pro font-medium text-[13px]" : "font-mono text-[12px]"
+              }`}
             >
               {dict.language.switch}
             </Link>
@@ -99,7 +101,7 @@ export function Header({ lang, dict }: HeaderProps) {
               href="https://wa.me/46700265645"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full border border-white/20 px-4 py-1.5 text-white hover:bg-[#ff6436] hover:border-[#ff6436] hover:text-[#161616] font-medium transition-all duration-200 uppercase tracking-wider"
+              className="flex items-center gap-2 rounded-full border border-white/20 px-4 py-1.5 text-white hover:bg-[#ff6436] hover:border-[#ff6436] hover:text-[#161616] font-medium font-mono transition-all duration-200 uppercase tracking-wider"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#ff6436] group-hover:bg-[#161616]"></span>
               {dict.nav.contact}
@@ -179,10 +181,13 @@ export function Header({ lang, dict }: HeaderProps) {
               </nav>
             </div>
 
-            <div className="pt-6 border-t border-white/10 flex items-center justify-between font-mono text-sm">
+            <div className="pt-6 border-t border-white/10 flex items-center justify-between text-sm">
               <Link
                 href={`/${otherLang}`}
-                className="text-[#a2a2a2] hover:text-white uppercase tracking-wider"
+                onClick={() => setMobileOpen(false)}
+                className={`text-[#a2a2a2] hover:text-white uppercase tracking-wider ${
+                  otherLang === "ar" ? "font-readex-pro font-medium text-base" : "font-mono text-sm"
+                }`}
               >
                 {dict.language.switch}
               </Link>

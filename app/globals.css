@@ -43,6 +43,7 @@ html {
 }
 
 /* Universal Arabic Typography Enforcement */
+.font-readex-pro,
 html[dir="rtl"],
 html[dir="rtl"] body,
 html[dir="rtl"] *,
