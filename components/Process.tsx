@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { AnimateInView } from "./AnimateInView";
 import { FloatingShapes, processShapes } from "./FloatingShapes";
 
@@ -35,18 +34,17 @@ function StepVisual({ index, isActive }: { index: number; isActive: boolean }) {
         </div>
         <div className="flex items-center gap-2">
           {[0, 1, 2].map((node) => (
-            <motion.div
+            <div
               key={node}
-              animate={{
-                scale: isActive ? [1, 1.04, 1] : 1,
-                borderColor: isActive && node === 1 ? "#0d0e10" : "#e5e7eb",
-              }}
-              transition={{ duration: 0.4, delay: node * 0.08 }}
-              className="flex-1 h-11 rounded-[8px] bg-[#ffffff] border border-[#e5e7eb] p-2 flex flex-col justify-between shadow-2xs"
+              className={`flex-1 h-11 rounded-[8px] bg-[#ffffff] border p-2 flex flex-col justify-between shadow-2xs transition-[transform,border-color] duration-300 ${
+                isActive && node === 1
+                  ? "border-[#0d0e10] scale-[1.03]"
+                  : "border-[#e5e7eb] scale-100"
+              }`}
             >
               <span className="w-6 h-1.5 rounded-full bg-[#0d0e10]" />
               <span className="w-full h-1.5 rounded-full bg-[#646f79]/30" />
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -69,10 +67,10 @@ function StepVisual({ index, isActive }: { index: number; isActive: boolean }) {
             <span className="text-emerald-700 font-semibold">12ms</span>
           </div>
           <div className="w-full h-2 rounded-full bg-[#ffffff] border border-[#e5e7eb] overflow-hidden p-0.5">
-            <motion.div
-              animate={{ width: isActive ? "100%" : "78%" }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="h-full rounded-full bg-[#0d0e10]"
+            <div
+              className={`w-full h-full rounded-full bg-[#0d0e10] origin-left rtl:origin-right transition-transform duration-300 ease-out ${
+                isActive ? "scale-x-100" : "scale-x-[0.78]"
+              }`}
             />
           </div>
         </div>
@@ -91,15 +89,15 @@ function StepVisual({ index, isActive }: { index: number; isActive: boolean }) {
       </div>
       <div className="flex items-end gap-1.5 h-12 pt-1">
         {[40, 55, 70, 85, 100].map((bar, i) => (
-          <motion.div
+          <div
             key={i}
-            animate={{
-              height: isActive ? `${bar}%` : `${Math.max(30, bar - 15)}%`,
+            style={{
+              height: `${bar}%`,
+              transitionDelay: `${i * 30}ms`,
             }}
-            transition={{ duration: 0.3, delay: i * 0.04 }}
-            className={`flex-1 rounded-t-[4px] ${
-              i === 4 ? "bg-[#0d0e10]" : "bg-[#646f79]/45"
-            }`}
+            className={`flex-1 rounded-t-[4px] origin-bottom transition-transform duration-300 ease-out ${
+              isActive ? "scale-y-100" : "scale-y-[0.82]"
+            } ${i === 4 ? "bg-[#0d0e10]" : "bg-[#646f79]/45"}`}
           />
         ))}
       </div>
@@ -145,14 +143,12 @@ export function Process({ dict }: ProcessProps) {
               <AnimateInView
                 key={step.num}
                 variant="fadeUp"
-                delay={idx * 0.1}
+                delay={idx * 0.06}
                 className="h-full"
               >
-                <motion.div
+                <div
                   onMouseEnter={() => setActiveIdx(idx)}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className={`h-full rounded-[20px] bg-[#ffffff] p-5 sm:p-7 md:p-8 flex flex-col justify-between text-start border transition-all duration-200 ${
+                  className={`group h-full rounded-[20px] bg-[#ffffff] p-5 sm:p-7 md:p-8 flex flex-col justify-between text-start border md:hover:-translate-y-1 transition-[transform,border-color,box-shadow] duration-200 ${
                     isActive
                       ? "border-[#0d0e10]/25 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)]"
                       : "border-[#eceeef] shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
@@ -209,7 +205,7 @@ export function Process({ dict }: ProcessProps) {
                       →
                     </span>
                   </div>
-                </motion.div>
+                </div>
               </AnimateInView>
             );
           })}

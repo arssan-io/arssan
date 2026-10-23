@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, type CSSProperties } from "react";
 import {
   motion,
   useMotionValue,
@@ -83,32 +83,27 @@ function Shape({
   const driftDuration = 5 + config.size * 0.06;
   const rotateDuration = 18 + config.size * 0.15;
 
+  const animStyle: CSSProperties = {
+    opacity: config.opacity,
+    ...(config.drift !== undefined
+      ? ({
+          "--drift-y": `${config.drift}px`,
+          animation: `float-drift ${driftDuration}s ease-in-out infinite`,
+        } as CSSProperties)
+      : config.rotate !== undefined
+      ? ({
+          "--spin-deg": `${config.rotate}deg`,
+          animation: `float-spin ${rotateDuration}s linear infinite`,
+        } as CSSProperties)
+      : {}),
+  };
+
   return (
     <motion.div
-      className="absolute will-change-transform"
+      className="absolute"
       style={{ left: config.left, top: config.top, x: px, y: py }}
     >
-      <motion.div
-        style={{ opacity: config.opacity }}
-        animate={{
-          ...(config.drift !== undefined && {
-            y: [0, config.drift, 0],
-          }),
-          ...(config.rotate !== undefined && {
-            rotate: [0, config.rotate],
-          }),
-        }}
-        transition={{
-          y: config.drift !== undefined
-            ? { duration: driftDuration, repeat: Infinity, ease: "easeInOut" }
-            : undefined,
-          rotate: config.rotate !== undefined
-            ? { duration: rotateDuration, repeat: Infinity, ease: "linear" }
-            : undefined,
-        }}
-      >
-        {shapeEl}
-      </motion.div>
+      <div style={animStyle}>{shapeEl}</div>
     </motion.div>
   );
 }
@@ -128,9 +123,10 @@ export function FloatingShapes({
   const smoothY = useSpring(mouseY, { damping: 50, stiffness: 80 });
 
   useEffect(() => {
-    const isTouchDevice =
-      "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
+    const mediaQuery = window.matchMedia(
+      "(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)"
+    );
+    if (!mediaQuery.matches) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set((e.clientX / window.innerWidth - 0.5) * 2);
@@ -143,7 +139,8 @@ export function FloatingShapes({
 
   return (
     <div
-      className={`absolute inset-0 pointer-events-none overflow-hidden ${color} ${className}`}
+      aria-hidden="true"
+      className={`hidden md:block absolute inset-0 pointer-events-none overflow-hidden ${color} ${className}`}
     >
       {shapes.map((config, i) => (
         <Shape key={i} config={config} smoothX={smoothX} smoothY={smoothY} />

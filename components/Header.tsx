@@ -49,13 +49,13 @@ export function Header({ lang, dict }: HeaderProps) {
   return (
     <>
       <motion.header
-        initial={{ y: -32, opacity: 0 }}
+        initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-[background-color,border-color,box-shadow,padding] duration-200 ${
           scrolled
-            ? "py-3 bg-[#ffffff]/90 backdrop-blur-xl border-b border-[#f3f3f3] shadow-[0_2px_8px_rgba(0,0,0,0.05)]"
-            : "py-4 sm:py-5 bg-[#ffffff]/75 backdrop-blur-md border-b border-transparent"
+            ? "py-3 bg-[#ffffff]/92 border-b border-[#f3f3f3] shadow-[0_2px_8px_rgba(0,0,0,0.05)]"
+            : "py-3.5 sm:py-5 bg-[#ffffff]/80 border-b border-transparent"
         }`}
       >
         <div className="max-w-[1280px] mx-auto px-5 sm:px-8 flex items-center justify-between">

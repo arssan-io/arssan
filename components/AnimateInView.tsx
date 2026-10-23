@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface AnimateInViewProps {
@@ -14,7 +14,7 @@ interface AnimateInViewProps {
 
 const variants: Record<string, Variants> = {
   fadeUp: {
-    hidden: { opacity: 0, y: 24 },
+    hidden: { opacity: 0, y: 16 },
     visible: { opacity: 1, y: 0 },
   },
   fadeIn: {
@@ -22,15 +22,15 @@ const variants: Record<string, Variants> = {
     visible: { opacity: 1 },
   },
   scaleUp: {
-    hidden: { opacity: 0, scale: 0.97 },
+    hidden: { opacity: 0, scale: 0.98 },
     visible: { opacity: 1, scale: 1 },
   },
   slideLeft: {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, x: -16 },
     visible: { opacity: 1, x: 0 },
   },
   slideRight: {
-    hidden: { opacity: 0, x: 20 },
+    hidden: { opacity: 0, x: 16 },
     visible: { opacity: 1, x: 0 },
   },
 };
@@ -40,14 +40,20 @@ export function AnimateInView({
   className,
   variant = "fadeUp",
   delay = 0,
-  duration = 0.45,
+  duration = 0.4,
   once = true,
 }: AnimateInViewProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: "-50px" }}
+      viewport={{ once, amount: 0.12 }}
       variants={variants[variant]}
       transition={{
         duration,

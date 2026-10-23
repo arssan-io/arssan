@@ -78,12 +78,8 @@ export function Services({ dict }: ServicesProps) {
         {/* Asana Minimal-Maximalist Service Cards */}
         <div className="space-y-4 sm:space-y-6">
           {services.map((service, idx) => (
-            <AnimateInView key={service.key} variant="fadeUp" delay={idx * 0.08}>
-              <motion.div
-                whileHover={{ y: -3 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
-                className="group relative rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] p-5 sm:p-7 md:p-10 hover:border-[#646f79]/40 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-200 text-start"
-              >
+            <AnimateInView key={service.key} variant="fadeUp" delay={idx * 0.06}>
+              <div className="group relative rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] p-5 sm:p-7 md:p-10 md:hover:-translate-y-0.5 hover:border-[#646f79]/40 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] transition-[transform,border-color,box-shadow] duration-200 text-start">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
                   {/* Left / Main Content (8 cols) */}
                   <div className="lg:col-span-8 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
@@ -142,17 +138,17 @@ export function Services({ dict }: ServicesProps) {
 
                       <div className="w-full h-1.5 rounded-full bg-[#f3f3f3] overflow-hidden">
                         <motion.div
-                          initial={{ width: "35%" }}
-                          whileInView={{ width: "100%" }}
+                          initial={{ scaleX: 0.35 }}
+                          whileInView={{ scaleX: 1 }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.7, delay: 0.2 + idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                          className="h-full rounded-full bg-[#0d0e10]"
+                          transition={{ duration: 0.65, delay: 0.15 + idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                          className="w-full h-full rounded-full bg-[#0d0e10] origin-left rtl:origin-right"
                         />
                       </div>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </AnimateInView>
           ))}
         </div>

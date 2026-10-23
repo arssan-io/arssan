@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { AnimateInView } from "./AnimateInView";
 import type { Locale } from "@/lib/i18n";
 
@@ -63,13 +62,11 @@ export function Pricing({ lang, dict }: PricingProps) {
             <AnimateInView
               key={pkg.slug}
               variant="fadeUp"
-              delay={idx * 0.1}
+              delay={idx * 0.06}
               className="h-full"
             >
-              <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
-                className={`relative h-full rounded-[20px] p-6 sm:p-7 md:p-9 flex flex-col justify-between text-start border transition-all duration-200 ${
+              <div
+                className={`relative h-full rounded-[20px] p-6 sm:p-7 md:p-9 flex flex-col justify-between text-start border md:hover:-translate-y-1.5 transition-[transform,border-color,box-shadow] duration-200 ${
                   pkg.popular
                     ? "bg-[#0d0e10] text-[#ffffff] border-[#0d0e10] shadow-[0_20px_48px_-12px_rgba(13,14,16,0.28),0_2px_8px_rgba(0,0,0,0.12)]"
                     : "bg-[#ffffff] text-[#0d0d0d] border-[#eceeef] shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)]"
@@ -159,7 +156,7 @@ export function Pricing({ lang, dict }: PricingProps) {
                 {/* High-Affordance Pill CTA (48px height, 64px radius) */}
                 <Link
                   href={`/${lang}/pricing/${pkg.slug}`}
-                  className={`group flex items-center justify-center gap-2 h-11 sm:h-12 px-6 rounded-[64px] text-[14px] sm:text-[15px] font-medium transition-all duration-200 active:scale-[0.98] ${
+                  className={`group flex items-center justify-center gap-2 h-11 sm:h-12 px-6 rounded-[64px] text-[14px] sm:text-[15px] font-medium transition-[background-color,transform] duration-200 active:scale-[0.98] ${
                     pkg.popular
                       ? "bg-[#ffffff] text-[#0d0e10] hover:bg-[#f3f3f3] shadow-[0_2px_8px_rgba(0,0,0,0.15)]"
                       : "bg-[#0d0e10] text-[#ffffff] hover:bg-[#646f79]"
@@ -170,7 +167,7 @@ export function Pricing({ lang, dict }: PricingProps) {
                     →
                   </span>
                 </Link>
-              </motion.div>
+              </div>
             </AnimateInView>
           ))}
         </div>
