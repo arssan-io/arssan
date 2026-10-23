@@ -1,4 +1,4 @@
-import { Space_Grotesk, Readex_Pro, Bebas_Neue, IBM_Plex_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Readex_Pro, IBM_Plex_Mono } from "next/font/google";
 import { isRtl, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import { Header } from "@/components/Header";
@@ -6,29 +6,23 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Footer } from "@/components/Footer";
 
-const spaceGrotesk = Space_Grotesk({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-plus-jakarta",
   display: "swap",
 });
 
 const readexPro = Readex_Pro({
   subsets: ["arabic", "latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-readex-pro",
-  display: "swap",
-});
-
-const bebasNeue = Bebas_Neue({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-bebas-neue",
   display: "swap",
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   variable: "--font-ibm-plex-mono",
   display: "swap",
 });
@@ -62,10 +56,12 @@ export default async function LangLayout({
     <html
       lang={locale}
       dir={rtl ? "rtl" : "ltr"}
-      className={`${spaceGrotesk.variable} ${readexPro.variable} ${bebasNeue.variable} ${ibmPlexMono.variable}`}
+      className={`${plusJakarta.variable} ${readexPro.variable} ${ibmPlexMono.variable}`}
     >
       <body
-        className={`${rtl ? "font-readex-pro" : "font-space"} antialiased bg-[#f8f8f8] text-[#3c3a3e] selection:bg-[#161616] selection:text-[#f8f8f8]`}
+        className={`${
+          rtl ? "font-readex-pro" : "font-sans"
+        } antialiased bg-[#ffffff] text-[#0d0d0d] selection:bg-[#0d0e10] selection:text-[#ffffff]`}
       >
         <CustomCursor />
         <Header lang={locale} dict={dict} />

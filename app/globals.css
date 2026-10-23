@@ -2,39 +2,50 @@
 
 @theme {
   --font-readex-pro: var(--font-readex-pro), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-space: var(--font-space-grotesk), "Space Grotesk", sans-serif;
-  --font-display: var(--font-bebas-neue), var(--font-readex-pro), sans-serif;
+  --font-sans: var(--font-plus-jakarta), "TWK Lausanne", "Helvetica Neue", Helvetica, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: var(--font-ibm-plex-mono), var(--font-readex-pro), monospace;
 
-  --color-ember-orange: #ff6436;
-  --color-onyx: #161616;
-  --color-graphite: #3c3a3e;
-  --color-stone: #7b7a7c;
-  --color-ash: #a2a2a2;
-  --color-silver-mist: #c9c7cc;
-  --color-fog: #f1f1f1;
-  --color-paper: #f8f8f8;
-  --color-pure-white: #ffffff;
+  /* Asana Design System Tokens */
+  --color-asana-primary: #646f79;
+  --color-asana-on-primary: #ffffff;
+  --color-asana-bg: #ffffff;
+  --color-asana-surface: #f3f3f3;
+  --color-asana-surface-dark: #0d0d0d;
+  --color-asana-border: #f3f3f3;
+  --color-asana-border-subtle: #e5e7eb;
+  --color-asana-text: #0d0d0d;
+  --color-asana-text-secondary: #646f79;
+  --color-asana-accent: #0d0e10;
+
+  /* Spacing & Radius Scale */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 20px;
+  --radius-xl: 64px;
+
+  /* Shadows */
+  --shadow-card: rgba(0, 0, 0, 0.08) 0px 2px 8px 0px;
+  --shadow-elevated: rgba(0, 0, 0, 0.12) 0px 8px 24px -4px, rgba(0, 0, 0, 0.06) 0px 2px 8px 0px;
 }
 
 :root {
-  --color-ember-orange: #ff6436;
-  --color-onyx: #161616;
-  --color-graphite: #3c3a3e;
-  --color-stone: #7b7a7c;
-  --color-ash: #a2a2a2;
-  --color-silver-mist: #c9c7cc;
-  --color-fog: #f1f1f1;
-  --color-paper: #f8f8f8;
-  --color-pure-white: #ffffff;
-  --gradient-display-fade: linear-gradient(180deg, #ffffff 0%, #a2a2a2 50%, #3c3a3e 100%);
-  --gradient-horizon: linear-gradient(90deg, #7b7a7c, #3c3a3e);
-}
+  --color-primary: #646f79;
+  --color-on-primary: #ffffff;
+  --color-background: #ffffff;
+  --color-surface: #f3f3f3;
+  --color-surface-dark: #0d0d0d;
+  --color-border: #f3f3f3;
+  --color-text: #0d0d0d;
+  --color-text-muted: #646f79;
+  --color-accent: #0d0e10;
 
-@media (pointer: fine) {
-  * {
-    cursor: none;
-  }
+  --shadow-asana-card: rgba(0, 0, 0, 0.08) 0px 2px 8px 0px;
+  --shadow-asana-elevated: rgba(0, 0, 0, 0.14) 0px 12px 32px -6px, rgba(0, 0, 0, 0.06) 0px 2px 8px 0px;
+
+  --duration-fast: 100ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --easing-asana: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -42,42 +53,54 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Universal Arabic Typography Enforcement */
+/* Universal Arabic Typography & RTL Refinements */
 .font-readex-pro,
 html[dir="rtl"],
 html[dir="rtl"] body,
 html[dir="rtl"] *,
 html[dir="rtl"] .font-mono,
-html[dir="rtl"] .font-display,
 html[dir="rtl"] .font-sans {
   font-family: var(--font-readex-pro), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  letter-spacing: 0 !important;
 }
 
 body {
-  background-color: var(--color-paper);
-  color: var(--color-graphite);
+  background-color: var(--color-background);
+  color: var(--color-text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background-color: var(--color-onyx);
-  color: var(--color-pure-white);
+  background-color: var(--color-accent);
+  color: var(--color-on-primary);
 }
 
-/* Typographic Monument Gradient (English & Arabic Display) */
-.text-display-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, #e2e0e4 75%, #b5b3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Asana Minimal-Maximalist Surface Utilities */
+.asana-card {
+  background-color: #ffffff;
+  border: 1px solid #eceeef;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px 0px;
+  transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out, border-color 200ms ease-in-out;
 }
 
-/* Hairline borders & subtle grids */
-.border-hairline {
-  border: 1px solid var(--color-silver-mist);
+.asana-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 24px -4px, rgba(0, 0, 0, 0.06) 0px 2px 8px 0px;
+  border-color: #dcdfe3;
 }
 
-.border-hairline-dark {
-  border: 1px solid rgba(255, 255, 255, 0.12);
+.asana-surface {
+  background-color: #f3f3f3;
+  border: 1px solid #ebebeb;
+  border-radius: 20px;
+}
+
+/* Subtle Architectural Canvas Grid */
+.bg-asana-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(13, 14, 16, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13, 14, 16, 0.03) 1px, transparent 1px);
 }

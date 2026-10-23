@@ -1,152 +1,154 @@
 {
   "meta": {
-    "title": "Arssan | Professional Web Design & Development",
-    "description": "Arssan - A specialized agency for professional web design, development, and SEO optimization"
+    "title": "Arssan Kuwait | Professional Web Design & Digital Engineering",
+    "description": "Arssan — Your digital partner in Kuwait for executive UI/UX design, high-performance Next.js web development, and local & regional SEO."
   },
   "nav": {
     "home": "Home",
     "coloring": "Coloring",
-    "process": "Our Process",
+    "process": "Methodology",
     "services": "Services",
     "pricing": "Pricing",
-    "contact": "Contact"
+    "contact": "Contact Us"
   },
   "hero": {
-    "tagline": "We Build the Web Differently",
-    "title_line1": "We Build",
-    "title_line2": "Digital",
-    "title_line3": "Futures",
-    "description": "We design and build exceptional digital experiences — combining visual precision and high-performance engineering to drive measurable growth.",
-    "cta": "Explore Our Services",
-    "pipeline_design": "UI/UX Design",
-    "pipeline_dev": "Modern Dev",
-    "pipeline_seo": "SEO Optimization"
+    "tagline": "Digital Architecture for Ambitious Teams in Kuwait",
+    "title_line1": "Designing",
+    "title_line2": "Calm Digital",
+    "title_line3": "Excellence",
+    "description": "We architect, design, and engineer high-performing websites and digital platforms for leading businesses in Kuwait — combining Swiss modernist clarity with measurable commercial growth.",
+    "cta": "Explore Packages",
+    "pipeline_design": "UI/UX Systems",
+    "pipeline_dev": "Next.js Engineering",
+    "pipeline_seo": "Kuwait & Gulf SEO"
   },
   "process": {
-    "badge": "Our Process",
-    "title": "How We Work",
-    "subtitle": "A clear, proven methodology that ensures exceptional results at every stage of your project",
+    "badge": "Our Methodology",
+    "title": "Engineered for Clarity & Speed",
+    "subtitle": "A structured, transparent workflow designed to take your digital presence from strategy to market leadership without friction",
     "steps": [
       {
         "num": "01",
-        "title": "Discover & Design",
-        "description": "We begin with a deep understanding of your goals and target audience. We conduct market research, analyze competitors, then craft elegant interfaces and interactive prototypes that place the user experience at the heart of every design decision."
+        "title": "Discovery & UX Architecture",
+        "description": "We start with a deep dive into your business objectives and audience in the Kuwaiti market. We map user journeys and craft refined, distraction-free interfaces that elevate brand trust and conversion."
       },
       {
         "num": "02",
-        "title": "Develop & Build",
-        "description": "We transform designs into clean, high-performance code using modern technologies like React and Next.js. We build scalable architectures that integrate seamlessly with content management systems and external services."
+        "title": "Full-Stack Engineering",
+        "description": "We transform approved designs into clean, blazing-fast code using React and Next.js — featuring seamless bilingual RTL/LTR support, CMS workflows, and local payment integrations like KNET and MyFatoorah."
       },
       {
         "num": "03",
-        "title": "Optimize & Launch",
-        "description": "Before launch, we run comprehensive performance and compatibility tests. We implement advanced SEO strategies to ensure you rank at the top of search results, and continuously monitor performance to achieve the best outcomes."
+        "title": "Optimization & Launch",
+        "description": "Before launch, we run rigorous Core Web Vitals and cross-device QA. We implement targeted Kuwait & GCC search engine strategies so your platform performs effortlessly from day one."
       }
     ]
   },
   "services": {
-    "badge": "Our Services",
+    "badge": "Capabilities",
     "title": "Complete Digital Solutions",
-    "subtitle": "We offer a comprehensive suite of services to build your digital presence from A to Z",
+    "subtitle": "Enterprise-grade design and engineering tailored to scale your brand across Kuwait and the GCC",
     "design": {
-      "title": "UI/UX Design",
-      "description": "We craft elegant user interfaces and seamless experiences that captivate your customers and achieve your business goals. We focus on simplicity, beauty, and usability, paying attention to the finest details to create an unforgettable visual experience that builds user trust and increases conversion rates.",
+      "title": "UI/UX Design Systems",
+      "description": "We craft calm, high-precision user interfaces that put your product and brand story center stage. Every typographic scale, spacing token, and interaction is tuned for effortless bilingual usability and higher conversion rates.",
       "features": [
-        "Modern Interface Design",
-        "Optimized User Experience",
-        "Interactive Prototypes",
-        "Responsive Design for All Devices"
+        "Bilingual Design Systems (Arabic RTL & English)",
+        "User Journey & Conversion Optimization",
+        "Interactive High-Fidelity Prototypes",
+        "Responsive Across Mobile, Tablet & Desktop"
       ]
     },
     "development": {
-      "title": "Web Development",
-      "description": "We build high-performance websites and web applications using the latest frameworks and technologies. Clean code, blazing speed, and guaranteed scalability. We rely on software engineering best practices to ensure long-term stability and ease of maintenance and future development.",
+      "title": "Web & Platform Engineering",
+      "description": "We build resilient, ultra-fast websites and custom web applications on modern cloud architectures. Engineered for sub-second page loads, long-term maintainability, and seamless integration with your business tools.",
       "features": [
-        "React / Next.js",
-        "Blazing Fast Performance",
-        "Scalable Architecture",
-        "CMS Integration"
+        "Next.js 16 & React Server Architecture",
+        "KNET, Tap & MyFatoorah Payment Readiness",
+        "Tailored Content Management Systems",
+        "Enterprise Security & Cloud Scalability"
       ]
     },
     "seo": {
-      "title": "Search Engine Optimization",
-      "description": "We put your website at the top of search results through advanced SEO strategies and optimized content that attracts visitors and converts them into customers. We work on both technical and content optimization to build a strong, sustainable digital presence that drives continuous organic traffic growth.",
+      "title": "Search Engine Optimization (SEO)",
+      "description": "We position your business at the top of search results across Kuwait and the Gulf. By combining technical schema architecture with authoritative bilingual content, we drive qualified, sustainable organic traffic.",
       "features": [
-        "Comprehensive Technical SEO",
-        "Keyword Strategy",
-        "Site Speed Optimization",
-        "Regular Performance Reports"
+        "Local Kuwait & Regional GCC SEO Strategy",
+        "99+ Core Web Vitals & Speed Tuning",
+        "Bilingual Keyword & Content Architecture",
+        "Transparent Monthly Growth Analytics"
       ]
     }
   },
   "pricing": {
-    "badge": "Pricing",
-    "title": "Packages That Fit Your Needs",
-    "subtitle": "Choose the right package for your project and start your digital journey today",
+    "badge": "Transparent Pricing",
+    "title": "Investment Tiers in KWD",
+    "subtitle": "Clear, predictable project packages in Kuwaiti Dinar — structured to deliver maximum return at every stage of growth",
     "packages": [
       {
         "name": "Starter",
         "slug": "starter",
-        "price": "2,500",
-        "currency": "SAR",
+        "price": "150",
+        "currency": "KWD",
         "period": "per project",
-        "description": "Perfect for startups and small businesses",
+        "description": "Ideal for new ventures and small businesses launching a polished digital presence",
         "features": [
-          "Single Landing Page Design",
-          "Responsive Design",
-          "Basic SEO Optimization",
-          "1 Month Support",
-          "Free SSL Certificate"
+          "Custom High-Conversion Landing Page",
+          "Arabic or English Language Setup",
+          "Mobile-First Responsive Architecture",
+          "Foundational Technical SEO Setup",
+          "Direct WhatsApp & Social Integration",
+          "Free SSL Certificate & 1 Month Support"
         ],
-        "cta": "Get Started"
+        "cta": "Start with Starter"
       },
       {
         "name": "Professional",
         "slug": "professional",
-        "price": "7,500",
-        "currency": "SAR",
+        "price": "450",
+        "currency": "KWD",
         "period": "per project",
         "popular": true,
-        "description": "The best choice for growing businesses",
+        "description": "Our most popular tier for growing Kuwaiti companies needing a bilingual corporate platform",
         "features": [
-          "Up to 5 Page Design",
-          "Custom UI/UX Design",
-          "Advanced Next.js Development",
-          "Comprehensive SEO",
-          "Content Management System",
-          "3 Months Support"
+          "Up to 6 Custom-Designed Pages",
+          "Full Bilingual Support (Arabic RTL + English)",
+          "Bespoke UI/UX Design System",
+          "High-Speed Next.js Development",
+          "Easy-to-Use Content Management System",
+          "Comprehensive Kuwait Local SEO",
+          "3 Months Priority Support & Maintenance"
         ],
-        "cta": "Most Popular"
+        "cta": "Most Popular in Kuwait"
       },
       {
         "name": "Enterprise",
         "slug": "enterprise",
-        "price": "15,000",
-        "currency": "SAR",
+        "price": "950",
+        "currency": "KWD",
         "period": "per project",
-        "description": "Complete solutions for enterprises and large projects",
+        "description": "End-to-end custom architecture for established enterprises and complex web platforms",
         "features": [
-          "Unlimited Pages",
-          "Advanced UI/UX Design",
-          "Full-Stack Development",
-          "Integrated SEO Strategy",
-          "Custom Dashboard",
-          "External API Integration",
-          "6 Months Support",
-          "Team Training"
+          "Unlimited Custom Pages & Modules",
+          "Executive UI/UX Research & Design System",
+          "Full-Stack Custom Web Engineering",
+          "KNET / MyFatoorah / External API Integrations",
+          "Custom Admin Dashboard & Analytics",
+          "Full-Scale Regional SEO & Performance Suite",
+          "6 Months Dedicated SLA Support",
+          "Hands-On Team Onboarding & Training"
         ],
-        "cta": "Contact Us"
+        "cta": "Book Consultation"
       }
     ]
   },
   "footer": {
-    "bio": "Arssan is a digital agency specializing in professional web design and development. We combine visual creativity with technical excellence to build exceptional digital experiences that drive your business growth.",
-    "description": "A specialized agency for professional web design and development",
+    "bio": "Arssan is a specialized digital design and engineering studio serving ambitious businesses in Kuwait and the GCC. We combine calm visual clarity with modern software architecture to drive measurable growth.",
+    "description": "A specialized studio for professional web design and engineering in Kuwait",
     "rights": "All rights reserved",
     "links": {
-      "title": "Quick Links"
+      "title": "Navigation"
     },
-    "services_title": "Services"
+    "services_title": "Capabilities"
   },
   "whatsapp": {
     "tooltip": "Chat with us on WhatsApp"

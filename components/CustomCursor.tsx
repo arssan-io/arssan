@@ -8,7 +8,7 @@ export function CustomCursor() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 25, stiffness: 400, mass: 0.5 };
+  const springConfig = { damping: 28, stiffness: 380, mass: 0.4 };
   const x = useSpring(cursorX, springConfig);
   const y = useSpring(cursorY, springConfig);
 
@@ -17,15 +17,15 @@ export function CustomCursor() {
     if (isTouchDevice) return;
 
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 10);
-      cursorY.set(e.clientY - 10);
+      cursorX.set(e.clientX - 12);
+      cursorY.set(e.clientY - 12);
       if (!visible) setVisible(true);
     };
 
     const hideCursor = () => setVisible(false);
     const showCursor = () => setVisible(true);
 
-    window.addEventListener("mousemove", moveCursor);
+    window.addEventListener("mousemove", moveCursor, { passive: true });
     document.addEventListener("mouseleave", hideCursor);
     document.addEventListener("mouseenter", showCursor);
 
@@ -40,7 +40,7 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 z-[9999] pointer-events-none w-5 h-5 rounded-full bg-white mix-blend-difference"
+      className="fixed top-0 left-0 z-[9999] pointer-events-none w-6 h-6 rounded-full border border-[#646f79]/40 bg-[#646f79]/10 backdrop-blur-[1px]"
       style={{ x, y }}
     />
   );

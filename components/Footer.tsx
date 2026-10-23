@@ -51,6 +51,7 @@ function IconFacebook({ className }: { className?: string }) {
 
 export function Footer({ lang, dict }: FooterProps) {
   const year = new Date().getFullYear();
+  const isAr = lang === "ar";
 
   const quickLinks = [
     { label: dict.nav.home, href: `/${lang}` },
@@ -72,29 +73,70 @@ export function Footer({ lang, dict }: FooterProps) {
   ];
 
   return (
-    <footer className="relative bg-[#161616] text-white overflow-hidden border-t border-white/10">
-      <div className="relative z-10 max-w-[1200px] mx-auto px-5 sm:px-8 py-16 md:py-24">
+    <footer className="relative bg-[#ffffff] text-[#0d0d0d] overflow-hidden pt-16 md:pt-24">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
+        {/* Executive Pre-Footer CTA Card (#0d0e10 Asana Dark Surface) */}
+        <AnimateInView className="mb-16 md:mb-24">
+          <div className="rounded-[20px] bg-[#0d0e10] text-[#ffffff] p-8 sm:p-12 md:p-16 shadow-[0_20px_48px_-12px_rgba(13,14,16,0.22)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 text-start relative overflow-hidden">
+            <div className="max-w-2xl space-y-3 relative z-10">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-[64px] bg-[#ffffff]/10 border border-[#ffffff]/15 text-[12px] font-medium text-[#ffffff]/90">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>{isAr ? "استشارة مجانية لمشروعك في الكويت" : "Free Executive Discovery Call"}</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-[-0.02em] leading-[1.25]">
+                {isAr
+                  ? "هل أنت مستعد لبناء حضور رقمي يليق بعلامتك التجارية؟"
+                  : "Ready to build a calm, high-performing digital platform?"}
+              </h3>
+              <p className="text-sm sm:text-base text-[#ffffff]/70 leading-[1.6]">
+                {isAr
+                  ? "تواصل مع فريقنا مباشرة عبر واتساب لمناقشة تفاصيل مشروعك واختيار الباقة الأنسب لأهدافك."
+                  : "Connect directly with our team to scope your project, timeline, and KWD package."}
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto relative z-10">
+              <a
+                href="https://wa.me/46700265645"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 h-12 px-8 rounded-[64px] bg-[#ffffff] text-[#0d0e10] font-medium text-[15px] hover:bg-[#f3f3f3] transition-all duration-200 active:scale-[0.98]"
+              >
+                <span>{dict.nav.contact}</span>
+                <span className="rtl:rotate-180">→</span>
+              </a>
+              <a
+                href={`/${lang}#pricing`}
+                className="inline-flex items-center justify-center h-12 px-7 rounded-[64px] bg-[#ffffff]/10 text-[#ffffff] border border-[#ffffff]/15 hover:bg-[#ffffff]/20 font-medium text-[15px] transition-all duration-200"
+              >
+                {dict.nav.pricing}
+              </a>
+            </div>
+          </div>
+        </AnimateInView>
+
+        {/* Main Footer Columns */}
         <AnimateInView>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-[#f3f3f3] text-start">
             {/* Brand Column (5 cols) */}
-            <div className="lg:col-span-5 space-y-6">
+            <div className="lg:col-span-5 space-y-5">
               <div className="flex items-center gap-3">
                 <img
                   src="/images/Logo.svg"
                   alt="Arssan"
-                  className="h-8 w-auto brightness-0 invert"
+                  className="h-7 sm:h-8 w-auto brightness-0"
                 />
-                <span className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-white/20 bg-white/[0.04] text-[#ff6436]">
-                  ● ACTIVE
+                <span className="text-[11px] font-medium px-3 py-1 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[#646f79]">
+                  {isAr ? "الكويت • الخليج" : "Kuwait • GCC"}
                 </span>
               </div>
 
-              <p className="text-sm text-[#a2a2a2] leading-relaxed max-w-sm font-normal">
+              <p className="text-[15px] text-[#646f79] leading-[1.65] max-w-sm font-normal">
                 {dict.footer.bio}
               </p>
 
-              {/* Pill Social Buttons */}
-              <div className="flex items-center gap-2.5 pt-2">
+              {/* Social Pill Buttons */}
+              <div className="flex items-center gap-2.5 pt-1">
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}
@@ -102,7 +144,7 @@ export function Footer({ lang, dict }: FooterProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-full border border-white/15 bg-white/[0.03] flex items-center justify-center text-white/60 hover:text-[#161616] hover:bg-[#ff6436] hover:border-[#ff6436] transition-all duration-300"
+                    className="w-10 h-10 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] flex items-center justify-center text-[#646f79] hover:text-[#ffffff] hover:bg-[#0d0e10] hover:border-[#0d0e10] transition-all duration-200"
                   >
                     <social.icon className="w-4 h-4" />
                   </a>
@@ -111,59 +153,53 @@ export function Footer({ lang, dict }: FooterProps) {
             </div>
 
             {/* Quick Links (2 cols) */}
-            <div className="lg:col-span-2 font-mono">
-              <h4 className="text-xs font-semibold tracking-widest uppercase mb-6 text-[#7b7a7c]">
-                [ {dict.footer.links.title} ]
+            <div className="lg:col-span-2">
+              <h4 className="text-xs font-semibold uppercase tracking-wider mb-5 text-[#0d0d0d]">
+                {dict.footer.links.title}
               </h4>
-              <ul className="space-y-3 text-xs sm:text-[13px] uppercase tracking-wider">
+              <ul className="space-y-3 text-[14px]">
                 {quickLinks.map((link) => (
                   <li key={link.href + link.label}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
+                      className="text-[#646f79] hover:text-[#0d0d0d] transition-colors duration-150"
                     >
-                      <span className="text-[#ff6436] opacity-0 group-hover:opacity-100 transition-opacity">
-                        +
-                      </span>
-                      <span>{link.label}</span>
+                      {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Services Links (2 cols) */}
-            <div className="lg:col-span-2 font-mono">
-              <h4 className="text-xs font-semibold tracking-widest uppercase mb-6 text-[#7b7a7c]">
-                [ {dict.footer.services_title} ]
+            {/* Services Links (3 cols) */}
+            <div className="lg:col-span-3">
+              <h4 className="text-xs font-semibold uppercase tracking-wider mb-5 text-[#0d0d0d]">
+                {dict.footer.services_title}
               </h4>
-              <ul className="space-y-3 text-xs sm:text-[13px] uppercase tracking-wider">
+              <ul className="space-y-3 text-[14px]">
                 {serviceLinks.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
+                      className="text-[#646f79] hover:text-[#0d0d0d] transition-colors duration-150"
                     >
-                      <span className="text-[#ff6436] opacity-0 group-hover:opacity-100 transition-opacity">
-                        +
-                      </span>
-                      <span>{link.label}</span>
+                      {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Contact Information (3 cols) */}
-            <div className="lg:col-span-3 font-mono">
-              <h4 className="text-xs font-semibold tracking-widest uppercase mb-6 text-[#7b7a7c]">
-                [ {dict.nav.contact} ]
+            {/* Contact Info (2 cols) */}
+            <div className="lg:col-span-2">
+              <h4 className="text-xs font-semibold uppercase tracking-wider mb-5 text-[#0d0d0d]">
+                {dict.nav.contact}
               </h4>
-              <ul className="space-y-3.5 text-xs sm:text-[13px]">
+              <ul className="space-y-3 text-[14px] text-[#646f79]">
                 <li>
                   <a
                     href="mailto:info@arssan.com"
-                    className="text-white/70 hover:text-white transition-colors"
+                    className="hover:text-[#0d0d0d] transition-colors"
                   >
                     info@arssan.com
                   </a>
@@ -173,13 +209,18 @@ export function Footer({ lang, dict }: FooterProps) {
                     href="https://wa.me/46700265645"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/70 hover:text-[#ff6436] transition-colors"
+                    className="hover:text-[#0d0d0d] transition-colors"
                   >
-                    <span dir="ltr" className="inline-block">+46 70 026 56 45</span>
+                    <span dir="ltr" className="inline-block font-mono text-[13px]">
+                      +46 70 026 56 45
+                    </span>
                   </a>
                 </li>
-                <li className="pt-2 text-[11px] text-[#7b7a7c]">
-                  24°42&apos;N 46°40&apos;E // RIYADH & GLOBAL
+                <li className="pt-1 text-[12px] font-mono text-[#646f79]">
+                  29°22&apos;N 47°58&apos;E
+                  <span className="block text-[12px] font-sans mt-0.5">
+                    {isAr ? "مدينة الكويت • الشرق الأوسط" : "Kuwait City • GCC"}
+                  </span>
                 </li>
               </ul>
             </div>
@@ -187,25 +228,18 @@ export function Footer({ lang, dict }: FooterProps) {
         </AnimateInView>
 
         {/* Bottom Sub-bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-[#7b7a7c]">
-          <p className="uppercase tracking-wider">
-            &copy; {year} ARSSAN. {dict.footer.rights}.
+        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-[#646f79]">
+          <p>
+            &copy; {year} Arssan. {dict.footer.rights}.
           </p>
 
-          <div className="flex items-center gap-4 uppercase tracking-widest text-[10px]">
-            <span className="flex items-center gap-1.5 text-white/50">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6436]"></span>
-              SYSTEM OK
+          <div className="flex items-center gap-3 text-[12px]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+              {isAr ? "جميع الأنظمة تعمل بكفاءة" : "All Systems Operational"}
             </span>
           </div>
         </div>
-      </div>
-
-      {/* Ghosted Giant Background Display Wordmark */}
-      <div className="w-full select-none pointer-events-none text-center overflow-hidden opacity-[0.04] pb-2">
-        <span className="font-display text-[160px] sm:text-[240px] md:text-[340px] uppercase font-bold tracking-tighter text-white leading-none">
-          ARSSAN
-        </span>
       </div>
     </footer>
   );

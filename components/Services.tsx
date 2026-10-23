@@ -35,90 +35,122 @@ const icons = {
   ),
 };
 
+const serviceMetrics = {
+  design: { value: "WCAG AAA", label: "18.5:1 Contrast & RTL Precision", tag: "Figma Systems" },
+  development: { value: "< 0.4s", label: "Instant Load & KNET Gateway Ready", tag: "Next.js 16" },
+  seo: { value: "99 / 100", label: "Core Web Vitals & Kuwait Search Rank", tag: "Local & GCC SEO" },
+};
+
 export function Services({ dict }: ServicesProps) {
   const services = [
-    { key: "design" as const, icon: icons.design, ...dict.services.design },
-    { key: "development" as const, icon: icons.development, ...dict.services.development },
-    { key: "seo" as const, icon: icons.seo, ...dict.services.seo },
+    { key: "design" as const, icon: icons.design, metric: serviceMetrics.design, ...dict.services.design },
+    { key: "development" as const, icon: icons.development, metric: serviceMetrics.development, ...dict.services.development },
+    { key: "seo" as const, icon: icons.seo, metric: serviceMetrics.seo, ...dict.services.seo },
   ];
 
   return (
-    <section id="services" className="relative py-24 md:py-36 bg-[#161616] text-white overflow-hidden border-b border-white/10">
-      <FloatingShapes shapes={servicesShapes} color="text-white" />
+    <section
+      id="services"
+      className="relative py-24 md:py-32 bg-[#ffffff] text-[#0d0d0d] overflow-hidden border-b border-[#f3f3f3]"
+    >
+      <FloatingShapes shapes={servicesShapes} color="text-[#646f79]" />
 
-      {/* Ghosted Typographic Background Watermark */}
-      <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 pointer-events-none select-none overflow-hidden opacity-[0.03] z-0">
-        <span className="font-display text-[160px] sm:text-[220px] md:text-[320px] uppercase font-bold tracking-tight text-white leading-none whitespace-nowrap">
-          SERVICES
-        </span>
-      </div>
-
-      <div className="relative z-10 max-w-[1200px] mx-auto px-5 sm:px-8">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
-        <AnimateInView className="mb-12 md:mb-24">
+        <AnimateInView className="mb-14 md:mb-20">
           <div className="flex flex-col items-start text-start">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/[0.04] text-[12px] font-mono tracking-widest text-white uppercase mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6436]"></span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[13px] font-medium text-[#646f79] mb-5">
+              <span className="w-2 h-2 rounded-full bg-[#0d0e10]" />
               <span>{dict.services.badge}</span>
             </div>
 
-            <div className="flex flex-col md:flex-row md:items-end justify-between w-full gap-4 md:gap-6">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-white">
+            <div className="flex flex-col md:flex-row md:items-end justify-between w-full gap-4 md:gap-8">
+              <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-normal tracking-[-0.02em] text-[#0d0d0d] leading-[1.2]">
                 {dict.services.title}
               </h2>
-              <p className="text-sm sm:text-base text-[#a2a2a2] max-w-md leading-relaxed font-normal">
+              <p className="text-base text-[#646f79] max-w-md leading-[1.6] font-normal">
                 {dict.services.subtitle}
               </p>
             </div>
           </div>
         </AnimateInView>
 
-        {/* Sharp Brutalist Service Blocks */}
-        <div className="space-y-4">
+        {/* Asana Minimal-Maximalist Service Cards */}
+        <div className="space-y-6">
           {services.map((service, idx) => (
-            <AnimateInView key={service.key} variant="fadeUp" delay={idx * 0.1}>
+            <AnimateInView key={service.key} variant="fadeUp" delay={idx * 0.08}>
               <motion.div
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-                className="group relative rounded-none border border-white/10 bg-white/[0.02] p-6 sm:p-10 md:p-12 hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300 text-start"
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="group relative rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] p-6 sm:p-8 md:p-10 hover:border-[#646f79]/40 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-200 text-start"
               >
-                <div className="md:flex md:items-start md:gap-12">
-                  {/* Left Column: Number & Icon */}
-                  <div className="flex items-center gap-4 mb-6 md:mb-0 md:flex-col md:items-start md:gap-4 md:w-28 md:flex-shrink-0 font-mono">
-                    <span className="text-3xl font-bold text-white/30 group-hover:text-[#ff6436] transition-colors">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                    <div className="w-10 h-10 rounded-none border border-white/15 bg-white/[0.04] flex items-center justify-center text-white/70 group-hover:text-white group-hover:border-[#ff6436] transition-all duration-300">
-                      {service.icon}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Left / Main Content (8 cols) */}
+                  <div className="lg:col-span-8 flex flex-col sm:flex-row sm:items-start gap-6">
+                    {/* Number & Icon Column */}
+                    <div className="flex sm:flex-col items-center sm:items-start gap-3 flex-shrink-0">
+                      <div className="w-12 h-12 rounded-[14px] bg-[#ffffff] border border-[#e5e7eb] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#0d0d0d] group-hover:bg-[#0d0e10] group-hover:text-[#ffffff] transition-colors duration-200">
+                        {service.icon}
+                      </div>
+                      <span className="font-mono text-xs font-medium text-[#646f79] px-2.5 py-0.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb]">
+                        0{idx + 1}
+                      </span>
+                    </div>
+
+                    {/* Title, Copy, and Deliverable Pills */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-2xl sm:text-[1.75rem] font-medium text-[#0d0d0d] mb-3 leading-[1.25]">
+                        {service.title}
+                      </h3>
+                      <p className="text-[15px] sm:text-base text-[#646f79] leading-[1.65] mb-6 max-w-2xl font-normal">
+                        {service.description}
+                      </p>
+
+                      {/* Deliverable Pills on Crisp White Surface */}
+                      <div className="flex flex-wrap gap-2">
+                        {service.features.map((feature) => (
+                          <span
+                            key={feature}
+                            className="inline-flex items-center gap-2 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[#0d0d0d] px-4 py-1.5 text-[13px] font-medium shadow-[0_1px_3px_rgba(0,0,0,0.03)] group-hover:border-[#646f79]/30 transition-colors duration-200"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#646f79] group-hover:bg-[#0d0e10] transition-colors" />
+                            <span>{feature}</span>
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Right Column: Title, Description, and Ghost Glass Tags */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm sm:text-base text-[#a2a2a2] leading-relaxed mb-8 font-normal max-w-3xl">
-                      {service.description}
-                    </p>
-
-                    {/* Metadata Ghost Glass Tags (0px radius) */}
-                    <div className="flex flex-wrap gap-2.5 font-mono text-[11px] sm:text-xs">
-                      {service.features.map((feature) => (
-                        <span
-                          key={feature}
-                          className="rounded-none border border-white/15 bg-white/[0.04] text-white/80 px-3 py-1.5 uppercase tracking-wider group-hover:border-white/30 transition-colors"
-                        >
-                          + {feature}
+                  {/* Right Column: Elevated White Benchmark Card (4 cols) */}
+                  <div className="lg:col-span-4">
+                    <div className="rounded-[16px] bg-[#ffffff] border border-[#eceeef] p-5 sm:p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col justify-between min-h-[160px] group-hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.10)] transition-shadow duration-200">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-[#646f79] px-2.5 py-1 rounded-[64px] bg-[#f3f3f3]">
+                          {service.metric.tag}
                         </span>
-                      ))}
+                        <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                      </div>
+
+                      <div className="my-4">
+                        <div className="text-3xl sm:text-4xl font-light tracking-tight text-[#0d0d0d]">
+                          {service.metric.value}
+                        </div>
+                        <div className="text-[13px] text-[#646f79] mt-1 font-normal">
+                          {service.metric.label}
+                        </div>
+                      </div>
+
+                      <div className="w-full h-1.5 rounded-full bg-[#f3f3f3] overflow-hidden">
+                        <motion.div
+                          initial={{ width: "35%" }}
+                          whileInView={{ width: "100%" }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.7, delay: 0.2 + idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                          className="h-full rounded-full bg-[#0d0e10]"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Corner hairline crosshair */}
-                <div className="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] text-[#ff6436]">
-                  [ ACTIVE ]
                 </div>
               </motion.div>
             </AnimateInView>

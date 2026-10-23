@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
 import { FloatingShapes, heroShapes } from "./FloatingShapes";
 
@@ -24,100 +25,358 @@ interface HeroProps {
   };
 }
 
-const easeBrutal = [0.32, 0.72, 0, 1] as [number, number, number, number];
+const easeAsana = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-function MonumentDisplayMonitor({ lang }: { lang: Locale }) {
+function AsanaProjectShowcase({
+  lang,
+  labels,
+}: {
+  lang: Locale;
+  labels: { design: string; dev: string; seo: string };
+}) {
   const isAr = lang === "ar";
+  const [activeTab, setActiveTab] = useState<0 | 1 | 2>(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Subtle 3D parallax mouse tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [4, -4]), {
+    stiffness: 180,
+    damping: 25,
+  });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-4, 4]), {
+    stiffness: 180,
+    damping: 25,
+  });
+
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setActiveTab((prev) => ((prev + 1) % 3) as 0 | 1 | 2);
+    }, 4200);
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  const tabs = [
+    { id: 0 as const, num: "01", title: labels.design },
+    { id: 1 as const, num: "02", title: labels.dev },
+    { id: 2 as const, num: "03", title: labels.seo },
+  ];
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 25, scale: 0.97 }}
+      initial={{ opacity: 0, y: 28, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.9, delay: 0.35, ease: easeBrutal }}
-      className="relative w-full max-w-[540px] mx-auto select-none mt-4 lg:mt-0"
+      transition={{ duration: 0.7, delay: 0.25, ease: easeAsana }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ perspective: 1200 }}
+      className="relative w-full max-w-[580px] mx-auto select-none"
     >
-      {/* Perspective Monitor Stand & Screen */}
-      <div className="relative rounded-none border border-white/15 bg-[#121212]/95 backdrop-blur-md shadow-2xl p-3.5 sm:p-5">
-        {/* Terminal / Device Header Bar */}
-        <div className="flex items-center justify-between pb-2.5 sm:pb-3 mb-3 sm:mb-4 border-b border-white/10 font-mono text-[10px] sm:text-[11px] text-[#a2a2a2]">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#ff6436]"></span>
-            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white/20"></span>
-            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white/20"></span>
-            <span className="ms-1.5 sm:ms-2 text-white/50 uppercase tracking-widest text-[9px] sm:text-[10px]">
-              ARSSAN.SYS // V2.6
+      {/* Ambient soft backdrop glow */}
+      <div className="absolute -inset-4 rounded-[32px] bg-gradient-to-tr from-[#f3f3f3] via-[#e8eaed]/60 to-transparent blur-2xl -z-10" />
+
+      {/* Outer Asana Surface Container */}
+      <motion.div
+        style={{ rotateX, rotateY }}
+        className="rounded-[20px] bg-[#f3f3f3] p-3 sm:p-4 border border-[#e5e7eb] shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)]"
+      >
+        {/* Top Workspace Bar */}
+        <div className="flex items-center justify-between px-2 pb-3">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#0d0e10]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#646f79]/50" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#646f79]/25" />
+            <span className="ms-2 text-[12px] font-medium text-[#646f79]">
+              {isAr ? "منصة مشاريع أرسان • الكويت" : "Arssan Studio • Kuwait Workspace"}
             </span>
           </div>
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="text-[9px] sm:text-[10px] tracking-wider text-emerald-400 font-semibold">ONLINE</span>
+          <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] font-medium text-[#0d0d0d] shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+            <span>{isAr ? "مباشر" : "Live Sync"}</span>
           </div>
         </div>
 
-        {/* Code / Wireframe Screen Content */}
-        <div className="space-y-2.5 sm:space-y-3 font-mono text-xs text-white/80">
-          {/* Wireframe Hero Preview Box */}
-          <div className="border border-white/10 bg-white/[0.02] p-3 sm:p-4 relative overflow-hidden">
-            {/* Grid background */}
-            <div
-              className="absolute inset-0 opacity-[0.07]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-                backgroundSize: "16px 16px",
-              }}
-            />
-
-            <div className="relative z-10 space-y-2.5 sm:space-y-3">
-              <div className="flex items-center justify-between text-[9px] sm:text-[10px]">
-                <span className="text-[#ff6436] tracking-widest uppercase font-medium">
-                  [ PIPELINE_OUTPUT ]
+        {/* Interactive Stage Switcher Pills */}
+        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-[14px] bg-[#e6e8eb]/70 mb-3">
+          {tabs.map((tab) => {
+            const active = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative py-2 px-2.5 rounded-[10px] text-[12px] font-medium transition-colors duration-200 flex items-center justify-center gap-1.5 cursor-pointer ${
+                  active ? "text-[#0d0d0d]" : "text-[#646f79] hover:text-[#0d0d0d]"
+                }`}
+              >
+                {active && (
+                  <motion.div
+                    layoutId="hero-showcase-tab"
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="absolute inset-0 rounded-[10px] bg-[#ffffff] shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                  />
+                )}
+                <span className="relative z-10 text-[11px] text-[#646f79] font-mono">
+                  {tab.num}
                 </span>
-                <span className="text-[#7b7a7c]">60 FPS // ULTRA</span>
-              </div>
-
-              {/* Simulated Typography Layer */}
-              <div className="h-9 sm:h-10 bg-white/5 border border-white/10 flex items-center justify-between px-2.5 sm:px-3">
-                <span className="font-bold text-white text-[11px] sm:text-xs tracking-tight uppercase truncate pe-2">
-                  {isAr ? "استوديو أرسان الرقمي" : "ARSSAN DIGITAL ARCHITECTURE"}
-                </span>
-                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#ff6436] flex-shrink-0"></span>
-              </div>
-
-              {/* Three Service Columns in Preview */}
-              <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-0.5">
-                <div className="border border-white/10 bg-black/40 p-1.5 sm:p-2 text-center">
-                  <span className="text-[8px] sm:text-[9px] text-[#a2a2a2] uppercase block">UI / UX</span>
-                  <span className="text-[10px] sm:text-[11px] font-bold text-white">01</span>
-                </div>
-                <div className="border border-white/10 bg-black/40 p-1.5 sm:p-2 text-center">
-                  <span className="text-[8px] sm:text-[9px] text-[#a2a2a2] uppercase block">DEV</span>
-                  <span className="text-[10px] sm:text-[11px] font-bold text-white">02</span>
-                </div>
-                <div className="border border-white/10 bg-black/40 p-1.5 sm:p-2 text-center">
-                  <span className="text-[8px] sm:text-[9px] text-[#a2a2a2] uppercase block">SEO</span>
-                  <span className="text-[10px] sm:text-[11px] font-bold text-white">03</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Interactive Live Metrics Bar */}
-          <div className="flex items-center justify-between pt-1.5 sm:pt-2 text-[10px] sm:text-[11px] text-[#a2a2a2] border-t border-white/10">
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span>LATENCY: <strong className="text-white">12ms</strong></span>
-              <span className="hidden sm:inline">RENDER: <strong className="text-white">Next.js 16</strong></span>
-            </div>
-            <span className="text-[#ff6436] font-semibold">[ READY ]</span>
-          </div>
+                <span className="relative z-10 truncate">{tab.title}</span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Outer Corner Crosshairs */}
-        <div className="absolute -top-1 -left-1 sm:-top-1.5 sm:-left-1.5 w-2.5 h-2.5 sm:w-3 sm:h-3 border-t-2 border-l-2 border-white/40"></div>
-        <div className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-2.5 h-2.5 sm:w-3 sm:h-3 border-t-2 border-r-2 border-white/40"></div>
-        <div className="absolute -bottom-1 -left-1 sm:-bottom-1.5 sm:-left-1.5 w-2.5 h-2.5 sm:w-3 sm:h-3 border-b-2 border-l-2 border-white/40"></div>
-        <div className="absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 w-2.5 h-2.5 sm:w-3 sm:h-3 border-b-2 border-r-2 border-white/40"></div>
-      </div>
+        {/* Inner White Canvas Card */}
+        <div className="rounded-[16px] bg-[#ffffff] border border-[#eceeef] p-4 sm:p-6 min-h-[290px] sm:min-h-[310px] flex flex-col justify-between relative overflow-hidden">
+          <AnimatePresence mode="wait">
+            {activeTab === 0 && (
+              <motion.div
+                key="stage-design"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="space-y-4"
+              >
+                <div className="flex items-center justify-between border-b border-[#f3f3f3] pb-3">
+                  <div>
+                    <span className="text-[11px] font-medium text-[#646f79] uppercase tracking-wider block">
+                      {isAr ? "نظام التصميم الثنائي" : "Bilingual Design System"}
+                    </span>
+                    <h4 className="text-base sm:text-lg font-medium text-[#0d0d0d] mt-0.5">
+                      {isAr ? "واجهة مستخدم عصرية (عربي / English)" : "Executive RTL & LTR Interface"}
+                    </h4>
+                  </div>
+                  <span className="px-3 py-1 rounded-[64px] bg-[#f3f3f3] text-[11px] font-medium text-[#0d0d0d]">
+                    Figma + Design Tokens
+                  </span>
+                </div>
+
+                {/* Simulated UI Wireframe Grid */}
+                <div className="grid grid-cols-12 gap-3">
+                  <div className="col-span-7 rounded-[12px] bg-[#f3f3f3] p-3.5 space-y-2.5 border border-[#e8eaed]">
+                    <div className="flex items-center justify-between">
+                      <span className="w-16 h-2 rounded-full bg-[#0d0e10]" />
+                      <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] text-[10px] font-medium text-[#646f79]">
+                        RTL / LTR
+                      </span>
+                    </div>
+                    <div className="space-y-1.5 pt-1">
+                      <motion.div
+                        initial={{ width: "40%" }}
+                        animate={{ width: "85%" }}
+                        transition={{ duration: 0.8, ease: easeAsana }}
+                        className="h-3 rounded-[4px] bg-[#0d0d0d]"
+                      />
+                      <motion.div
+                        initial={{ width: "30%" }}
+                        animate={{ width: "65%" }}
+                        transition={{ duration: 0.8, delay: 0.1, ease: easeAsana }}
+                        className="h-3 rounded-[4px] bg-[#646f79]/60"
+                      />
+                    </div>
+                    <div className="pt-2 flex items-center gap-2">
+                      <span className="px-3 py-1 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-[10px] font-medium">
+                        {isAr ? "تصفح الخدمات" : "Primary Action"}
+                      </span>
+                      <span className="px-3 py-1 rounded-[64px] bg-[#ffffff] text-[#0d0d0d] text-[10px] font-medium border border-[#e5e7eb]">
+                        150 {isAr ? "د.ك" : "KWD"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="col-span-5 flex flex-col justify-between rounded-[12px] border border-[#eceeef] p-3.5 bg-[#ffffff]">
+                    <span className="text-[11px] font-medium text-[#646f79]">
+                      {isAr ? "معايير الوصول" : "Accessibility"}
+                    </span>
+                    <div className="my-2">
+                      <div className="text-2xl font-medium text-[#0d0d0d]">18.5:1</div>
+                      <div className="text-[11px] text-emerald-700 font-medium">
+                        WCAG AAA Contrast
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-5 h-5 rounded-full bg-[#0d0e10] border border-black/10" />
+                      <span className="w-5 h-5 rounded-full bg-[#646f79] border border-black/10" />
+                      <span className="w-5 h-5 rounded-full bg-[#f3f3f3] border border-black/15" />
+                      <span className="w-5 h-5 rounded-full bg-[#ffffff] border border-black/15" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {activeTab === 1 && (
+              <motion.div
+                key="stage-dev"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="space-y-4"
+              >
+                <div className="flex items-center justify-between border-b border-[#f3f3f3] pb-3">
+                  <div>
+                    <span className="text-[11px] font-medium text-[#646f79] uppercase tracking-wider block">
+                      {isAr ? "البنية البرمجية والربط المالي" : "Cloud & Payment Architecture"}
+                    </span>
+                    <h4 className="text-base sm:text-lg font-medium text-[#0d0d0d] mt-0.5">
+                      {isAr ? "تطوير Next.js + بوابات الدفع الكويتية" : "Next.js 16 + Kuwait Payment Gateways"}
+                    </h4>
+                  </div>
+                  <span className="px-3 py-1 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-[11px] font-medium">
+                    99.9% Uptime
+                  </span>
+                </div>
+
+                {/* Live Task Execution Rows */}
+                <div className="space-y-2.5">
+                  {[
+                    {
+                      label: isAr
+                        ? "بنية سحابية فائقة السرعة (Next.js App Router)"
+                        : "Next.js Server Rendering & Edge Caching",
+                      badge: "12ms TTFB",
+                    },
+                    {
+                      label: isAr
+                        ? "ربط بوابات الدفع المعتمدة (KNET / MyFatoorah / Tap)"
+                        : "KNET, Tap & MyFatoorah Payment Gateway Ready",
+                      badge: "KWD Ready",
+                    },
+                    {
+                      label: isAr
+                        ? "حماية SSL متقدمة وتوافق كامل مع كافة الأجهزة"
+                        : "Enterprise SSL Security & Mobile Optimization",
+                      badge: "Verified",
+                    },
+                  ].map((item, idx) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: isAr ? 12 : -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.08, duration: 0.25 }}
+                      className="flex items-center justify-between p-3 rounded-[12px] bg-[#f3f3f3] border border-[#e8eaed]"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <span className="w-5 h-5 rounded-full bg-[#0d0e10] text-[#ffffff] flex items-center justify-center text-[11px] flex-shrink-0">
+                          ✓
+                        </span>
+                        <span className="text-[13px] font-medium text-[#0d0d0d] truncate">
+                          {item.label}
+                        </span>
+                      </div>
+                      <span className="px-2.5 py-0.5 rounded-[64px] bg-[#ffffff] text-[11px] font-mono text-[#646f79] flex-shrink-0 ms-2">
+                        {item.badge}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {activeTab === 2 && (
+              <motion.div
+                key="stage-seo"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="space-y-4"
+              >
+                <div className="flex items-center justify-between border-b border-[#f3f3f3] pb-3">
+                  <div>
+                    <span className="text-[11px] font-medium text-[#646f79] uppercase tracking-wider block">
+                      {isAr ? "النمو وتصدر نتائج البحث" : "Search Visibility & Conversion"}
+                    </span>
+                    <h4 className="text-base sm:text-lg font-medium text-[#0d0d0d] mt-0.5">
+                      {isAr ? "تصدّر نتائج بحث جوجل في الكويت" : "Google Kuwait #1 Ranking Architecture"}
+                    </h4>
+                  </div>
+                  <span className="px-3 py-1 rounded-[64px] bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-medium">
+                    +240% ROI
+                  </span>
+                </div>
+
+                {/* Animated Metrics & Bar Graph */}
+                <div className="grid grid-cols-12 gap-3 items-stretch">
+                  <div className="col-span-7 rounded-[12px] bg-[#f3f3f3] p-3.5 border border-[#e8eaed] flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-[11px] text-[#646f79] mb-2">
+                      <span>{isAr ? "نمو الزيارات العضوية (الكويت)" : "Organic Traffic Growth (KW)"}</span>
+                      <span className="font-mono text-[#0d0d0d] font-semibold">Q1 → Q4</span>
+                    </div>
+                    <div className="flex items-end gap-2 h-24 pt-2 px-1">
+                      {[35, 50, 68, 84, 100].map((height, i) => (
+                        <div key={i} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                          <motion.div
+                            initial={{ height: 0 }}
+                            animate={{ height: `${height}%` }}
+                            transition={{ duration: 0.5, delay: i * 0.07, ease: easeAsana }}
+                            className={`w-full rounded-t-[6px] ${
+                              i === 4 ? "bg-[#0d0e10]" : "bg-[#646f79]/40"
+                            }`}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="col-span-5 rounded-[12px] bg-[#0d0e10] text-[#ffffff] p-4 flex flex-col justify-between">
+                    <span className="text-[11px] text-[#ffffff]/70">
+                      Core Web Vitals
+                    </span>
+                    <div>
+                      <div className="text-3xl font-light tracking-tight">99/100</div>
+                      <div className="text-[11px] text-emerald-400 mt-1">
+                        {isAr ? "أداء فائق السرعة" : "Optimal Speed"}
+                      </div>
+                    </div>
+                    <div className="w-full bg-white/15 h-1.5 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: "99%" }}
+                        transition={{ duration: 0.7, ease: easeAsana }}
+                        className="bg-emerald-400 h-full rounded-full"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Bottom Workspace Status Footer */}
+          <div className="pt-4 mt-4 border-t border-[#f3f3f3] flex items-center justify-between text-[12px] text-[#646f79]">
+            <div className="flex items-center gap-2">
+              <span className="inline-block w-2 h-2 rounded-full bg-[#646f79]" />
+              <span>
+                {isAr
+                  ? "الباقات تبدأ من 150 د.ك • تسليم احترافي سريع"
+                  : "Packages from 150 KWD • Rapid Executive Delivery"}
+              </span>
+            </div>
+            <span className="font-mono text-[11px] text-[#0d0d0d] font-medium">
+              29°22&apos;N 47°58&apos;E
+            </span>
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -131,50 +390,49 @@ export function Hero({ lang, dict }: HeroProps) {
   ];
 
   return (
-    <section className="relative min-h-[100svh] bg-[#161616] text-white flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 overflow-hidden">
-      {/* Background Floating Subtle Geometry */}
-      <FloatingShapes shapes={heroShapes} color="text-white" />
+    <section className="relative min-h-[92svh] bg-[#ffffff] text-[#0d0d0d] flex flex-col justify-between pt-20 sm:pt-24 md:pt-24 overflow-hidden border-b border-[#f3f3f3]">
+      {/* Subtle Architectural Grid + Floating Geometry */}
+      <div className="absolute inset-0 bg-asana-grid opacity-70 pointer-events-none" />
+      <FloatingShapes shapes={heroShapes} color="text-[#646f79]" />
 
-      {/* Hero Content Container */}
-      <div className="relative z-10 max-w-[1200px] mx-auto w-full px-5 sm:px-8 flex-1 flex flex-col justify-center py-6 sm:py-8 md:py-12 text-start">
-        {/* Top Metadata Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: easeBrutal }}
-          className="flex items-center gap-3 mb-5 sm:mb-8"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/[0.04] text-[11px] font-mono tracking-widest text-[#c9c7cc] uppercase">
-            <span className="w-2 h-2 rounded-full bg-[#ff6436]"></span>
-            <span>{dict.hero.tagline}</span>
-          </div>
-
-          <span className="hidden sm:inline-block text-[11px] font-mono text-[#7b7a7c] tracking-widest uppercase">
-            [ 24°42&apos;N 46°40&apos;E ]
-          </span>
-        </motion.div>
-
-        {/* Grid Split: Typographic Monument + Technical Screen */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Monument Display Headline & CTA (7 cols) */}
+      {/* Main Content Container (8px base grid aligned) */}
+      <div className="relative z-10 max-w-[1280px] mx-auto w-full px-5 sm:px-8 flex-1 flex flex-col justify-center pt-3 pb-8 md:pt-5 md:pb-12 text-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          {/* Left Column: Asana Display Typography & CTAs (7 cols) */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            {/* Monument Headline */}
-            <div className="mb-4 sm:mb-6 space-y-1">
+            {/* Top Calm Competence Tagline Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: easeAsana }}
+              className="flex flex-wrap items-center gap-3 mb-6 sm:mb-8"
+            >
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[13px] font-medium text-[#0d0d0d]">
+                <span className="w-2 h-2 rounded-full bg-[#0d0e10]" />
+                <span>{dict.hero.tagline}</span>
+              </div>
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] border border-[#f3f3f3] text-[12px] font-mono text-[#646f79]">
+                KW • KWD (د.ك)
+              </span>
+            </motion.div>
+
+            {/* Asana Display Hierarchy (54px+ scale, light/measured weight, tight tracking in EN, generous breathing room in AR) */}
+            <div className="mb-6 sm:mb-8 space-y-1 sm:space-y-2">
               {titleLines.map((line, idx) => (
-                <div key={idx} className={isAr ? "py-0.5" : "overflow-hidden pb-1"}>
+                <div key={idx} className="overflow-hidden py-0.5">
                   <motion.h1
-                    initial={isAr ? { opacity: 0, y: 20 } : { y: "100%", opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
+                    initial={{ opacity: 0, y: 28 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      delay: 0.18 + idx * 0.1,
-                      duration: 0.85,
-                      ease: easeBrutal,
+                      delay: 0.08 + idx * 0.08,
+                      duration: 0.55,
+                      ease: easeAsana,
                     }}
-                    className={`font-bold tracking-tight text-display-gradient pb-1 ${
+                    className={`${
                       isAr
-                        ? "text-5xl sm:text-7xl md:text-8xl lg:text-[7.25rem] leading-[1.14] sm:leading-[1.08]"
-                        : "text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-display uppercase leading-[0.9] tracking-[-0.01em]"
-                    }`}
+                        ? "text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-medium leading-[1.24]"
+                        : "text-4xl sm:text-6xl md:text-[3.75rem] lg:text-[4.25rem] font-light leading-[1.06] tracking-[-0.025em]"
+                    } ${idx === 1 ? "text-[#646f79]" : "text-[#0d0d0d]"}`}
                   >
                     {line}
                   </motion.h1>
@@ -182,83 +440,92 @@ export function Hero({ lang, dict }: HeroProps) {
               ))}
             </div>
 
-            {/* Editorial Lead Paragraph */}
+            {/* Measured Body Lead Copy (16px–18px, 1.6 line-height, #646f79) */}
             <motion.p
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45, duration: 0.8, ease: easeBrutal }}
-              className="text-sm sm:text-base md:text-lg text-[#a2a2a2] leading-relaxed max-w-xl mb-6 sm:mb-8 font-normal"
+              transition={{ delay: 0.3, duration: 0.5, ease: easeAsana }}
+              className="text-base sm:text-lg text-[#646f79] leading-[1.65] max-w-xl mb-8 sm:mb-10 font-normal"
             >
               {dict.hero.description}
             </motion.p>
 
-            {/* Interactive Pill CTA Buttons (Mobile Full-Width Responsive) */}
+            {/* High-Affordance Pill Buttons (48px height, 64px radius) */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8, ease: easeBrutal }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 font-mono text-xs sm:text-sm uppercase tracking-wider"
+              transition={{ delay: 0.38, duration: 0.5, ease: easeAsana }}
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5"
             >
               <a
-                href={`/${lang}#services`}
-                className="group flex items-center justify-center gap-2.5 bg-white text-[#161616] font-semibold px-6 sm:px-8 py-3.5 rounded-full hover:bg-[#ff6436] hover:text-[#161616] transition-all duration-300 active:scale-95 text-center"
+                href={`/${lang}#pricing`}
+                className="group inline-flex items-center justify-center gap-3 h-12 px-8 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-[15px] font-medium hover:bg-[#646f79] shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-all duration-200 active:scale-[0.98]"
               >
-                <span className="w-2 h-2 rounded-full bg-[#ff6436] group-hover:bg-[#161616] transition-colors"></span>
                 <span>{dict.hero.cta}</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180">
+                  →
+                </span>
               </a>
 
               <a
                 href="https://wa.me/46700265645"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-white/80 hover:text-white px-6 py-3.5 rounded-full border border-white/20 hover:border-white/50 transition-all duration-300 text-center"
+                className="inline-flex items-center justify-center gap-2.5 h-12 px-7 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] border border-[#e5e7eb] hover:bg-[#e8eaed] text-[15px] font-medium transition-all duration-200 active:scale-[0.98]"
               >
-                <span className="text-[#ff6436]">●</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-600" />
                 <span>{dict.nav.contact}</span>
               </a>
             </motion.div>
           </div>
 
-          {/* Right Column: 3D Monitor / Terminal Mockup (5 cols) */}
+          {/* Right Column: Interactive Asana Workspace Showcase (5 cols) */}
           <div className="lg:col-span-5">
-            <MonumentDisplayMonitor lang={lang} />
+            <AsanaProjectShowcase
+              lang={lang}
+              labels={{
+                design: dict.hero.pipeline_design,
+                dev: dict.hero.pipeline_dev,
+                seo: dict.hero.pipeline_seo,
+              }}
+            />
           </div>
         </div>
       </div>
 
-      {/* Bottom Structural Bar with Pipeline Indicators */}
+      {/* Bottom Calm Surface Metrics & Workflow Strip */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.85, duration: 0.8 }}
-        className="relative z-10 border-t border-white/10 py-3.5 sm:py-5 bg-black/50 backdrop-blur-sm"
+        transition={{ delay: 0.55, duration: 0.5 }}
+        className="relative z-10 bg-[#f3f3f3]/80 backdrop-blur-sm border-t border-[#e8eaed] py-4"
       >
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 font-mono text-[10px] sm:text-[11px] text-[#7b7a7c]">
-          {/* Pipeline badges (Grid on mobile for immaculate alignment) */}
-          <div className="grid grid-cols-3 sm:flex sm:items-center gap-2 sm:gap-6 uppercase tracking-wider w-full sm:w-auto text-center sm:text-start">
-            <span className="flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 text-white/70">
-              <span className="text-[#ff6436]">01</span> {dict.hero.pipeline_design}
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-[#646f79]">
+          <div className="grid grid-cols-3 sm:flex sm:items-center gap-3 sm:gap-8 w-full sm:w-auto text-center sm:text-start">
+            <span className="flex items-center justify-center sm:justify-start gap-2 text-[#0d0d0d] font-medium">
+              <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79]">
+                01
+              </span>
+              <span>{dict.hero.pipeline_design}</span>
             </span>
-            <span className="hidden sm:inline text-white/20">/</span>
-            <span className="flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 text-white/70">
-              <span className="text-[#ff6436]">02</span> {dict.hero.pipeline_dev}
+            <span className="flex items-center justify-center sm:justify-start gap-2 text-[#0d0d0d] font-medium">
+              <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79]">
+                02
+              </span>
+              <span>{dict.hero.pipeline_dev}</span>
             </span>
-            <span className="hidden sm:inline text-white/20">/</span>
-            <span className="flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 text-white/70">
-              <span className="text-[#ff6436]">03</span> {dict.hero.pipeline_seo}
+            <span className="flex items-center justify-center sm:justify-start gap-2 text-[#0d0d0d] font-medium">
+              <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79]">
+                03
+              </span>
+              <span>{dict.hero.pipeline_seo}</span>
             </span>
           </div>
 
-          {/* Scroll indicator */}
-          <div className="hidden sm:flex items-center gap-2 text-white/40">
-            <span className="uppercase tracking-widest text-[10px]">SCROLL</span>
-            <motion.span
-              animate={{ y: [0, 4, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="text-[#ff6436]"
-            >
-              ↓
-            </motion.span>
+          <div className="hidden md:flex items-center gap-2 text-[12px] text-[#646f79]">
+            <span>{isAr ? "مصمّم للسوق الكويتي والخليجي" : "Engineered for Kuwait & GCC"}</span>
+            <span className="text-[#0d0d0d]">•</span>
+            <span className="font-mono text-[#0d0d0d] font-medium">KNET / RTL / SEO</span>
           </div>
         </div>
       </motion.div>

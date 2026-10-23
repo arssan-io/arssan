@@ -14,7 +14,7 @@ interface AnimateInViewProps {
 
 const variants: Record<string, Variants> = {
   fadeUp: {
-    hidden: { opacity: 0, y: 32 },
+    hidden: { opacity: 0, y: 24 },
     visible: { opacity: 1, y: 0 },
   },
   fadeIn: {
@@ -22,15 +22,15 @@ const variants: Record<string, Variants> = {
     visible: { opacity: 1 },
   },
   scaleUp: {
-    hidden: { opacity: 0, scale: 0.96 },
+    hidden: { opacity: 0, scale: 0.97 },
     visible: { opacity: 1, scale: 1 },
   },
   slideLeft: {
-    hidden: { opacity: 0, x: -24 },
+    hidden: { opacity: 0, x: -20 },
     visible: { opacity: 1, x: 0 },
   },
   slideRight: {
-    hidden: { opacity: 0, x: 24 },
+    hidden: { opacity: 0, x: 20 },
     visible: { opacity: 1, x: 0 },
   },
 };
@@ -40,19 +40,19 @@ export function AnimateInView({
   className,
   variant = "fadeUp",
   delay = 0,
-  duration = 0.7,
+  duration = 0.45,
   once = true,
 }: AnimateInViewProps) {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: "-60px" }}
+      viewport={{ once, margin: "-50px" }}
       variants={variants[variant]}
       transition={{
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.22, 1, 0.36, 1],
       }}
       className={className}
     >

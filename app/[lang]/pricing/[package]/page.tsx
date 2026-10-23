@@ -9,6 +9,7 @@ export default async function PricingPackagePage({
 }) {
   const { lang, package: pkgSlug } = await params;
   const locale = lang as Locale;
+  const isAr = locale === "ar";
   const dict = await getDictionary(locale);
   const pkg = dict.pricing.packages.find(
     (p: { slug: string }) => p.slug === pkgSlug
@@ -16,13 +17,15 @@ export default async function PricingPackagePage({
 
   if (!pkg) {
     return (
-      <div className="min-h-[100svh] flex items-center justify-center px-5 bg-[#161616] text-white">
-        <div className="text-center font-mono">
-          <h1 className="text-6xl font-bold mb-4 text-[#ff6436]">404</h1>
-          <p className="text-[#a2a2a2] mb-6 uppercase tracking-wider text-xs">PACKAGE NOT FOUND</p>
+      <div className="min-h-[90svh] flex items-center justify-center px-5 bg-[#ffffff] text-[#0d0d0d]">
+        <div className="text-center p-10 rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] max-w-md w-full">
+          <h1 className="text-5xl font-light mb-3 text-[#0d0d0d]">404</h1>
+          <p className="text-[#646f79] mb-6 text-sm">
+            {isAr ? "الباقة المطلوبة غير موجودة" : "Package not found"}
+          </p>
           <Link
             href={`/${locale}`}
-            className="text-xs uppercase tracking-wider rounded-full border border-white/20 px-6 py-3 hover:bg-white hover:text-[#161616] transition-all duration-300"
+            className="inline-flex items-center justify-center h-11 px-6 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-sm font-medium hover:bg-[#646f79] transition-colors"
           >
             {dict.nav.home}
           </Link>
@@ -32,53 +35,55 @@ export default async function PricingPackagePage({
   }
 
   return (
-    <div className="min-h-[100svh] pt-28 pb-16 md:pt-36 md:pb-24 bg-[#f8f8f8] text-[#3c3a3e]">
+    <div className="min-h-[100svh] pt-28 pb-20 md:pt-36 md:pb-28 bg-[#f3f3f3] text-[#0d0d0d]">
       <div className="max-w-2xl mx-auto px-5 sm:px-8">
         <Link
           href={`/${locale}#pricing`}
-          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#7b7a7c] hover:text-[#161616] transition-colors duration-300 mb-8 group"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-xs font-medium text-[#646f79] hover:text-[#0d0d0d] shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-200 mb-8 group"
         >
-          <span className="text-[#ff6436] group-hover:-translate-x-1 rtl:group-hover:translate-x-1 transition-transform">
+          <span className="transition-transform duration-200 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 rtl:rotate-180">
             ←
           </span>
           <span>{dict.pricing.badge}</span>
         </Link>
 
-        <div className="border border-[#c9c7cc] bg-white rounded-none p-8 sm:p-10 md:p-12 shadow-sm">
+        <div className="rounded-[20px] border border-[#eceeef] bg-[#ffffff] p-8 sm:p-10 md:p-12 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] text-start">
           {pkg.popular && (
-            <div className="inline-flex items-center gap-2 bg-[#161616] text-[#ff6436] font-mono text-[11px] font-semibold tracking-widest uppercase rounded-full px-4 py-1 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6436] animate-pulse"></span>
+            <div className="inline-flex items-center gap-2 bg-[#f3f3f3] text-[#0d0d0d] text-xs font-medium rounded-[64px] px-4 py-1.5 mb-6 border border-[#e5e7eb]">
+              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
               <span>{pkg.cta}</span>
             </div>
           )}
 
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#161616] mb-3">
+          <h1 className="text-3xl sm:text-4xl font-normal tracking-tight text-[#0d0d0d] mb-3">
             {pkg.name}
           </h1>
 
-          <p className="text-[#7b7a7c] text-base sm:text-lg mb-8 leading-relaxed font-normal">
+          <p className="text-[#646f79] text-base sm:text-lg mb-8 leading-[1.6] font-normal">
             {pkg.description}
           </p>
 
-          <div className="flex items-baseline gap-2 mb-8 pb-8 border-b border-[#c9c7cc]/60 font-mono">
-            <span className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#161616]">
+          <div className="flex items-baseline gap-3 mb-8 pb-8 border-b border-[#f3f3f3]">
+            <span className="text-5xl sm:text-6xl font-light tracking-[-0.03em] text-[#0d0d0d]">
               {pkg.price}
             </span>
-            <div className="flex flex-col text-xs uppercase tracking-wider">
-              <span className="font-semibold text-[#ff6436]">{pkg.currency}</span>
-              <span className="text-[#a2a2a2]">{pkg.period}</span>
+            <div className="flex flex-col text-xs">
+              <span className="font-semibold text-sm text-[#0d0d0d]">{pkg.currency}</span>
+              <span className="text-[#646f79]">{pkg.period}</span>
             </div>
           </div>
 
-          <h2 className="text-xs font-mono font-semibold tracking-widest uppercase mb-6 text-[#7b7a7c]">
-            {locale === "ar" ? "[ المميزات المشمولة ]" : "[ WHAT'S INCLUDED ]"}
+          <h2 className="text-xs font-medium uppercase tracking-wider mb-5 text-[#646f79]">
+            {isAr ? "المميزات المشمولة في الباقة" : "Included Deliverables"}
           </h2>
 
-          <ul className="space-y-3.5 mb-10 font-mono text-xs sm:text-sm">
+          <ul className="space-y-3.5 mb-10 text-sm sm:text-base">
             {pkg.features.map((feature: string) => (
               <li key={feature} className="flex items-start gap-3">
-                <span className="text-[#ff6436] font-bold mt-0.5">+</span>
-                <span className="text-[#3c3a3e] leading-snug">
+                <span className="mt-1 w-5 h-5 rounded-full bg-[#f3f3f3] text-[#0d0d0d] flex items-center justify-center text-xs flex-shrink-0">
+                  ✓
+                </span>
+                <span className="text-[#0d0d0d] leading-[1.5]">
                   {feature}
                 </span>
               </li>
@@ -89,9 +94,10 @@ export default async function PricingPackagePage({
             href="https://wa.me/46700265645"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-center font-mono text-xs sm:text-sm font-semibold tracking-wider uppercase py-4 bg-[#161616] text-white rounded-full hover:bg-[#ff6436] hover:text-[#161616] transition-all duration-300 active:scale-95"
+            className="flex items-center justify-center gap-2 h-12 px-8 bg-[#0d0e10] text-[#ffffff] rounded-[64px] text-sm sm:text-base font-medium hover:bg-[#646f79] shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-all duration-200 active:scale-[0.98]"
           >
-            {dict.nav.contact} →
+            <span>{dict.nav.contact}</span>
+            <span className="rtl:rotate-180">→</span>
           </a>
         </div>
       </div>
