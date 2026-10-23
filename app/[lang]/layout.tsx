@@ -35,7 +35,22 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: dict.meta.title,
     description: dict.meta.description,
     icons: {
-      icon: "/images/Icon.svg",
+      icon: [
+        {
+          url: "/images/Icon.svg",
+          type: "image/svg+xml",
+        },
+        {
+          url: "/images/Icon.svg",
+          media: "(prefers-color-scheme: light)",
+          type: "image/svg+xml",
+        },
+        {
+          url: "/images/Icon-dark.svg",
+          media: "(prefers-color-scheme: dark)",
+          type: "image/svg+xml",
+        },
+      ],
     },
   };
 }

@@ -95,26 +95,26 @@ function AsanaProjectShowcase({
       {/* Outer Asana Surface Container */}
       <motion.div
         style={{ rotateX, rotateY }}
-        className="rounded-[20px] bg-[#f3f3f3] p-3 sm:p-4 border border-[#e5e7eb] shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)]"
+        className="rounded-[20px] bg-[#f3f3f3] p-2.5 sm:p-4 border border-[#e5e7eb] shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)]"
       >
         {/* Top Workspace Bar */}
-        <div className="flex items-center justify-between px-2 pb-3">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#0d0e10]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#646f79]/50" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#646f79]/25" />
-            <span className="ms-2 text-[12px] font-medium text-[#646f79]">
+        <div className="flex items-center justify-between px-1.5 sm:px-2 pb-2.5 sm:pb-3">
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#0d0e10] flex-shrink-0" />
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#646f79]/50 flex-shrink-0" />
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#646f79]/25 flex-shrink-0" />
+            <span className="ms-1.5 sm:ms-2 text-[11px] sm:text-[12px] font-medium text-[#646f79] truncate">
               {isAr ? "منصة مشاريع أرسان • الكويت" : "Arssan Studio • Kuwait Workspace"}
             </span>
           </div>
-          <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] font-medium text-[#0d0d0d] shadow-2xs">
+          <div className="flex items-center gap-1.5 px-2 py-0.5 sm:px-2.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[10px] sm:text-[11px] font-medium text-[#0d0d0d] shadow-2xs flex-shrink-0">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
             <span>{isAr ? "مباشر" : "Live Sync"}</span>
           </div>
         </div>
 
         {/* Interactive Stage Switcher Pills */}
-        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-[14px] bg-[#e6e8eb]/70 mb-3">
+        <div className="grid grid-cols-3 gap-1 sm:gap-1.5 p-1 rounded-[14px] bg-[#e6e8eb]/70 mb-2.5 sm:mb-3">
           {tabs.map((tab) => {
             const active = activeTab === tab.id;
             return (
@@ -122,7 +122,7 @@ function AsanaProjectShowcase({
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative py-2 px-2.5 rounded-[10px] text-[12px] font-medium transition-colors duration-200 flex items-center justify-center gap-1.5 cursor-pointer ${
+                className={`relative py-1.5 sm:py-2 px-1 sm:px-2.5 rounded-[10px] text-[10px] xs:text-[11px] sm:text-[12px] font-medium transition-colors duration-200 flex items-center justify-center gap-1 sm:gap-1.5 cursor-pointer ${
                   active ? "text-[#0d0d0d]" : "text-[#646f79] hover:text-[#0d0d0d]"
                 }`}
               >
@@ -133,7 +133,7 @@ function AsanaProjectShowcase({
                     className="absolute inset-0 rounded-[10px] bg-[#ffffff] shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
                   />
                 )}
-                <span className="relative z-10 text-[11px] text-[#646f79] font-mono">
+                <span className="relative z-10 text-[10px] sm:text-[11px] text-[#646f79] font-mono">
                   {tab.num}
                 </span>
                 <span className="relative z-10 truncate">{tab.title}</span>
@@ -143,7 +143,7 @@ function AsanaProjectShowcase({
         </div>
 
         {/* Inner White Canvas Card */}
-        <div className="rounded-[16px] bg-[#ffffff] border border-[#eceeef] p-4 sm:p-6 min-h-[290px] sm:min-h-[310px] flex flex-col justify-between relative overflow-hidden">
+        <div className="rounded-[16px] bg-[#ffffff] border border-[#eceeef] p-3.5 sm:p-6 min-h-auto sm:min-h-[310px] flex flex-col justify-between relative overflow-hidden">
           <AnimatePresence mode="wait">
             {activeTab === 0 && (
               <motion.div
@@ -152,27 +152,27 @@ function AsanaProjectShowcase({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="space-y-4"
+                className="space-y-3 sm:space-y-4"
               >
-                <div className="flex items-center justify-between border-b border-[#f3f3f3] pb-3">
+                <div className="flex flex-col xs:flex-row xs:items-center justify-between border-b border-[#f3f3f3] pb-2.5 sm:pb-3 gap-1">
                   <div>
-                    <span className="text-[11px] font-medium text-[#646f79] uppercase tracking-wider block">
+                    <span className="text-[10px] sm:text-[11px] font-medium text-[#646f79] uppercase tracking-wider block">
                       {isAr ? "نظام التصميم الثنائي" : "Bilingual Design System"}
                     </span>
-                    <h4 className="text-base sm:text-lg font-medium text-[#0d0d0d] mt-0.5">
+                    <h4 className="text-sm sm:text-base md:text-lg font-medium text-[#0d0d0d] mt-0.5">
                       {isAr ? "واجهة مستخدم عصرية (عربي / English)" : "Executive RTL & LTR Interface"}
                     </h4>
                   </div>
-                  <span className="px-3 py-1 rounded-[64px] bg-[#f3f3f3] text-[11px] font-medium text-[#0d0d0d]">
+                  <span className="self-start xs:self-auto px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[64px] bg-[#f3f3f3] text-[10px] sm:text-[11px] font-medium text-[#0d0d0d]">
                     Figma + Design Tokens
                   </span>
                 </div>
 
                 {/* Simulated UI Wireframe Grid */}
-                <div className="grid grid-cols-12 gap-3">
-                  <div className="col-span-7 rounded-[12px] bg-[#f3f3f3] p-3.5 space-y-2.5 border border-[#e8eaed]">
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
+                  <div className="sm:col-span-7 rounded-[12px] bg-[#f3f3f3] p-3 sm:p-3.5 space-y-2.5 border border-[#e8eaed]">
                     <div className="flex items-center justify-between">
-                      <span className="w-16 h-2 rounded-full bg-[#0d0e10]" />
+                      <span className="w-14 sm:w-16 h-2 rounded-full bg-[#0d0e10]" />
                       <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] text-[10px] font-medium text-[#646f79]">
                         RTL / LTR
                       </span>
@@ -182,40 +182,40 @@ function AsanaProjectShowcase({
                         initial={{ width: "40%" }}
                         animate={{ width: "85%" }}
                         transition={{ duration: 0.8, ease: easeAsana }}
-                        className="h-3 rounded-[4px] bg-[#0d0d0d]"
+                        className="h-2.5 sm:h-3 rounded-[4px] bg-[#0d0d0d]"
                       />
                       <motion.div
                         initial={{ width: "30%" }}
                         animate={{ width: "65%" }}
                         transition={{ duration: 0.8, delay: 0.1, ease: easeAsana }}
-                        className="h-3 rounded-[4px] bg-[#646f79]/60"
+                        className="h-2.5 sm:h-3 rounded-[4px] bg-[#646f79]/60"
                       />
                     </div>
-                    <div className="pt-2 flex items-center gap-2">
-                      <span className="px-3 py-1 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-[10px] font-medium">
+                    <div className="pt-1.5 sm:pt-2 flex flex-wrap items-center gap-1.5 sm:gap-2">
+                      <span className="px-2.5 py-1 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-[10px] font-medium">
                         {isAr ? "تصفح الخدمات" : "Primary Action"}
                       </span>
-                      <span className="px-3 py-1 rounded-[64px] bg-[#ffffff] text-[#0d0d0d] text-[10px] font-medium border border-[#e5e7eb]">
+                      <span className="px-2.5 py-1 rounded-[64px] bg-[#ffffff] text-[#0d0d0d] text-[10px] font-medium border border-[#e5e7eb]">
                         150 {isAr ? "د.ك" : "KWD"}
                       </span>
                     </div>
                   </div>
 
-                  <div className="col-span-5 flex flex-col justify-between rounded-[12px] border border-[#eceeef] p-3.5 bg-[#ffffff]">
-                    <span className="text-[11px] font-medium text-[#646f79]">
+                  <div className="sm:col-span-5 flex flex-col justify-between rounded-[12px] border border-[#eceeef] p-3 sm:p-3.5 bg-[#ffffff]">
+                    <span className="text-[10px] sm:text-[11px] font-medium text-[#646f79]">
                       {isAr ? "معايير الوصول" : "Accessibility"}
                     </span>
-                    <div className="my-2">
-                      <div className="text-2xl font-medium text-[#0d0d0d]">18.5:1</div>
-                      <div className="text-[11px] text-emerald-700 font-medium">
+                    <div className="my-1.5 sm:my-2">
+                      <div className="text-xl sm:text-2xl font-medium text-[#0d0d0d]">18.5:1</div>
+                      <div className="text-[10px] sm:text-[11px] text-emerald-700 font-medium">
                         WCAG AAA Contrast
                       </div>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <span className="w-5 h-5 rounded-full bg-[#0d0e10] border border-black/10" />
-                      <span className="w-5 h-5 rounded-full bg-[#646f79] border border-black/10" />
-                      <span className="w-5 h-5 rounded-full bg-[#f3f3f3] border border-black/15" />
-                      <span className="w-5 h-5 rounded-full bg-[#ffffff] border border-black/15" />
+                      <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#0d0e10] border border-black/10" />
+                      <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#646f79] border border-black/10" />
+                      <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#f3f3f3] border border-black/15" />
+                      <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#ffffff] border border-black/15" />
                     </div>
                   </div>
                 </div>
@@ -229,24 +229,24 @@ function AsanaProjectShowcase({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="space-y-4"
+                className="space-y-3 sm:space-y-4"
               >
-                <div className="flex items-center justify-between border-b border-[#f3f3f3] pb-3">
+                <div className="flex flex-col xs:flex-row xs:items-center justify-between border-b border-[#f3f3f3] pb-2.5 sm:pb-3 gap-1">
                   <div>
-                    <span className="text-[11px] font-medium text-[#646f79] uppercase tracking-wider block">
+                    <span className="text-[10px] sm:text-[11px] font-medium text-[#646f79] uppercase tracking-wider block">
                       {isAr ? "البنية البرمجية والربط المالي" : "Cloud & Payment Architecture"}
                     </span>
-                    <h4 className="text-base sm:text-lg font-medium text-[#0d0d0d] mt-0.5">
+                    <h4 className="text-sm sm:text-base md:text-lg font-medium text-[#0d0d0d] mt-0.5">
                       {isAr ? "تطوير Next.js + بوابات الدفع الكويتية" : "Next.js 16 + Kuwait Payment Gateways"}
                     </h4>
                   </div>
-                  <span className="px-3 py-1 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-[11px] font-medium">
+                  <span className="self-start xs:self-auto px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-[10px] sm:text-[11px] font-medium">
                     99.9% Uptime
                   </span>
                 </div>
 
                 {/* Live Task Execution Rows */}
-                <div className="space-y-2.5">
+                <div className="space-y-2">
                   {[
                     {
                       label: isAr
@@ -272,17 +272,17 @@ function AsanaProjectShowcase({
                       initial={{ opacity: 0, x: isAr ? 12 : -12 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.08, duration: 0.25 }}
-                      className="flex items-center justify-between p-3 rounded-[12px] bg-[#f3f3f3] border border-[#e8eaed]"
+                      className="flex items-center justify-between p-2.5 sm:p-3 rounded-[12px] bg-[#f3f3f3] border border-[#e8eaed] gap-2"
                     >
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <span className="w-5 h-5 rounded-full bg-[#0d0e10] text-[#ffffff] flex items-center justify-center text-[11px] flex-shrink-0">
+                      <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+                        <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#0d0e10] text-[#ffffff] flex items-center justify-center text-[10px] sm:text-[11px] flex-shrink-0">
                           ✓
                         </span>
-                        <span className="text-[13px] font-medium text-[#0d0d0d] truncate">
+                        <span className="text-[11px] sm:text-[13px] font-medium text-[#0d0d0d] leading-snug">
                           {item.label}
                         </span>
                       </div>
-                      <span className="px-2.5 py-0.5 rounded-[64px] bg-[#ffffff] text-[11px] font-mono text-[#646f79] flex-shrink-0 ms-2">
+                      <span className="px-2 py-0.5 rounded-[64px] bg-[#ffffff] text-[10px] sm:text-[11px] font-mono text-[#646f79] flex-shrink-0">
                         {item.badge}
                       </span>
                     </motion.div>
@@ -298,37 +298,37 @@ function AsanaProjectShowcase({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="space-y-4"
+                className="space-y-3 sm:space-y-4"
               >
-                <div className="flex items-center justify-between border-b border-[#f3f3f3] pb-3">
+                <div className="flex flex-col xs:flex-row xs:items-center justify-between border-b border-[#f3f3f3] pb-2.5 sm:pb-3 gap-1">
                   <div>
-                    <span className="text-[11px] font-medium text-[#646f79] uppercase tracking-wider block">
+                    <span className="text-[10px] sm:text-[11px] font-medium text-[#646f79] uppercase tracking-wider block">
                       {isAr ? "النمو وتصدر نتائج البحث" : "Search Visibility & Conversion"}
                     </span>
-                    <h4 className="text-base sm:text-lg font-medium text-[#0d0d0d] mt-0.5">
+                    <h4 className="text-sm sm:text-base md:text-lg font-medium text-[#0d0d0d] mt-0.5">
                       {isAr ? "تصدّر نتائج بحث جوجل في الكويت" : "Google Kuwait #1 Ranking Architecture"}
                     </h4>
                   </div>
-                  <span className="px-3 py-1 rounded-[64px] bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-medium">
+                  <span className="self-start xs:self-auto px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[64px] bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] sm:text-[11px] font-medium">
                     +240% ROI
                   </span>
                 </div>
 
                 {/* Animated Metrics & Bar Graph */}
-                <div className="grid grid-cols-12 gap-3 items-stretch">
-                  <div className="col-span-7 rounded-[12px] bg-[#f3f3f3] p-3.5 border border-[#e8eaed] flex flex-col justify-between">
-                    <div className="flex items-center justify-between text-[11px] text-[#646f79] mb-2">
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3 items-stretch">
+                  <div className="sm:col-span-7 rounded-[12px] bg-[#f3f3f3] p-3 sm:p-3.5 border border-[#e8eaed] flex flex-col justify-between">
+                    <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#646f79] mb-2">
                       <span>{isAr ? "نمو الزيارات العضوية (الكويت)" : "Organic Traffic Growth (KW)"}</span>
                       <span className="font-mono text-[#0d0d0d] font-semibold">Q1 → Q4</span>
                     </div>
-                    <div className="flex items-end gap-2 h-24 pt-2 px-1">
+                    <div className="flex items-end gap-1.5 sm:gap-2 h-20 sm:h-24 pt-2 px-1">
                       {[35, 50, 68, 84, 100].map((height, i) => (
                         <div key={i} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                           <motion.div
                             initial={{ height: 0 }}
                             animate={{ height: `${height}%` }}
                             transition={{ duration: 0.5, delay: i * 0.07, ease: easeAsana }}
-                            className={`w-full rounded-t-[6px] ${
+                            className={`w-full rounded-t-[4px] sm:rounded-t-[6px] ${
                               i === 4 ? "bg-[#0d0e10]" : "bg-[#646f79]/40"
                             }`}
                           />
@@ -337,13 +337,13 @@ function AsanaProjectShowcase({
                     </div>
                   </div>
 
-                  <div className="col-span-5 rounded-[12px] bg-[#0d0e10] text-[#ffffff] p-4 flex flex-col justify-between">
-                    <span className="text-[11px] text-[#ffffff]/70">
+                  <div className="sm:col-span-5 rounded-[12px] bg-[#0d0e10] text-[#ffffff] p-3 sm:p-4 flex flex-col justify-between">
+                    <span className="text-[10px] sm:text-[11px] text-[#ffffff]/70">
                       Core Web Vitals
                     </span>
-                    <div>
-                      <div className="text-3xl font-light tracking-tight">99/100</div>
-                      <div className="text-[11px] text-emerald-400 mt-1">
+                    <div className="my-1.5 sm:my-2">
+                      <div className="text-2xl sm:text-3xl font-light tracking-tight">99/100</div>
+                      <div className="text-[10px] sm:text-[11px] text-emerald-400 mt-0.5 sm:mt-1">
                         {isAr ? "أداء فائق السرعة" : "Optimal Speed"}
                       </div>
                     </div>
@@ -362,16 +362,16 @@ function AsanaProjectShowcase({
           </AnimatePresence>
 
           {/* Bottom Workspace Status Footer */}
-          <div className="pt-4 mt-4 border-t border-[#f3f3f3] flex items-center justify-between text-[12px] text-[#646f79]">
-            <div className="flex items-center gap-2">
-              <span className="inline-block w-2 h-2 rounded-full bg-[#646f79]" />
-              <span>
+          <div className="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-[#f3f3f3] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-2 text-[11px] sm:text-[12px] text-[#646f79]">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#646f79] flex-shrink-0" />
+              <span className="truncate">
                 {isAr
                   ? "الباقات تبدأ من 150 د.ك • تسليم احترافي سريع"
                   : "Packages from 150 KWD • Rapid Executive Delivery"}
               </span>
             </div>
-            <span className="font-mono text-[11px] text-[#0d0d0d] font-medium">
+            <span className="font-mono text-[10px] sm:text-[11px] text-[#0d0d0d] font-medium self-end sm:self-auto">
               29°22&apos;N 47°58&apos;E
             </span>
           </div>
@@ -417,7 +417,7 @@ export function Hero({ lang, dict }: HeroProps) {
             </motion.div>
 
             {/* Asana Display Hierarchy (54px+ scale, light/measured weight, tight tracking in EN, generous breathing room in AR) */}
-            <div className="mb-6 sm:mb-8 space-y-1 sm:space-y-2">
+            <div className="mb-5 sm:mb-8 space-y-1 sm:space-y-2">
               {titleLines.map((line, idx) => (
                 <div key={idx} className="overflow-hidden py-0.5">
                   <motion.h1
@@ -430,8 +430,8 @@ export function Hero({ lang, dict }: HeroProps) {
                     }}
                     className={`${
                       isAr
-                        ? "text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-medium leading-[1.24]"
-                        : "text-4xl sm:text-6xl md:text-[3.75rem] lg:text-[4.25rem] font-light leading-[1.06] tracking-[-0.025em]"
+                        ? "text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-medium leading-[1.2] sm:leading-[1.24]"
+                        : "text-3xl xs:text-4xl sm:text-5xl md:text-[3.75rem] lg:text-[4.25rem] font-light leading-[1.08] sm:leading-[1.06] tracking-[-0.025em]"
                     } ${idx === 1 ? "text-[#646f79]" : "text-[#0d0d0d]"}`}
                   >
                     {line}
@@ -445,7 +445,7 @@ export function Hero({ lang, dict }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5, ease: easeAsana }}
-              className="text-base sm:text-lg text-[#646f79] leading-[1.65] max-w-xl mb-8 sm:mb-10 font-normal"
+              className="text-[15px] sm:text-lg text-[#646f79] leading-[1.65] max-w-xl mb-6 sm:mb-10 font-normal"
             >
               {dict.hero.description}
             </motion.p>
@@ -455,11 +455,11 @@ export function Hero({ lang, dict }: HeroProps) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.38, duration: 0.5, ease: easeAsana }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5"
             >
               <a
                 href={`/${lang}#pricing`}
-                className="group inline-flex items-center justify-center gap-3 h-12 px-8 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-[15px] font-medium hover:bg-[#646f79] shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-all duration-200 active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-6 sm:px-8 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-[14px] sm:text-[15px] font-medium hover:bg-[#646f79] shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-all duration-200 active:scale-[0.98]"
               >
                 <span>{dict.hero.cta}</span>
                 <span className="transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180">
@@ -471,7 +471,7 @@ export function Hero({ lang, dict }: HeroProps) {
                 href="https://wa.me/46700265645"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 h-12 px-7 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] border border-[#e5e7eb] hover:bg-[#e8eaed] text-[15px] font-medium transition-all duration-200 active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-7 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] border border-[#e5e7eb] hover:bg-[#e8eaed] text-[14px] sm:text-[15px] font-medium transition-all duration-200 active:scale-[0.98]"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-600" />
                 <span>{dict.nav.contact}</span>
@@ -498,27 +498,27 @@ export function Hero({ lang, dict }: HeroProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.55, duration: 0.5 }}
-        className="relative z-10 bg-[#f3f3f3]/80 backdrop-blur-sm border-t border-[#e8eaed] py-4"
+        className="relative z-10 bg-[#f3f3f3]/80 backdrop-blur-sm border-t border-[#e8eaed] py-3.5 sm:py-4"
       >
-        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-[#646f79]">
-          <div className="grid grid-cols-3 sm:flex sm:items-center gap-3 sm:gap-8 w-full sm:w-auto text-center sm:text-start">
-            <span className="flex items-center justify-center sm:justify-start gap-2 text-[#0d0d0d] font-medium">
-              <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79]">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[12px] sm:text-[13px] text-[#646f79]">
+          <div className="grid grid-cols-1 xs:grid-cols-3 sm:flex sm:items-center gap-2 sm:gap-6 md:gap-8 w-full sm:w-auto text-start">
+            <span className="flex items-center justify-start gap-2 text-[#0d0d0d] font-medium">
+              <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] border border-[#e5e7eb] text-[10px] sm:text-[11px] font-mono text-[#646f79]">
                 01
               </span>
-              <span>{dict.hero.pipeline_design}</span>
+              <span className="truncate">{dict.hero.pipeline_design}</span>
             </span>
-            <span className="flex items-center justify-center sm:justify-start gap-2 text-[#0d0d0d] font-medium">
-              <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79]">
+            <span className="flex items-center justify-start gap-2 text-[#0d0d0d] font-medium">
+              <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] border border-[#e5e7eb] text-[10px] sm:text-[11px] font-mono text-[#646f79]">
                 02
               </span>
-              <span>{dict.hero.pipeline_dev}</span>
+              <span className="truncate">{dict.hero.pipeline_dev}</span>
             </span>
-            <span className="flex items-center justify-center sm:justify-start gap-2 text-[#0d0d0d] font-medium">
-              <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79]">
+            <span className="flex items-center justify-start gap-2 text-[#0d0d0d] font-medium">
+              <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] border border-[#e5e7eb] text-[10px] sm:text-[11px] font-mono text-[#646f79]">
                 03
               </span>
-              <span>{dict.hero.pipeline_seo}</span>
+              <span className="truncate">{dict.hero.pipeline_seo}</span>
             </span>
           </div>
 

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080">
-  <!-- Generator: Adobe Illustrator 29.8.2, SVG Export Plug-In . SVG Version: 2.1.1 Build 3)  -->
+  <style>
+    :root, path, polygon, g {
+      fill: #0d0d0d;
+      transition: fill 0.2s ease-in-out;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root, path, polygon, g {
+        fill: #ffffff;
+      }
+    }
+  </style>
   <path d="M335.58,449.29l-13.3,29.26c9.21,5.93,17.6,12.89,24.76,18.83-10.84,3.07-22.92,4.5-34.17,4.5h-149.39l-5.53,5.53v27.01h149.6s29.11-2.68,40.93-7.98c3.89-12.48,6.35-25.58,6.35-37.24,0-15.76-4.09-27.83-13.71-39.9h-5.54Z"/>
   <polygon points="354 418.39 337.63 401.81 321.05 418.39 337.63 434.76 354 418.39"/>
   <polygon points="786.05 429.64 746.97 449.69 746.97 460.95 786.05 440.89 786.05 429.64"/>

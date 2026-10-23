@@ -113,24 +113,24 @@ export function Process({ dict }: ProcessProps) {
   return (
     <section
       id="process"
-      className="relative py-24 md:py-32 bg-[#f3f3f3] text-[#0d0d0d] overflow-hidden border-b border-[#e6e8eb]"
+      className="relative py-14 sm:py-20 md:py-32 bg-[#f3f3f3] text-[#0d0d0d] overflow-hidden border-b border-[#e6e8eb]"
     >
       <FloatingShapes shapes={processShapes} color="text-[#646f79]" />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
-        <AnimateInView className="mb-14 md:mb-20">
+        <AnimateInView className="mb-10 sm:mb-14 md:mb-20">
           <div className="flex flex-col items-start text-start">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[13px] font-medium text-[#646f79] mb-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[12px] sm:text-[13px] font-medium text-[#646f79] mb-4 sm:mb-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
               <span className="w-2 h-2 rounded-full bg-[#0d0e10]" />
               <span>{dict.process.badge}</span>
             </div>
 
-            <div className="flex flex-col md:flex-row md:items-end justify-between w-full gap-4 md:gap-8">
-              <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-normal tracking-[-0.02em] text-[#0d0d0d] leading-[1.2]">
+            <div className="flex flex-col md:flex-row md:items-end justify-between w-full gap-3 md:gap-8">
+              <h2 className="text-2xl sm:text-4xl md:text-[2.75rem] font-normal tracking-[-0.02em] text-[#0d0d0d] leading-[1.2]">
                 {dict.process.title}
               </h2>
-              <p className="text-base text-[#646f79] max-w-md leading-[1.6] font-normal">
+              <p className="text-[15px] sm:text-base text-[#646f79] max-w-md leading-[1.6] font-normal">
                 {dict.process.subtitle}
               </p>
             </div>
@@ -138,7 +138,7 @@ export function Process({ dict }: ProcessProps) {
         </AnimateInView>
 
         {/* 3-Column Asana Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {dict.process.steps.map((step, idx) => {
             const isActive = activeIdx === idx;
             return (
@@ -152,7 +152,7 @@ export function Process({ dict }: ProcessProps) {
                   onMouseEnter={() => setActiveIdx(idx)}
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className={`h-full rounded-[20px] bg-[#ffffff] p-6 sm:p-8 flex flex-col justify-between text-start border transition-all duration-200 ${
+                  className={`h-full rounded-[20px] bg-[#ffffff] p-5 sm:p-7 md:p-8 flex flex-col justify-between text-start border transition-all duration-200 ${
                     isActive
                       ? "border-[#0d0e10]/25 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)]"
                       : "border-[#eceeef] shadow-[0_2px_8px_rgba(0,0,0,0.06)]"

@@ -73,41 +73,41 @@ export function Footer({ lang, dict }: FooterProps) {
   ];
 
   return (
-    <footer className="relative bg-[#ffffff] text-[#0d0d0d] overflow-hidden pt-16 md:pt-24">
+    <footer className="relative bg-[#ffffff] text-[#0d0d0d] overflow-hidden pt-10 sm:pt-16 md:pt-24">
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Executive Pre-Footer CTA Card (#0d0e10 Asana Dark Surface) */}
-        <AnimateInView className="mb-16 md:mb-24">
-          <div className="rounded-[20px] bg-[#0d0e10] text-[#ffffff] p-8 sm:p-12 md:p-16 shadow-[0_20px_48px_-12px_rgba(13,14,16,0.22)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 text-start relative overflow-hidden">
-            <div className="max-w-2xl space-y-3 relative z-10">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-[64px] bg-[#ffffff]/10 border border-[#ffffff]/15 text-[12px] font-medium text-[#ffffff]/90">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+        <AnimateInView className="mb-12 sm:mb-16 md:mb-24">
+          <div className="rounded-[20px] bg-[#0d0e10] text-[#ffffff] p-6 sm:p-10 md:p-12 lg:p-16 shadow-[0_20px_48px_-12px_rgba(13,14,16,0.22)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8 text-start relative overflow-hidden">
+            <div className="max-w-2xl space-y-2.5 sm:space-y-3 relative z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1 rounded-[64px] bg-[#ffffff]/10 border border-[#ffffff]/15 text-[11px] sm:text-[12px] font-medium text-[#ffffff]/90">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span>{isAr ? "استشارة مجانية لمشروعك في الكويت" : "Free Executive Discovery Call"}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-[-0.02em] leading-[1.25]">
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[-0.02em] leading-[1.25]">
                 {isAr
                   ? "هل أنت مستعد لبناء حضور رقمي يليق بعلامتك التجارية؟"
                   : "Ready to build a calm, high-performing digital platform?"}
               </h3>
-              <p className="text-sm sm:text-base text-[#ffffff]/70 leading-[1.6]">
+              <p className="text-[13px] sm:text-base text-[#ffffff]/70 leading-[1.6]">
                 {isAr
                   ? "تواصل مع فريقنا مباشرة عبر واتساب لمناقشة تفاصيل مشروعك واختيار الباقة الأنسب لأهدافك."
                   : "Connect directly with our team to scope your project, timeline, and KWD package."}
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto relative z-10">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full lg:w-auto relative z-10">
               <a
                 href="https://wa.me/46700265645"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 h-12 px-8 rounded-[64px] bg-[#ffffff] text-[#0d0e10] font-medium text-[15px] hover:bg-[#f3f3f3] transition-all duration-200 active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-6 sm:px-8 rounded-[64px] bg-[#ffffff] text-[#0d0e10] font-medium text-[14px] sm:text-[15px] hover:bg-[#f3f3f3] transition-all duration-200 active:scale-[0.98]"
               >
                 <span>{dict.nav.contact}</span>
                 <span className="rtl:rotate-180">→</span>
               </a>
               <a
                 href={`/${lang}#pricing`}
-                className="inline-flex items-center justify-center h-12 px-7 rounded-[64px] bg-[#ffffff]/10 text-[#ffffff] border border-[#ffffff]/15 hover:bg-[#ffffff]/20 font-medium text-[15px] transition-all duration-200"
+                className="inline-flex items-center justify-center h-11 sm:h-12 px-5 sm:px-7 rounded-[64px] bg-[#ffffff]/10 text-[#ffffff] border border-[#ffffff]/15 hover:bg-[#ffffff]/20 font-medium text-[14px] sm:text-[15px] transition-all duration-200"
               >
                 {dict.nav.pricing}
               </a>
@@ -117,7 +117,7 @@ export function Footer({ lang, dict }: FooterProps) {
 
         {/* Main Footer Columns */}
         <AnimateInView>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-[#f3f3f3] text-start">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 pb-10 sm:pb-14 border-b border-[#f3f3f3] text-start">
             {/* Brand Column (5 cols) */}
             <div className="lg:col-span-5 space-y-5">
               <div className="flex items-center gap-3">

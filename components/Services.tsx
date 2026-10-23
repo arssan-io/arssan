@@ -51,24 +51,24 @@ export function Services({ dict }: ServicesProps) {
   return (
     <section
       id="services"
-      className="relative py-24 md:py-32 bg-[#ffffff] text-[#0d0d0d] overflow-hidden border-b border-[#f3f3f3]"
+      className="relative py-14 sm:py-20 md:py-32 bg-[#ffffff] text-[#0d0d0d] overflow-hidden border-b border-[#f3f3f3]"
     >
       <FloatingShapes shapes={servicesShapes} color="text-[#646f79]" />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
-        <AnimateInView className="mb-14 md:mb-20">
+        <AnimateInView className="mb-10 sm:mb-14 md:mb-20">
           <div className="flex flex-col items-start text-start">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[13px] font-medium text-[#646f79] mb-5">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[12px] sm:text-[13px] font-medium text-[#646f79] mb-4 sm:mb-5">
               <span className="w-2 h-2 rounded-full bg-[#0d0e10]" />
               <span>{dict.services.badge}</span>
             </div>
 
-            <div className="flex flex-col md:flex-row md:items-end justify-between w-full gap-4 md:gap-8">
-              <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-normal tracking-[-0.02em] text-[#0d0d0d] leading-[1.2]">
+            <div className="flex flex-col md:flex-row md:items-end justify-between w-full gap-3 md:gap-8">
+              <h2 className="text-2xl sm:text-4xl md:text-[2.75rem] font-normal tracking-[-0.02em] text-[#0d0d0d] leading-[1.2]">
                 {dict.services.title}
               </h2>
-              <p className="text-base text-[#646f79] max-w-md leading-[1.6] font-normal">
+              <p className="text-[15px] sm:text-base text-[#646f79] max-w-md leading-[1.6] font-normal">
                 {dict.services.subtitle}
               </p>
             </div>
@@ -76,20 +76,20 @@ export function Services({ dict }: ServicesProps) {
         </AnimateInView>
 
         {/* Asana Minimal-Maximalist Service Cards */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {services.map((service, idx) => (
             <AnimateInView key={service.key} variant="fadeUp" delay={idx * 0.08}>
               <motion.div
                 whileHover={{ y: -3 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
-                className="group relative rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] p-6 sm:p-8 md:p-10 hover:border-[#646f79]/40 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-200 text-start"
+                className="group relative rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] p-5 sm:p-7 md:p-10 hover:border-[#646f79]/40 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-200 text-start"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
                   {/* Left / Main Content (8 cols) */}
-                  <div className="lg:col-span-8 flex flex-col sm:flex-row sm:items-start gap-6">
+                  <div className="lg:col-span-8 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
                     {/* Number & Icon Column */}
                     <div className="flex sm:flex-col items-center sm:items-start gap-3 flex-shrink-0">
-                      <div className="w-12 h-12 rounded-[14px] bg-[#ffffff] border border-[#e5e7eb] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#0d0d0d] group-hover:bg-[#0d0e10] group-hover:text-[#ffffff] transition-colors duration-200">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[14px] bg-[#ffffff] border border-[#e5e7eb] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#0d0d0d] group-hover:bg-[#0d0e10] group-hover:text-[#ffffff] transition-colors duration-200">
                         {service.icon}
                       </div>
                       <span className="font-mono text-xs font-medium text-[#646f79] px-2.5 py-0.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb]">
@@ -99,19 +99,19 @@ export function Services({ dict }: ServicesProps) {
 
                     {/* Title, Copy, and Deliverable Pills */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-2xl sm:text-[1.75rem] font-medium text-[#0d0d0d] mb-3 leading-[1.25]">
+                      <h3 className="text-xl sm:text-2xl md:text-[1.75rem] font-medium text-[#0d0d0d] mb-2.5 sm:mb-3 leading-[1.25]">
                         {service.title}
                       </h3>
-                      <p className="text-[15px] sm:text-base text-[#646f79] leading-[1.65] mb-6 max-w-2xl font-normal">
+                      <p className="text-[14px] sm:text-base text-[#646f79] leading-[1.65] mb-5 sm:mb-6 max-w-2xl font-normal">
                         {service.description}
                       </p>
 
                       {/* Deliverable Pills on Crisp White Surface */}
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {service.features.map((feature) => (
                           <span
                             key={feature}
-                            className="inline-flex items-center gap-2 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[#0d0d0d] px-4 py-1.5 text-[13px] font-medium shadow-[0_1px_3px_rgba(0,0,0,0.03)] group-hover:border-[#646f79]/30 transition-colors duration-200"
+                            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[#0d0d0d] px-3 py-1 sm:px-4 sm:py-1.5 text-[12px] sm:text-[13px] font-medium shadow-[0_1px_3px_rgba(0,0,0,0.03)] group-hover:border-[#646f79]/30 transition-colors duration-200"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#646f79] group-hover:bg-[#0d0e10] transition-colors" />
                             <span>{feature}</span>
@@ -123,7 +123,7 @@ export function Services({ dict }: ServicesProps) {
 
                   {/* Right Column: Elevated White Benchmark Card (4 cols) */}
                   <div className="lg:col-span-4">
-                    <div className="rounded-[16px] bg-[#ffffff] border border-[#eceeef] p-5 sm:p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col justify-between min-h-[160px] group-hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.10)] transition-shadow duration-200">
+                    <div className="rounded-[16px] bg-[#ffffff] border border-[#eceeef] p-4 sm:p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col justify-between min-h-auto sm:min-h-[160px] group-hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.10)] transition-shadow duration-200">
                       <div className="flex items-center justify-between">
                         <span className="text-[11px] font-mono uppercase tracking-wider text-[#646f79] px-2.5 py-1 rounded-[64px] bg-[#f3f3f3]">
                           {service.metric.tag}
