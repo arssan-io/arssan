@@ -90,33 +90,37 @@
         "price": "150",
         "currency": "KWD",
         "period": "per project",
-        "description": "Ideal for new ventures and small businesses launching a polished digital presence",
+        "description": "Ideal for new ventures and small businesses launching a focused, polished digital presence",
         "features": [
-          "Custom High-Conversion Landing Page",
-          "Arabic or English Language Setup",
-          "Mobile-First Responsive Architecture",
-          "Foundational Technical SEO Setup",
-          "Direct WhatsApp & Social Integration",
-          "Free SSL Certificate & 1 Month Support"
+          ".arssan.com domain (subdomain)",
+          "Arabic or English language",
+          "2 pages only",
+          "Responsive design (mobile & desktop)",
+          "SSL security certificate",
+          "Technical support for 15 days"
         ],
         "cta": "Start with Starter"
       },
       {
         "name": "Professional",
         "slug": "professional",
-        "price": "450",
+        "price": "299",
+        "originalPrice": "450",
         "currency": "KWD",
         "period": "per project",
         "popular": true,
-        "description": "Our most popular tier for growing Kuwaiti companies needing a bilingual corporate platform",
+        "description": "Our most popular tier for growing companies needing a distinct bilingual corporate platform",
         "features": [
-          "Up to 6 Custom-Designed Pages",
-          "Full Bilingual Support (Arabic RTL + English)",
-          "Bespoke UI/UX Design System",
-          "High-Speed Next.js Development",
-          "Easy-to-Use Content Management System",
-          "Comprehensive Kuwait Local SEO",
-          "3 Months Priority Support & Maintenance"
+          "Special private domain for 1 year",
+          "Bilingual (Arabic + English)",
+          "Up to 6 custom-designed pages",
+          "Special bespoke UI & UX",
+          "Easy-to-use CMS dashboard",
+          "SEO enhance & Google optimization",
+          "Agent Ready architecture (isitagentready.com)",
+          "Lighthouse performance optimization",
+          "High-speed Next.js development",
+          "Support and maintenance for 2 months"
         ],
         "cta": "Most Popular in Kuwait"
       },
@@ -128,14 +132,17 @@
         "period": "per project",
         "description": "End-to-end custom architecture for established enterprises and complex web platforms",
         "features": [
-          "Unlimited Custom Pages & Modules",
-          "Executive UI/UX Research & Design System",
-          "Full-Stack Custom Web Engineering",
-          "KNET / MyFatoorah / External API Integrations",
-          "Custom Admin Dashboard & Analytics",
-          "Full-Scale Regional SEO & Performance Suite",
-          "6 Months Dedicated SLA Support",
-          "Hands-On Team Onboarding & Training"
+          "Complimentary custom domain & brand integration",
+          "Unlimited custom pages & modules",
+          "Executive UI/UX research & exclusive design system",
+          "Full-stack custom web engineering",
+          "Agent Ready architecture (isitagentready.com)",
+          "Lighthouse performance optimization",
+          "KNET / MyFatoorah / external API integrations",
+          "Custom admin dashboard & analytics",
+          "Full-scale regional SEO & performance suite",
+          "6 months dedicated SLA support & maintenance",
+          "Hands-on team onboarding & training"
         ],
         "cta": "Book Consultation"
       }

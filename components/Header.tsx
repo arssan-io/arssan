@@ -59,27 +59,17 @@ export function Header({ lang, dict }: HeaderProps) {
         }`}
       >
         <div className="max-w-[1280px] mx-auto px-5 sm:px-8 flex items-center justify-between">
-          {/* Brand Logo + Kuwait Region Pill */}
-          <div className="flex items-center gap-3.5">
-            <Link
-              href={`/${lang}`}
-              className="flex items-center relative z-50 transition-opacity duration-150 hover:opacity-80"
-            >
-              <img
-                src="/images/Logo.svg"
-                alt="Arssan"
-                className="h-7 sm:h-8 w-auto brightness-0"
-              />
-            </Link>
-
-            <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[12px] font-medium text-[#646f79]">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
-              </span>
-              <span>{isAr ? "الكويت • متاح للمشاريع" : "Kuwait • Available"}</span>
-            </div>
-          </div>
+          {/* Brand Logo */}
+          <Link
+            href={`/${lang}`}
+            className="flex items-center relative z-50 transition-opacity duration-150 hover:opacity-80"
+          >
+            <img
+              src="/images/Logo.svg"
+              alt="Arssan"
+              className="h-7 sm:h-8 w-auto brightness-0"
+            />
+          </Link>
 
           {/* Desktop Asana Surface Pill Navigation */}
           <nav

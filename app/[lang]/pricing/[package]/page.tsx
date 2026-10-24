@@ -63,14 +63,24 @@ export default async function PricingPackagePage({
             {pkg.description}
           </p>
 
-          <div className="flex items-baseline gap-2.5 sm:gap-3 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-[#f3f3f3]">
+          <div className="flex items-baseline gap-2.5 sm:gap-3 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-[#f3f3f3] flex-wrap">
             <span className="text-4xl sm:text-5xl md:text-6xl font-light tracking-[-0.03em] text-[#0d0d0d]">
               {pkg.price}
             </span>
+            {pkg.originalPrice && (
+              <span className="text-2xl sm:text-3xl font-light line-through text-[#646f79]/60">
+                {pkg.originalPrice}
+              </span>
+            )}
             <div className="flex flex-col text-xs">
               <span className="font-semibold text-xs sm:text-sm text-[#0d0d0d]">{pkg.currency}</span>
               <span className="text-[#646f79] text-[11px] sm:text-xs">{pkg.period}</span>
             </div>
+            {pkg.originalPrice && (
+              <span className="ms-auto text-xs font-medium px-2.5 py-1 rounded-[64px] bg-emerald-50 text-emerald-700 border border-emerald-200">
+                {isAr ? "خصم خاص" : "Special Offer"}
+              </span>
+            )}
           </div>
 
           <h2 className="text-xs font-medium uppercase tracking-wider mb-4 sm:mb-5 text-[#646f79]">

@@ -8,6 +8,7 @@ interface PricingPackage {
   name: string;
   slug: string;
   price: string;
+  originalPrice?: string;
   currency: string;
   period: string;
   description: string;
@@ -105,10 +106,19 @@ export function Pricing({ lang, dict }: PricingProps) {
                       pkg.popular ? "border-[#ffffff]/12" : "border-[#f3f3f3]"
                     }`}
                   >
-                    <div className="flex items-baseline gap-2 sm:gap-2.5">
+                    <div className="flex items-baseline gap-2 sm:gap-2.5 flex-wrap">
                       <span className="text-4xl sm:text-5xl md:text-[3.5rem] font-light tracking-[-0.03em] leading-none">
                         {pkg.price}
                       </span>
+                      {pkg.originalPrice && (
+                        <span
+                          className={`text-xl sm:text-2xl font-light line-through ${
+                            pkg.popular ? "text-[#ffffff]/45" : "text-[#646f79]/60"
+                          }`}
+                        >
+                          {pkg.originalPrice}
+                        </span>
+                      )}
                       <div className="flex flex-col">
                         <span
                           className={`text-xs sm:text-sm font-semibold ${
@@ -125,6 +135,17 @@ export function Pricing({ lang, dict }: PricingProps) {
                           {pkg.period}
                         </span>
                       </div>
+                      {pkg.originalPrice && (
+                        <span
+                          className={`ms-auto text-[11px] font-medium px-2.5 py-0.5 rounded-[64px] ${
+                            pkg.popular
+                              ? "bg-emerald-400/15 text-emerald-300 border border-emerald-400/25"
+                              : "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                          }`}
+                        >
+                          {isAr ? "خصم خاص" : "Special Offer"}
+                        </span>
+                      )}
                     </div>
                   </div>
 
