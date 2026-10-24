@@ -35,11 +35,11 @@ export function Pricing({ lang, dict }: PricingProps) {
   return (
     <section
       id="pricing"
-      className="relative py-14 sm:py-20 md:py-32 bg-[#f3f3f3] text-[#0d0d0d] overflow-hidden border-b border-[#e6e8eb]"
+      className="relative py-14 sm:py-18 md:py-24 bg-[#f3f3f3] text-[#0d0d0d] overflow-hidden border-b border-[#e6e8eb]"
     >
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
-        <AnimateInView className="mb-10 sm:mb-14 md:mb-20">
+        <AnimateInView className="mb-8 sm:mb-10 md:mb-14">
           <div className="flex flex-col items-start text-start">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[12px] sm:text-[13px] font-medium text-[#646f79] mb-4 sm:mb-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
               <span className="w-2 h-2 rounded-full bg-[#0d0e10]" />
@@ -194,7 +194,7 @@ export function Pricing({ lang, dict }: PricingProps) {
         </div>
 
         {/* Kuwait Market Assurance Strip */}
-        <AnimateInView delay={0.25} className="mt-8 sm:mt-10">
+        <AnimateInView delay={0.25} className="mt-6 sm:mt-8">
           <div className="rounded-[20px] bg-[#ffffff] border border-[#eceeef] p-4 sm:px-8 sm:py-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] flex flex-col md:flex-row items-start md:items-center justify-between gap-3.5 sm:gap-4 text-[12px] sm:text-[14px] text-[#646f79]">
             <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-start gap-2.5 sm:gap-6 w-full md:w-auto">
               <span className="flex items-center gap-2 text-[#0d0d0d] font-medium">

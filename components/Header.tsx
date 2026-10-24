@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
 
 interface HeaderProps {
@@ -10,6 +11,7 @@ interface HeaderProps {
   dict: {
     nav: {
       home: string;
+      projects?: string;
       coloring: string;
       process: string;
       services: string;
@@ -24,8 +26,12 @@ export function Header({ lang, dict }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
+  const pathname = usePathname();
   const otherLang = lang === "ar" ? "en" : "ar";
   const isAr = lang === "ar";
+  const switchLangHref = pathname
+    ? pathname.replace(new RegExp(`^/${lang}`), `/${otherLang}`)
+    : `/${otherLang}`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -41,6 +47,7 @@ export function Header({ lang, dict }: HeaderProps) {
   }, [mobileOpen]);
 
   const navItems = [
+    { label: dict.nav.projects || (isAr ? "مشاريعنا" : "Projects"), href: `/${lang}/projects` },
     { label: dict.nav.services, href: `/${lang}#services` },
     { label: dict.nav.process, href: `/${lang}#process` },
     { label: dict.nav.pricing, href: `/${lang}#pricing` },
@@ -101,7 +108,7 @@ export function Header({ lang, dict }: HeaderProps) {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
             <Link
-              href={`/${otherLang}`}
+              href={switchLangHref}
               className={`px-3.5 py-2 rounded-[64px] text-[13px] font-medium text-[#646f79] hover:text-[#0d0d0d] hover:bg-[#f3f3f3] transition-all duration-150 ${
                 otherLang === "ar" ? "font-readex-pro" : "font-sans"
               }`}
@@ -197,7 +204,7 @@ export function Header({ lang, dict }: HeaderProps) {
             <div className="pt-6 border-t border-[#f3f3f3] flex flex-col gap-3">
               <div className="flex items-center justify-between gap-3">
                 <Link
-                  href={`/${otherLang}`}
+                  href={switchLangHref}
                   onClick={() => setMobileOpen(false)}
                   className={`flex-1 h-12 rounded-[64px] bg-[#f3f3f3] flex items-center justify-center text-[#0d0d0d] font-medium ${
                     otherLang === "ar" ? "font-readex-pro text-base" : "font-sans text-sm"

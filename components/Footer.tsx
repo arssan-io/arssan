@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n";
 interface FooterProps {
   lang: Locale;
   dict: {
-    nav: { home: string; process: string; services: string; pricing: string; contact: string };
+    nav: { home: string; projects?: string; process: string; services: string; pricing: string; contact: string };
     footer: {
       bio: string;
       description: string;
@@ -55,6 +55,7 @@ export function Footer({ lang, dict }: FooterProps) {
 
   const quickLinks = [
     { label: dict.nav.home, href: `/${lang}` },
+    { label: dict.nav.projects || (isAr ? "مشاريعنا" : "Projects"), href: `/${lang}/projects` },
     { label: dict.nav.services, href: `/${lang}#services` },
     { label: dict.nav.process, href: `/${lang}#process` },
     { label: dict.nav.pricing, href: `/${lang}#pricing` },
@@ -67,16 +68,16 @@ export function Footer({ lang, dict }: FooterProps) {
   ];
 
   const socialLinks = [
-    { label: "Instagram", href: "https://instagram.com/arssan.co", icon: IconInstagram },
+    { label: "Instagram", href: "https://instagram.com/arssan.io", icon: IconInstagram },
     { label: "X", href: "https://x.com/arssan_co", icon: IconX },
     { label: "Facebook", href: "https://facebook.com/arssan.co", icon: IconFacebook },
   ];
 
   return (
-    <footer className="relative bg-[#ffffff] text-[#0d0d0d] overflow-hidden pt-10 sm:pt-16 md:pt-24">
+    <footer className="relative bg-[#ffffff] text-[#0d0d0d] overflow-hidden pt-12 sm:pt-16 md:pt-20">
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Executive Pre-Footer CTA Card (#0d0e10 Asana Dark Surface) */}
-        <AnimateInView className="mb-12 sm:mb-16 md:mb-24">
+        <AnimateInView className="mb-10 sm:mb-14 md:mb-16">
           <div className="rounded-[20px] bg-[#0d0e10] text-[#ffffff] p-6 sm:p-10 md:p-12 lg:p-16 shadow-[0_20px_48px_-12px_rgba(13,14,16,0.22)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8 text-start relative overflow-hidden">
             <div className="max-w-2xl space-y-2.5 sm:space-y-3 relative z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1 rounded-[64px] bg-[#ffffff]/10 border border-[#ffffff]/15 text-[11px] sm:text-[12px] font-medium text-[#ffffff]/90">
@@ -126,9 +127,15 @@ export function Footer({ lang, dict }: FooterProps) {
                   alt="Arssan"
                   className="h-7 sm:h-8 w-auto brightness-0"
                 />
-                <span className="text-[11px] font-medium px-3 py-1 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[#646f79]">
-                  {isAr ? "الكويت • الخليج" : "Kuwait • GCC"}
-                </span>
+                <a
+                  href="https://scptric.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[#646f79] hover:text-[#0d0d0d] hover:bg-[#e8eaed] transition-colors"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0d0e10]" />
+                  <span>{isAr ? "ذراع سبترك للويب • Scptric" : "Scptric Web Arm"}</span>
+                </a>
               </div>
 
               <p className="text-[15px] text-[#646f79] leading-[1.65] max-w-sm font-normal">
@@ -215,12 +222,6 @@ export function Footer({ lang, dict }: FooterProps) {
                       +46 70 026 56 45
                     </span>
                   </a>
-                </li>
-                <li className="pt-1 text-[12px] font-mono text-[#646f79]">
-                  29°22&apos;N 47°58&apos;E
-                  <span className="block text-[12px] font-sans mt-0.5">
-                    {isAr ? "مدينة الكويت • الشرق الأوسط" : "Kuwait City • GCC"}
-                  </span>
                 </li>
               </ul>
             </div>

@@ -1,10 +1,11 @@
 {
   "meta": {
     "title": "Arssan Kuwait | Professional Web Design & Digital Engineering",
-    "description": "Arssan — Your digital partner in Kuwait for executive UI/UX design, high-performance Next.js web development, and local & regional SEO."
+    "description": "Arssan is the specialized web arm of Scptric (scptric.com), designing and engineering high-performance websites, bespoke platforms, and modern digital experiences."
   },
   "nav": {
     "home": "Home",
+    "projects": "Projects",
     "coloring": "Coloring",
     "process": "Methodology",
     "services": "Services",
@@ -149,13 +150,143 @@
     ]
   },
   "footer": {
-    "bio": "Arssan is a specialized digital design and engineering studio serving ambitious businesses in Kuwait and the GCC. We combine calm visual clarity with modern software architecture to drive measurable growth.",
-    "description": "A specialized studio for professional web design and engineering in Kuwait",
+    "bio": "Arssan is the specialized web arm of Scptric (scptric.com), designing and engineering modern websites and digital platforms that combine calm visual clarity with measurable business growth.",
+    "description": "Arssan — The specialized web and digital platforms arm of Scptric (scptric.com)",
     "rights": "All rights reserved",
     "links": {
       "title": "Navigation"
     },
     "services_title": "Capabilities"
+  },
+  "projects_page": {
+    "badge": "Selected Work & Portfolio",
+    "title": "Digital craft engineered for measurable impact",
+    "subtitle": "Explore an index of bespoke platforms, corporate websites, and modern web applications engineered with calm aesthetics, agent-readiness, and peak speed.",
+    "all_filter": "All Projects",
+    "categories": {
+      "corporate": "Corporate & Platforms",
+      "ecommerce": "E-Commerce",
+      "saas": "SaaS & Tech",
+      "healthcare": "Healthcare & Clinics"
+    },
+    "stats": [
+      { "value": "100%", "label": "Full Source Code Ownership" },
+      { "value": "98+", "label": "Average Google Lighthouse Score" },
+      { "value": "Agent Ready", "label": "Verified on isitagentready.com" },
+      { "value": "0.3s", "label": "Edge Response Time" }
+    ],
+    "projects": [
+      {
+        "id": "alraya",
+        "slug": "al-raya-capital",
+        "title": "Al Raya Capital — Asset Management & Investment",
+        "categoryKey": "corporate",
+        "categoryLabel": "Corporate & Platforms",
+        "client": "Al Raya Investment Co. — Kuwait",
+        "year": "2026",
+        "url": "alrayacapital.com",
+        "description": "A high-performance corporate platform for wealth and asset management in Kuwait, featuring dynamic market dashboards, bilingual RTL/LTR experience, and enterprise financial compliance.",
+        "metrics": {
+          "value": "99/100",
+          "label": "Google Lighthouse Score"
+        },
+        "tags": ["Next.js 16", "TypeScript", "Bilingual RTL/LTR", "Agent Ready", "Security SSL"],
+        "inquiryMessage": "Hello, I would like to inquire about building a platform similar to Al Raya Capital."
+      },
+      {
+        "id": "rukun",
+        "slug": "rukun-luxury",
+        "title": "Rukun Luxury — High-End Fashion & Fragrance",
+        "categoryKey": "ecommerce",
+        "categoryLabel": "E-Commerce",
+        "client": "Rukun Collection — Kuwait & GCC",
+        "year": "2026",
+        "url": "rukunluxury.com",
+        "description": "Minimalist luxury retail storefront combining editorial visual elegance with high-speed mobile checkout, KNET/MyFatoorah gateway integration, and real-time inventory management.",
+        "metrics": {
+          "value": "+42%",
+          "label": "Mobile Conversion Uplift"
+        },
+        "tags": ["Headless E-Commerce", "KNET & MyFatoorah", "Mobile-First", "Next.js", "Ultra-Fast"],
+        "inquiryMessage": "Hello, I would like to inquire about building an e-commerce storefront similar to Rukun Luxury."
+      },
+      {
+        "id": "dar-el-nokhba",
+        "slug": "elite-medical",
+        "title": "Elite Medical Group — Specialized Healthcare Clinics",
+        "categoryKey": "healthcare",
+        "categoryLabel": "Healthcare & Clinics",
+        "client": "Elite Medical Centers — Kuwait",
+        "year": "2025",
+        "url": "elitemedical-kw.com",
+        "description": "Calm, accessible multi-specialty clinical portal featuring instant doctor booking, automated WhatsApp reminders, and localized Kuwait health SEO.",
+        "metrics": {
+          "value": "100%",
+          "label": "WCAG Accessibility Standard"
+        },
+        "tags": ["Next.js", "WhatsApp Cloud API", "Doctor Booking", "SEO Kuwait", "Bilingual"],
+        "inquiryMessage": "Hello, I would like to inquire about building a medical booking portal similar to Elite Medical Group."
+      },
+      {
+        "id": "muzn-cloud",
+        "slug": "muzn-cloud",
+        "title": "Muzn Cloud — B2B Cloud Infrastructure & AI Suite",
+        "categoryKey": "saas",
+        "categoryLabel": "SaaS & Tech",
+        "client": "Muzn Tech — Kuwait & Saudi Arabia",
+        "year": "2026",
+        "url": "muzncloud.io",
+        "description": "High-converting SaaS product marketing site and interactive engineering documentation, structured and verified to meet isitagentready.com web agent standards.",
+        "metrics": {
+          "value": "Agent Ready",
+          "label": "Verified on isitagentready.com"
+        },
+        "tags": ["Agent Ready", "isitagentready.com", "Next.js App Router", "SaaS Architecture", "B2B UI/UX"],
+        "inquiryMessage": "Hello, I would like to inquire about building an Agent Ready SaaS website similar to Muzn Cloud."
+      },
+      {
+        "id": "babtain-engineering",
+        "slug": "babtain-contracting",
+        "title": "Babtain Engineering & Contracting Corporation",
+        "categoryKey": "corporate",
+        "categoryLabel": "Corporate & Platforms",
+        "client": "Al-Babtain Contracting — Kuwait",
+        "year": "2025",
+        "url": "babtain-eng.com",
+        "description": "Flagship corporate platform showcasing mega architectural and infrastructure projects in Kuwait, with localized SEO ranking #1 across Kuwait search queries.",
+        "metrics": {
+          "value": "#1 Rank",
+          "label": "Google Search Kuwait Rank"
+        },
+        "tags": ["Corporate Web", "Local SEO Kuwait", "CMS Dashboard", "Interactive Showcase", "Next.js"],
+        "inquiryMessage": "Hello, I would like to inquire about building a corporate engineering website similar to Babtain."
+      },
+      {
+        "id": "namaa-hospitality",
+        "slug": "namaa-coffee",
+        "title": "Namaa Coffee Roasters — Artisan Lifestyle Brand",
+        "categoryKey": "ecommerce",
+        "categoryLabel": "E-Commerce",
+        "client": "Namaa Hospitality — Kuwait",
+        "year": "2025",
+        "url": "namaacoffee.com",
+        "description": "Tactile brand web experience delivering story-driven artisan coffee discovery, digital interactive brew guides, and a subscription coffee box club.",
+        "metrics": {
+          "value": "2.4x",
+          "label": "Average Session Duration"
+        },
+        "tags": ["Brand Experience", "E-Commerce", "Interactive Menu", "Framer Motion", "Tailwind CSS"],
+        "inquiryMessage": "Hello, I would like to inquire about building a brand website similar to Namaa Coffee."
+      }
+    ],
+    "cta": {
+      "badge": "Start Your Project",
+      "title": "Have an upcoming digital venture in mind?",
+      "description": "Our engineering studio is ready to transform your goals into an ultra-fast, calm platform that commands respect and drives revenue.",
+      "button": "Let's Talk on WhatsApp",
+      "back_home": "Back to Home",
+      "inquire_btn": "Request Similar Build"
+    }
   },
   "whatsapp": {
     "tooltip": "Chat with us on WhatsApp"

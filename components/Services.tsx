@@ -51,13 +51,13 @@ export function Services({ dict }: ServicesProps) {
   return (
     <section
       id="services"
-      className="relative py-14 sm:py-20 md:py-32 bg-[#ffffff] text-[#0d0d0d] overflow-hidden border-b border-[#f3f3f3]"
+      className="relative py-14 sm:py-18 md:py-24 bg-[#ffffff] text-[#0d0d0d] overflow-hidden border-b border-[#f3f3f3]"
     >
       <FloatingShapes shapes={servicesShapes} color="text-[#646f79]" />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
-        <AnimateInView className="mb-10 sm:mb-14 md:mb-20">
+        <AnimateInView className="mb-8 sm:mb-10 md:mb-14">
           <div className="flex flex-col items-start text-start">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[12px] sm:text-[13px] font-medium text-[#646f79] mb-4 sm:mb-5">
               <span className="w-2 h-2 rounded-full bg-[#0d0e10]" />
