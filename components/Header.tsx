@@ -35,8 +35,18 @@ export function Header({ lang, dict }: HeaderProps) {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    const handlePageShow = () => {
+      onScroll();
+    };
+    window.addEventListener("pageshow", handlePageShow);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pageshow", handlePageShow);
+    };
   }, []);
 
   useEffect(() => {

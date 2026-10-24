@@ -398,13 +398,13 @@ export function Hero({ lang, dict }: HeroProps) {
   ];
 
   return (
-    <section className="relative min-h-[92svh] bg-[#ffffff] text-[#0d0d0d] flex flex-col justify-between pt-20 sm:pt-24 md:pt-24 overflow-hidden border-b border-[#f3f3f3]">
+    <section className="relative min-h-0 lg:min-h-[92svh] bg-[#ffffff] text-[#0d0d0d] flex flex-col justify-start lg:justify-between pt-24 sm:pt-28 md:pt-32 overflow-hidden border-b border-[#f3f3f3]">
       {/* Subtle Architectural Grid + Floating Geometry */}
       <div className="absolute inset-0 bg-asana-grid opacity-70 pointer-events-none" />
       <FloatingShapes shapes={heroShapes} color="text-[#646f79]" />
 
       {/* Main Content Container (8px base grid aligned) */}
-      <div className="relative z-10 max-w-[1280px] mx-auto w-full px-5 sm:px-8 flex-1 flex flex-col justify-center pt-3 pb-8 md:pt-5 md:pb-12 text-start">
+      <div className="relative z-10 max-w-[1280px] mx-auto w-full px-5 sm:px-8 flex-1 flex flex-col justify-start lg:justify-center pt-3 pb-8 sm:pt-5 sm:pb-10 lg:pt-4 lg:pb-12 text-start">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* Left Column: Asana Display Typography & CTAs (7 cols) */}
           <div className="lg:col-span-7 flex flex-col justify-center">
