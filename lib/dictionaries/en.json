@@ -291,6 +291,9 @@
   "whatsapp": {
     "tooltip": "Chat with us on WhatsApp"
   },
+  "back_to_top": {
+    "tooltip": "Back to top"
+  },
   "language": {
     "switch": "العربية"
   }

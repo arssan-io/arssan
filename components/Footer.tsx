@@ -49,6 +49,16 @@ function IconFacebook({ className }: { className?: string }) {
   );
 }
 
+function IconScptric({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 150 150" fill="currentColor" aria-hidden="true">
+      <polygon points="74,16 84.5,26.5 28,83 17.5,72.5" />
+      <polygon points="73.5,66.5 84,77 27.5,133.5 17,123" />
+      <polygon points="123,16 133.5,26.5 108.5,51.5 133.5,76.5 77,133 66.5,122.5 112,77 87,52" />
+    </svg>
+  );
+}
+
 export function Footer({ lang, dict }: FooterProps) {
   const year = new Date().getFullYear();
   const isAr = lang === "ar";
@@ -118,10 +128,10 @@ export function Footer({ lang, dict }: FooterProps) {
 
         {/* Main Footer Columns */}
         <AnimateInView>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 pb-10 sm:pb-14 border-b border-[#f3f3f3] text-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 pb-8 sm:pb-12 md:pb-14 border-b border-[#f3f3f3] text-start">
             {/* Brand Column (5 cols) */}
-            <div className="lg:col-span-5 space-y-5">
-              <div className="flex items-center gap-3">
+            <div className="lg:col-span-5 space-y-4 sm:space-y-5">
+              <div className="flex flex-wrap items-center gap-3">
                 <img
                   src="/images/Logo.svg"
                   alt="Arssan"
@@ -131,19 +141,24 @@ export function Footer({ lang, dict }: FooterProps) {
                   href="https://scptric.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[#646f79] hover:text-[#0d0d0d] hover:bg-[#e8eaed] transition-colors"
+                  className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[#0d0d0d] hover:bg-[#e8eaed] hover:border-[#646f79]/30 transition-all duration-150 group"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0d0e10]" />
-                  <span>{isAr ? "ذراع سبترك للويب • Scptric" : "Scptric Web Arm"}</span>
+                  <IconScptric className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0d0d0d] group-hover:text-black transition-colors flex-shrink-0" />
+                  <span className="text-[11px] sm:text-[12px] font-medium text-[#646f79] group-hover:text-[#0d0d0d] transition-colors">
+                    {isAr ? "ذراع سكبترك للويب • Scptric" : "Scptric Web Arm"}
+                  </span>
+                  <span className="text-[10px] text-[#646f79] font-mono group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-transform">
+                    ↗
+                  </span>
                 </a>
               </div>
 
-              <p className="text-[15px] text-[#646f79] leading-[1.65] max-w-sm font-normal">
+              <p className="text-[14px] sm:text-[15px] text-[#646f79] leading-[1.65] max-w-sm font-normal">
                 {dict.footer.bio}
               </p>
 
               {/* Social Pill Buttons */}
-              <div className="flex items-center gap-2.5 pt-1">
+              <div className="flex items-center gap-2 pt-1">
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}
@@ -151,7 +166,7 @@ export function Footer({ lang, dict }: FooterProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] flex items-center justify-center text-[#646f79] hover:text-[#ffffff] hover:bg-[#0d0e10] hover:border-[#0d0e10] transition-all duration-200"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] flex items-center justify-center text-[#646f79] hover:text-[#ffffff] hover:bg-[#0d0e10] hover:border-[#0d0e10] transition-all duration-200"
                   >
                     <social.icon className="w-4 h-4" />
                   </a>
@@ -159,56 +174,60 @@ export function Footer({ lang, dict }: FooterProps) {
               </div>
             </div>
 
-            {/* Quick Links (2 cols) */}
-            <div className="lg:col-span-2">
-              <h4 className="text-xs font-semibold uppercase tracking-wider mb-5 text-[#0d0d0d]">
-                {dict.footer.links.title}
-              </h4>
-              <ul className="space-y-3 text-[14px]">
-                {quickLinks.map((link) => (
-                  <li key={link.href + link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[#646f79] hover:text-[#0d0d0d] transition-colors duration-150"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            {/* Links Columns: 2-column grid on mobile (Quick Links + Capabilities), full columns on desktop */}
+            <div className="lg:col-span-4 grid grid-cols-2 gap-6 sm:gap-8">
+              {/* Quick Links */}
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-5 text-[#0d0d0d]">
+                  {dict.footer.links.title}
+                </h4>
+                <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[14px]">
+                  {quickLinks.map((link) => (
+                    <li key={link.href + link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-[#646f79] hover:text-[#0d0d0d] transition-colors duration-150 block py-0.5"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Capabilities Links */}
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-5 text-[#0d0d0d]">
+                  {dict.footer.services_title}
+                </h4>
+                <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[14px]">
+                  {serviceLinks.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-[#646f79] hover:text-[#0d0d0d] transition-colors duration-150 block py-0.5"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            {/* Services Links (3 cols) */}
-            <div className="lg:col-span-3">
-              <h4 className="text-xs font-semibold uppercase tracking-wider mb-5 text-[#0d0d0d]">
-                {dict.footer.services_title}
-              </h4>
-              <ul className="space-y-3 text-[14px]">
-                {serviceLinks.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[#646f79] hover:text-[#0d0d0d] transition-colors duration-150"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact Info (2 cols) */}
-            <div className="lg:col-span-2">
-              <h4 className="text-xs font-semibold uppercase tracking-wider mb-5 text-[#0d0d0d]">
+            {/* Contact Info (3 cols on lg) */}
+            <div className="lg:col-span-3 pt-4 sm:pt-0 border-t border-[#f3f3f3] lg:border-t-0">
+              <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-5 text-[#0d0d0d]">
                 {dict.nav.contact}
               </h4>
-              <ul className="space-y-3 text-[14px] text-[#646f79]">
+              <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[14px] text-[#646f79]">
                 <li>
                   <a
                     href="mailto:info@arssan.com"
-                    className="hover:text-[#0d0d0d] transition-colors"
+                    className="inline-flex items-center gap-2 hover:text-[#0d0d0d] transition-colors py-0.5"
                   >
-                    info@arssan.com
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                    <span>info@arssan.com</span>
                   </a>
                 </li>
                 <li>
@@ -216,9 +235,10 @@ export function Footer({ lang, dict }: FooterProps) {
                     href="https://wa.me/46700265645"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#0d0d0d] transition-colors"
+                    className="inline-flex items-center gap-2 hover:text-[#0d0d0d] transition-colors py-0.5"
                   >
-                    <span dir="ltr" className="inline-block font-mono text-[13px]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                    <span dir="ltr" className="font-mono text-[13px]">
                       +46 70 026 56 45
                     </span>
                   </a>
@@ -229,15 +249,15 @@ export function Footer({ lang, dict }: FooterProps) {
         </AnimateInView>
 
         {/* Bottom Sub-bar */}
-        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-[#646f79]">
-          <p>
+        <div className="py-6 sm:py-8 flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 text-xs sm:text-[13px] text-[#646f79]">
+          <p className="text-start">
             &copy; {year} Arssan. {dict.footer.rights}.
           </p>
 
-          <div className="flex items-center gap-3 text-[12px]">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-              {isAr ? "جميع الأنظمة تعمل بكفاءة" : "All Systems Operational"}
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] font-medium text-[11px] sm:text-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+              <span>{isAr ? "جميع الأنظمة تعمل بكفاءة" : "All Systems Operational"}</span>
             </span>
           </div>
         </div>

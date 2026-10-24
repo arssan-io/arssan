@@ -4,6 +4,7 @@ import { getDictionary } from "@/lib/dictionaries";
 import { Header } from "@/components/Header";
 import { CustomCursor } from "@/components/CustomCursor";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { BackToTop } from "@/components/BackToTop";
 import { Footer } from "@/components/Footer";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -83,6 +84,7 @@ export default async function LangLayout({
         <main>{children}</main>
         <Footer lang={locale} dict={dict} />
         <WhatsAppButton dict={dict} />
+        <BackToTop dict={dict} />
       </body>
     </html>
   );
