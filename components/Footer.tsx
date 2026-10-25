@@ -249,12 +249,12 @@ export function Footer({ lang, dict }: FooterProps) {
         </AnimateInView>
 
         {/* Bottom Sub-bar */}
-        <div className="py-6 sm:py-8 flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 text-xs sm:text-[13px] text-[#646f79]">
-          <p className="text-start">
+        <div className="py-6 sm:py-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-3.5 sm:gap-4 text-xs sm:text-[13px] text-[#646f79]">
+          <p className="text-center sm:text-start">
             &copy; {year} Arssan. {dict.footer.rights}.
           </p>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] font-medium text-[11px] sm:text-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
               <span>{isAr ? "جميع الأنظمة تعمل بكفاءة" : "All Systems Operational"}</span>
