@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
+import { DEFAULT_SITE_URL } from "@/lib/agent-discovery";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://arssan.com"),
+  metadataBase: new URL(DEFAULT_SITE_URL),
   title: "أرسان | Arssan",
-  description: "وكالة متخصصة في تصميم وتطوير المواقع والمنصات الرقمية الاحترافية في الكويت",
+  description:
+    "وكالة متخصصة في تصميم وتطوير المواقع والمنصات الرقمية الاحترافية في الكويت",
   openGraph: {
     title: "أرسان | Arssan",
-    description: "وكالة متخصصة في تصميم وتطوير المواقع والمنصات الرقمية الاحترافية في الكويت",
+    description:
+      "وكالة متخصصة في تصميم وتطوير المواقع والمنصات الرقمية الاحترافية في الكويت",
     url: "/",
     siteName: "Arssan",
     locale: "ar_KW",
@@ -15,7 +18,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/og-image.png",
-        width: 1200,
+        width: 1201,
         height: 630,
         alt: "أرسان | Arssan — Web Design & Digital Engineering",
       },
@@ -24,7 +27,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "أرسان | Arssan",
-    description: "وكالة متخصصة في تصميم وتطوير المواقع والمنصات الرقمية الاحترافية في الكويت",
+    description:
+      "وكالة متخصصة في تصميم وتطوير المواقع والمنصات الرقمية الاحترافية في الكويت",
     images: ["/images/og-image.png"],
   },
   icons: {
