@@ -380,9 +380,6 @@ function AsanaProjectShowcase({
                   : "Packages from 150 KWD • Rapid Executive Delivery"}
               </span>
             </div>
-            <span className="font-mono text-[10px] sm:text-[11px] text-white font-medium self-end sm:self-auto">
-              29°22&apos;N 47°58&apos;E
-            </span>
           </div>
         </div>
       </motion.div>
@@ -440,9 +437,6 @@ export function Hero({ lang, dict }: HeroProps) {
                 <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                 <span>{dict.hero.tagline}</span>
               </div>
-              <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] border border-white/15 text-[12px] font-mono text-white/70 backdrop-blur-sm bg-white/[0.04]">
-                KW • KWD (د.ك)
-              </span>
             </motion.div>
 
             {/* Asana Display Hierarchy */}

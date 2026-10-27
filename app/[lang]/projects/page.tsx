@@ -14,8 +14,8 @@ export async function generateMetadata({
   const dict = await getDictionary(locale);
 
   const title = isAr
-    ? "أعمالنا ومشاريعنا السابقة | أرسان الكويت"
-    : "Selected Projects & Portfolio | Arssan Kuwait";
+    ? "مشاريعنا | أرسان"
+    : "Projects | Arssan";
   const description = dict.projects_page?.subtitle || dict.meta.description;
 
   return {

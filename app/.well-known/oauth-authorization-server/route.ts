@@ -22,7 +22,7 @@ export async function GET(request: Request) {
     scopes_supported: ["openid", "profile", "read", "public"],
     token_endpoint_auth_methods_supported: ["none", "client_secret_post"],
     agent_auth: {
-      skill: `${origin}/.well-known/agent-skills/auth-md/SKILL.md`,
+      skill: `${origin}/auth.md`,
       register_uri: `${origin}/api/agent/register`,
       claim_uri: `${origin}/api/agent/claim`,
       revocation_uri: `${origin}/api/agent/revoke`,

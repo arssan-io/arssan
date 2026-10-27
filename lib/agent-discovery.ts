@@ -63,7 +63,7 @@ export function getMarkdownRepresentation(
   const isPricing = pathname.includes("/pricing");
 
   if (isProjects) {
-    return `# Arssan Studio | أرسان الكويت — Selected Projects & Portfolio
+    return `# Arssan | أرسان — Projects & Portfolio
 
 > High-performing websites, e-commerce platforms, and digital experiences engineered for leading brands in Kuwait and the GCC.
 
@@ -121,7 +121,7 @@ export function getMarkdownRepresentation(
   }
 
   if (isPricing) {
-    return `# Arssan Studio | أرسان الكويت — KWD Pricing Packages
+    return `# Arssan | أرسان — Pricing Packages
 
 > Transparent, structured investment tiers in Kuwaiti Dinars (KWD) for startups, growing enterprises, and custom digital platforms.
 
@@ -163,7 +163,7 @@ Tailored digital architecture for large enterprises, custom web applications, an
 `;
   }
 
-  return `# Arssan Studio | أرسان الكويت — Professional Web Design & Digital Engineering
+  return `# Arssan | أرسان — Web Design & Digital Engineering
 
 > Arssan is the specialized web design and digital engineering arm of Scptric (https://scptric.com), architecting high-performance websites, e-commerce platforms, and agent-ready digital experiences for ambitious teams in Kuwait and the GCC.
 
@@ -250,24 +250,24 @@ Arssan Studio provides web design (UI/UX), Next.js full-stack development, KNET/
 
 ## 2. Discovery Endpoints
 
-- **Auth.md Document**: \`${origin}/auth.md\`
-- **OAuth Protected Resource Metadata (RFC 9728)**: \`${origin}/.well-known/oauth-protected-resource\`
-- **OAuth Authorization Server Metadata (RFC 8414)**: \`${origin}/.well-known/oauth-authorization-server\`
-- **OpenID Connect Discovery**: \`${origin}/.well-known/openid-configuration\`
-- **JWKS Endpoint**: \`${origin}/.well-known/jwks.json\`
-- **Agent Auth Skill**: \`${origin}/.well-known/agent-skills/auth-md/SKILL.md\`
-- **API Catalog (RFC 9727)**: \`${origin}/.well-known/api-catalog\`
-- **ARD Capability Manifest**: \`${origin}/.well-known/ai-catalog.json\`
-- **MCP Server Card**: \`${origin}/.well-known/mcp/server-card.json\`
+- **Auth.md Document**: ${origin}/auth.md
+- **OAuth Protected Resource Metadata (RFC 9728)**: ${origin}/.well-known/oauth-protected-resource
+- **OAuth Authorization Server Metadata (RFC 8414)**: ${origin}/.well-known/oauth-authorization-server
+- **OpenID Connect Discovery**: ${origin}/.well-known/openid-configuration
+- **JWKS Endpoint**: ${origin}/.well-known/jwks.json
+- **Agent Auth Skill**: ${origin}/.well-known/agent-skills/auth-md/SKILL.md
+- **API Catalog (RFC 9727)**: ${origin}/.well-known/api-catalog
+- **ARD Capability Manifest**: ${origin}/.well-known/ai-catalog.json
+- **MCP Server Card**: ${origin}/.well-known/mcp/server-card.json
 
 ---
 
 ## 3. Agent Registration & Provisioning
 
 ### Registration Endpoint
-- **URL**: \`POST ${origin}/api/agent/register\`
-- **Claim URI**: \`POST ${origin}/api/agent/claim\`
-- **Revocation URI**: \`POST ${origin}/api/agent/revoke\`
+- **URL**: POST ${origin}/api/agent/register
+- **Claim URI**: POST ${origin}/api/agent/claim
+- **Revocation URI**: POST ${origin}/api/agent/revoke
 
 ### Supported Identity & Credential Types
 - **Identity Types Supported**: \`anonymous\`, \`identity_assertion\`

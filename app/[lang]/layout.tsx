@@ -80,7 +80,7 @@ const WEBMCP_SCRIPT = `
         },
         execute: function() {
           return Promise.resolve({
-            company: "Arssan Studio | أرسان الكويت",
+            company: "Arssan | أرسان",
             parent: "Scptric (https://scptric.com)",
             market: "State of Kuwait & GCC",
             email: "info@arssan.com",
