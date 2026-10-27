@@ -15,6 +15,7 @@ export interface ProjectItem {
   client: string;
   year: string;
   url: string;
+  liveUrl?: string;
   description: string;
   metrics: {
     value: string;
@@ -41,9 +42,182 @@ interface ProjectsViewProps {
       projects: ProjectItem[];
       cta: {
         inquire_btn: string;
+        visit_btn?: string;
       };
     };
   };
+}
+
+function AhmedMockupCanvas({ isAr }: { isAr: boolean }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="h-48 sm:h-52 bg-[#090808] text-[#f4f4f5] p-5 sm:p-6 flex flex-col justify-between select-none relative overflow-hidden transition-colors"
+    >
+      {/* Subtle top metadata */}
+      <div className="flex items-center justify-between text-[11px] font-mono text-[#a1a1aa]">
+        <div className="flex items-center gap-1.5" dir="ltr">
+          {/* Signature 4-pointed golden star from icon.svg */}
+          <svg
+            viewBox="0 0 1000 1000"
+            className="w-3.5 h-3.5 text-[#ffbc00] fill-current flex-shrink-0"
+          >
+            <path d="M836.7,510.4c-222.5,57.3-275.9,116.2-326.2,366.1-2.3,11.4-18.7,11.4-21,0-50.3-249.8-103.7-308.8-326.2-366.1-10.7-2.8-10.7-18,0-20.7,222.5-57.3,275.9-116.2,326.2-366.1,2.3-11.4,18.7-11.4,21,0,50.3,249.8,103.7,308.8,326.2,366.1,10.7,2.8,10.7,18,0,20.7Z" />
+          </svg>
+          <span className="text-[#ffffff] font-medium">ahmedabdelwahed.me</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-emerald-400">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <span className="text-[10px] uppercase tracking-wider">{isAr ? "متاح للعمل" : "Open to Work"}</span>
+        </div>
+      </div>
+
+      {/* Hero display with Osmar Blobatar mascot */}
+      <div className="flex items-center justify-between gap-4">
+        <div>
+          <div className="text-[11px] font-mono text-[#71717a] mb-0.5">
+            {isAr ? "سيرة ذاتية وبايو" : "Personal Brand & Bio"}
+          </div>
+          <div className="text-lg sm:text-xl font-medium text-[#ffffff] tracking-tight">
+            {isAr ? "أحمد عبدالواحد" : "Ahmed Abdelwahed"}
+          </div>
+          <div className="text-xs text-[#a1a1aa] mt-0.5 font-normal">
+            {isAr ? "مهندس بيانات ومطور برمجيات" : "Data Engineer & Software Developer"}
+          </div>
+        </div>
+
+        {/* Minimalist interactive Blobatar */}
+        <div
+          className={`w-11 h-11 rounded-2xl bg-[#18181b] border border-[#27272a] flex items-center justify-center p-1.5 transition-transform duration-300 ${
+            isHovered ? "scale-110 -rotate-3" : ""
+          }`}
+          title="Osmar"
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <path
+              d="M50 14 C74 14 88 28 88 50 C88 74 74 88 50 88 C26 88 12 74 12 50 C12 28 26 14 50 14 Z"
+              fill="#2563eb"
+            />
+            {isHovered ? (
+              <>
+                <path d="M36 48 Q42 42 48 48" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" fill="none" />
+                <ellipse cx="62" cy="46" rx="4.5" ry="7" fill="#ffffff" />
+                <circle cx="63" cy="46" r="2.5" fill="#090808" />
+              </>
+            ) : (
+              <>
+                <ellipse cx="38" cy="46" rx="4" ry="6.5" fill="#ffffff" />
+                <ellipse cx="62" cy="46" rx="4" ry="6.5" fill="#ffffff" />
+                <circle cx="39" cy="46" r="2.2" fill="#090808" />
+                <circle cx="63" cy="46" r="2.2" fill="#090808" />
+              </>
+            )}
+            <path d="M44 62 Q50 67 56 62" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Clean capability badges */}
+      <div className="flex items-center gap-2 text-[10px] font-mono text-[#a1a1aa]">
+        <span className="px-2.5 py-0.5 rounded-full bg-[#18181b] border border-[#27272a] text-[#e4e4e7]">
+          Agent Ready RFC 9727
+        </span>
+        <span className="px-2.5 py-0.5 rounded-full bg-[#18181b] border border-[#27272a] text-[#e4e4e7]">
+          WebMCP
+        </span>
+        <span className="px-2.5 py-0.5 rounded-full bg-[#18181b] border border-[#27272a] text-[#e4e4e7] hidden sm:inline">
+          Next.js 16
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function KuwaitMockupCanvas({ isAr }: { isAr: boolean }) {
+  return (
+    <div className="h-48 sm:h-52 bg-gradient-to-b from-[#f8f7f4] via-[#f3f0e8] to-[#e8e4db] text-[#1c1917] p-5 sm:p-6 flex flex-col justify-between select-none relative overflow-hidden">
+      {/* Subtle top metadata */}
+      <div className="flex items-center justify-between text-[11px] font-mono text-[#78716c]">
+        <div className="flex items-center gap-1.5" dir="ltr">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
+          <span className="font-medium text-[#292524]">kuwait.arssan.com</span>
+        </div>
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#ffffff]/80 border border-[#e7e5e4] text-[#44403c]">
+          {isAr ? "٦٥ عاماً من النهضة" : "65 Years of Legacy"}
+        </span>
+      </div>
+
+      {/* Center Editorial Typography Specimen */}
+      <div className="py-1">
+        <div className="text-[11px] font-mono text-amber-700 font-medium mb-1">
+          {isAr ? "دولة الكويت" : "State of Kuwait"}
+        </div>
+        <div className="text-xl sm:text-2xl font-bold text-[#1c1917] tracking-tight leading-none mb-1.5">
+          الـكـويـت، حـكـايـة أبــــــــعــــــــد
+        </div>
+        <div className="flex items-center gap-2 text-xs text-[#57534e]">
+          <span className="w-5 h-[1.5px] bg-amber-600 inline-block" />
+          <span>مِـنَ الأُفُـق • Editorial Scrollytelling</span>
+        </div>
+      </div>
+
+      {/* Bottom capability tags */}
+      <div className="flex items-center gap-1.5 overflow-hidden text-[10px] font-mono">
+        <span className="px-2.5 py-0.5 rounded-full bg-[#ffffff] border border-[#e7e5e4] text-[#57534e]">
+          Arabic Typography
+        </span>
+        <span className="px-2.5 py-0.5 rounded-full bg-[#ffffff] border border-[#e7e5e4] text-[#57534e]">
+          GSAP & Lenis
+        </span>
+        <span className="px-2.5 py-0.5 rounded-full bg-[#ffffff] border border-[#e7e5e4] text-[#57534e] hidden sm:inline">
+          Scrollytelling
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function ProjectMockupCanvas({ project }: { project: ProjectItem }) {
+  const parts = project.title.split("—");
+  const mainTitle = parts[0]?.trim() || project.title;
+  const subtitle = parts[1]?.trim() || project.client;
+
+  return (
+    <div className="h-48 sm:h-52 bg-gradient-to-b from-[#fafafa] to-[#f4f5f7] p-5 sm:p-6 flex flex-col justify-between select-none relative overflow-hidden">
+      {/* Subtle top metadata */}
+      <div className="flex items-center justify-between text-[11px] font-mono text-[#646f79]">
+        <span className="uppercase tracking-wider font-medium text-[#0d0d0d]">
+          {project.categoryLabel}
+        </span>
+        <span className="text-[#9ca3af]">{project.year}</span>
+      </div>
+
+      {/* Center brand specimen */}
+      <div>
+        <div className="text-lg sm:text-xl font-medium text-[#0d0d0d] tracking-tight mb-1">
+          {mainTitle}
+        </div>
+        <div className="text-xs text-[#646f79] line-clamp-1">
+          {subtitle}
+        </div>
+      </div>
+
+      {/* Bottom capability pills */}
+      <div className="flex items-center gap-1.5 overflow-hidden">
+        {project.tags.slice(0, 3).map((tag) => (
+          <span
+            key={tag}
+            className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#ffffff] border border-[#e5e7eb] text-[#646f79] whitespace-nowrap shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export function ProjectsView({ lang, dict }: ProjectsViewProps) {
@@ -147,149 +321,134 @@ export function ProjectsView({ lang, dict }: ProjectsViewProps) {
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch"
         >
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.35, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full"
-              >
-                <div className="group h-full rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] p-5 sm:p-7 md:p-8 flex flex-col justify-between text-start transition-[transform,border-color,box-shadow] duration-200 md:hover:-translate-y-1 hover:border-[#646f79]/40 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)]">
-                  <div>
-                    {/* Architectural Mockup Header (Browser Frame) */}
-                    <div className="mb-6 rounded-[14px] bg-[#ffffff] border border-[#eceeef] overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-                      {/* Browser Top Chrome */}
-                      <div className="px-4 py-3 bg-[#fafafa] border-b border-[#eceeef] flex items-center justify-between gap-3">
-                        {/* 3 Window Control Dots */}
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#e5e7eb] group-hover:bg-[#d1d5db] transition-colors" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#e5e7eb] group-hover:bg-[#d1d5db] transition-colors" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#e5e7eb] group-hover:bg-[#d1d5db] transition-colors" />
+            {filteredProjects.map((project, idx) => {
+              const projectHref = project.liveUrl || `https://${project.url}`;
+
+              return (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.35, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  className="h-full"
+                >
+                  <div className="group h-full rounded-[20px] bg-[#ffffff] border border-[#e6e8eb] p-5 sm:p-6 flex flex-col justify-between text-start transition-all duration-300 md:hover:-translate-y-1 hover:border-[#646f79]/40 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.02)]">
+                    <div>
+                      {/* Architectural Mockup Header (Browser Frame) */}
+                      <div className="mb-5 rounded-[14px] bg-[#fafafa] border border-[#eceeef] overflow-hidden transition-colors duration-200 group-hover:border-[#d1d5db]">
+                        {/* Browser Top Chrome */}
+                        <div className="px-4 py-2.5 bg-[#ffffff] border-b border-[#eceeef] flex items-center justify-between gap-3">
+                          {/* 3 Window Control Dots */}
+                          <div className="flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-[#e5e7eb] group-hover:bg-[#d1d5db] transition-colors" />
+                            <span className="w-2 h-2 rounded-full bg-[#e5e7eb] group-hover:bg-[#d1d5db] transition-colors" />
+                            <span className="w-2 h-2 rounded-full bg-[#e5e7eb] group-hover:bg-[#d1d5db] transition-colors" />
+                          </div>
+
+                          {/* URL Pill (Clickable) */}
+                          <a
+                            href={projectHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            dir="ltr"
+                            className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-[64px] bg-[#f8f9fa] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79] hover:text-[#0d0d0d] hover:bg-[#ffffff] transition-all duration-200 group/url"
+                            title={isAr ? `زيارة موقع ${project.url}` : `Visit ${project.url}`}
+                          >
+                            <span className="text-[10px] text-[#9ca3af]">https://</span>
+                            <span className="font-medium text-[#0d0d0d]">{project.url}</span>
+                            <span className="text-[10px] opacity-50 group-hover/url:opacity-100 transition-opacity">↗</span>
+                          </a>
+
+                          {/* Live Status Badge */}
+                          <div className="flex items-center gap-1.5 text-[11px] font-medium text-emerald-600">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                            <span className="hidden sm:inline text-[11px]">Live</span>
+                          </div>
                         </div>
 
-                        {/* URL Pill */}
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79]">
-                          <span className="text-[10px]">🔒</span>
-                          <span>https://{project.url}</span>
-                        </div>
-
-                        {/* Live Status Badge */}
-                        <div className="flex items-center gap-1.5 text-[11px] font-medium text-emerald-600">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                          <span className="hidden sm:inline">Live</span>
-                        </div>
+                        {/* Mockup Canvas Screen */}
+                        {project.id === "ahmed-abdelwahed" ? (
+                          <AhmedMockupCanvas isAr={isAr} />
+                        ) : project.id === "kuwait-showcase" ? (
+                          <KuwaitMockupCanvas isAr={isAr} />
+                        ) : (
+                          <ProjectMockupCanvas project={project} />
+                        )}
                       </div>
 
-                      {/* Mockup Canvas Screen */}
-                      <div className="p-5 sm:p-6 bg-gradient-to-br from-[#ffffff] via-[#fafafa] to-[#f3f3f3] relative">
-                        {/* Mock Wireframe Header */}
-                        <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#f0f0f0]">
-                          <div className="h-3 w-20 rounded-full bg-[#e5e7eb]" />
-                          <div className="flex items-center gap-2">
-                            <div className="h-2 w-10 rounded-full bg-[#f3f3f3]" />
-                            <div className="h-2 w-10 rounded-full bg-[#f3f3f3]" />
-                            <div className="h-5 w-16 rounded-[64px] bg-[#0d0e10]/10" />
-                          </div>
-                        </div>
-
-                        {/* Mock Project Visual Content */}
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs font-mono text-[#646f79] tracking-wider uppercase">
-                              {project.categoryLabel}
-                            </span>
-                            <span className="px-2.5 py-0.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[10px] font-mono text-[#0d0d0d] shadow-sm">
-                              {project.year}
-                            </span>
-                          </div>
-
-                          <div className="text-lg sm:text-xl font-medium text-[#0d0d0d] tracking-tight">
-                            {project.title}
-                          </div>
-
-                          <div className="grid grid-cols-2 gap-2.5 pt-2">
-                            <div className="p-3 rounded-[10px] bg-[#ffffff] border border-[#e5e7eb] text-start">
-                              <span className="text-[10px] font-mono text-[#646f79] block mb-0.5">
-                                Performance
-                              </span>
-                              <span className="text-sm font-semibold text-emerald-600">
-                                {project.metrics.value}
-                              </span>
-                            </div>
-                            <div className="p-3 rounded-[10px] bg-[#ffffff] border border-[#e5e7eb] text-start">
-                              <span className="text-[10px] font-mono text-[#646f79] block mb-0.5">
-                                Client Region
-                              </span>
-                              <span className="text-sm font-medium text-[#0d0d0d] truncate block">
-                                {project.client.split("—")[1]?.trim() || "Kuwait"}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Metadata Header */}
-                    <div className="flex items-center justify-between gap-2 mb-2 sm:mb-2.5">
-                      <span className="text-xs font-mono text-[#646f79]">
-                        {project.client}
-                      </span>
-                      <span className="text-xs font-mono font-medium px-2 py-0.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[#646f79]">
-                        0{idx + 1}
-                      </span>
-                    </div>
-
-                    <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-[#0d0d0d] mb-3 leading-snug">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-[14px] sm:text-[15px] text-[#646f79] leading-[1.65] mb-5 font-normal">
-                      {project.description}
-                    </p>
-
-                    {/* Tags List */}
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[11px] sm:text-xs font-medium text-[#0d0d0d]"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#646f79]" />
-                          <span>{tag}</span>
+                      {/* Metadata Header */}
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <span className="text-xs font-mono uppercase tracking-wider text-[#646f79] truncate">
+                          {project.client}
                         </span>
-                      ))}
+                        <span className="text-xs font-mono text-[#9ca3af]">
+                          0{idx + 1}
+                        </span>
+                      </div>
+
+                      <h3 className="text-xl sm:text-[22px] font-medium tracking-tight text-[#0d0d0d] mb-2 leading-snug">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-[14px] text-[#646f79] leading-[1.65] mb-4 font-normal line-clamp-3">
+                        {project.description}
+                      </p>
+
+                      {/* Tags List */}
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {project.tags.slice(0, 4).map((tag) => (
+                          <span
+                            key={tag}
+                            className="inline-flex items-center px-2.5 py-1 rounded-[64px] bg-[#f8f9fa] border border-[#e5e7eb] text-xs font-medium text-[#4b5563]"
+                          >
+                            <span>{tag}</span>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Card Bottom Actions */}
+                    <div className="pt-4 border-t border-[#f0f0f0] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-xs text-[#646f79]">
+                          {project.metrics.label}:
+                        </span>
+                        <span className="text-sm font-semibold text-[#0d0d0d]">
+                          {project.metrics.value}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={projectHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-1.5 h-9 px-3 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[#0d0d0d] text-xs font-medium hover:bg-[#f3f3f3] hover:border-[#646f79]/40 transition-all duration-200 active:scale-[0.98]"
+                          title={isAr ? `زيارة موقع ${project.url}` : `Visit ${project.url}`}
+                        >
+                          <span>{t.cta.visit_btn || (isAr ? "زيارة الموقع" : "Visit Site")}</span>
+                          <span className="text-[11px] opacity-70">↗</span>
+                        </a>
+
+                        <a
+                          href={`https://wa.me/46700265645?text=${encodeURIComponent(
+                            project.inquiryMessage
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-xs font-medium hover:bg-[#646f79] transition-all duration-200 active:scale-[0.98]"
+                        >
+                          <span>{t.cta.inquire_btn}</span>
+                          <span className="rtl:rotate-180 text-xs">→</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Card Bottom Actions */}
-                  <div className="pt-4 border-t border-[#e5e7eb] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-xs text-[#646f79]">
-                        {project.metrics.label}:
-                      </span>
-                      <span className="text-sm font-semibold text-[#0d0d0d]">
-                        {project.metrics.value}
-                      </span>
-                    </div>
-
-                    <a
-                      href={`https://wa.me/46700265645?text=${encodeURIComponent(
-                        project.inquiryMessage
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-xs sm:text-sm font-medium hover:bg-[#646f79] transition-all duration-200 active:scale-[0.98]"
-                    >
-                      <span>{t.cta.inquire_btn}</span>
-                      <span className="rtl:rotate-180">→</span>
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
       </div>

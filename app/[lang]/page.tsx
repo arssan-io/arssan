@@ -1,6 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import { Hero } from "@/components/Hero";
+import { Partners } from "@/components/Partners";
 import { Process } from "@/components/Process";
 import { Services } from "@/components/Services";
 import { Pricing } from "@/components/Pricing";
@@ -17,6 +18,7 @@ export default async function HomePage({
   return (
     <>
       <Hero lang={locale} dict={dict} />
+      <Partners lang={locale} dict={dict} />
       <Process dict={dict} />
       <Services dict={dict} />
       <Pricing lang={locale} dict={dict} />

@@ -23,6 +23,29 @@
     "pipeline_dev": "تطوير متقدم",
     "pipeline_seo": "تصدر نتائج البحث"
   },
+  "partners": {
+    "badge": "شركاء التقنية والحلول السحابية",
+    "title": "بنية سحابية مبنية بأفضل المعايير العالمية",
+    "subtitle": "نبني مواقعنا ونربطها بأفضل البنى التحتية السحابية وأدوات التحليل وإدارة المحتوى في العالم لضمان أقصى درجات الأمان والسرعة.",
+    "items": {
+      "cloudflare": {
+        "name": "Cloudflare",
+        "role": "الشبكات السحابية والأمان العالمي"
+      },
+      "github": {
+        "name": "GitHub",
+        "role": "إدارة الأكواد والنشر الآلي"
+      },
+      "google_analytics": {
+        "name": "Google Analytics",
+        "role": "تحليلات الأداء وقياس النمو"
+      },
+      "sanity": {
+        "name": "Sanity",
+        "role": "منصة إدارة المحتوى المرن"
+      }
+    }
+  },
   "process": {
     "badge": "منهجية العمل",
     "title": "كيف نحوّل رؤيتك إلى واقع",
@@ -167,7 +190,9 @@
       "corporate": "مواقع ومنصات مؤسسية",
       "ecommerce": "متاجر إلكترونية",
       "saas": "حلول سحابية وبرمجية",
-      "healthcare": "مراكز طبية وصحية"
+      "healthcare": "مراكز طبية وصحية",
+      "personal": "مواقع شخصية وسيرة ذاتية",
+      "editorial": "مواقع تحريرية وثقافية"
     },
     "stats": [
       { "value": "100%", "label": "ملكية كاملة للكود والنطاق" },
@@ -277,6 +302,41 @@
         },
         "tags": ["Brand Experience", "E-Commerce", "Interactive Menu", "Framer Motion", "Tailwind CSS"],
         "inquiryMessage": "مرحباً، أود الاستفسار عن تصميم وتطوير موقع لعلامة تجارية مماثل لموقع نماء."
+      },
+      {
+        "id": "ahmed-abdelwahed",
+        "slug": "ahmed-abdelwahed",
+        "title": "أحمد عبدالواحد — موقع شخصي وسيرة ذاتية هندسية",
+        "categoryKey": "personal",
+        "categoryLabel": "مواقع شخصية وسيرة ذاتية",
+        "client": "أحمد عبدالواحد — مهندس بيانات وبرمجيات",
+        "year": "2026",
+        "url": "ahmedabdelwahed.me",
+        "description": "منصة سيرة ذاتية وموقع شخصي متكامل لمهندس بيانات، مبني بأحدث تقنيات Next.js وTypeScript، ومزود ببروتوكولات اكتشاف وكلاء الذكاء الاصطناعي (WebMCP و RFC 9727)، ومدونة تقنية تفاعلية وتصميم عصري فائق السرعة.",
+        "metrics": {
+          "value": "100/100",
+          "label": "أداء Google Lighthouse"
+        },
+        "tags": ["Personal Brand", "Next.js 16", "Data Engineering", "WebMCP", "Technical Blog", "Framer Motion"],
+        "inquiryMessage": "مرحباً، أود الاستفسار عن تفاصيل تصميم وتطوير موقع شخصي وسيرة ذاتية احترافية مماثلة لموقع ahmedabdelwahed.me."
+      },
+      {
+        "id": "kuwait-showcase",
+        "slug": "state-of-kuwait",
+        "title": "دولة الكويت — حكاية أبعد من الأفق",
+        "categoryKey": "editorial",
+        "categoryLabel": "مواقع تحريرية وثقافية",
+        "client": "دولة الكويت — استعراض تحريري وثقافي",
+        "year": "2026",
+        "url": "kuwait.arssan.com",
+        "liveUrl": "https://kuwait.arssan.workers.dev/",
+        "description": "منصة رقمية استعراضية وثقافية فاخرة لدولة الكويت، تجمع بين الفن التيبوغرافي العربي الأصيل، والتصميم التحريري المعاصر، وسرد سينمائي تفاعلي فائق النعومة يوثق 65 عاماً من النهضة والاستقلال والتراث البحري.",
+        "metrics": {
+          "value": "60 FPS",
+          "label": "حركة سينمائية وسرد تفاعلي"
+        },
+        "tags": ["Editorial Design", "Arabic Typography", "GSAP & Lenis", "Scrollytelling", "Next.js"],
+        "inquiryMessage": "مرحباً، أود الاستفسار عن تفاصيل تصميم وتطوير موقع تحريري واستعراضي تفاعلي مماثل لمنصة دولة الكويت."
       }
     ],
     "cta": {
@@ -285,7 +345,8 @@
       "description": "فريقنا الهندسي جاهز لتحويل تطلعاتك إلى منصة رقمية فائقة الأداء والتصميم تضع علامتك في صدارة المنافسة.",
       "button": "تواصل معنا لمناقشة مشروعك",
       "back_home": "العودة للرئيسية",
-      "inquire_btn": "طلب مشروع مماثل"
+      "inquire_btn": "طلب مشروع مماثل",
+      "visit_btn": "زيارة الموقع"
     }
   },
   "whatsapp": {

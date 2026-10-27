@@ -23,6 +23,29 @@
     "pipeline_dev": "Next.js Engineering",
     "pipeline_seo": "Kuwait & Gulf SEO"
   },
+  "partners": {
+    "badge": "Technology & Ecosystem Partners",
+    "title": "Architected with Global Cloud & Open Technologies",
+    "subtitle": "We deploy on world-class infrastructure, developer platforms, and headless content architectures to guarantee ultra-fast response and security.",
+    "items": {
+      "cloudflare": {
+        "name": "Cloudflare",
+        "role": "Edge Network & Global Security"
+      },
+      "github": {
+        "name": "GitHub",
+        "role": "Source Control & CI/CD Pipeline"
+      },
+      "google_analytics": {
+        "name": "Google Analytics",
+        "role": "Data Analytics & User Insights"
+      },
+      "sanity": {
+        "name": "Sanity",
+        "role": "Headless Content Infrastructure"
+      }
+    }
+  },
   "process": {
     "badge": "Our Methodology",
     "title": "Engineered for Clarity & Speed",
@@ -167,7 +190,9 @@
       "corporate": "Corporate & Platforms",
       "ecommerce": "E-Commerce",
       "saas": "SaaS & Tech",
-      "healthcare": "Healthcare & Clinics"
+      "healthcare": "Healthcare & Clinics",
+      "personal": "Personal & Bio Sites",
+      "editorial": "Editorial & Culture"
     },
     "stats": [
       { "value": "100%", "label": "Full Source Code Ownership" },
@@ -277,6 +302,41 @@
         },
         "tags": ["Brand Experience", "E-Commerce", "Interactive Menu", "Framer Motion", "Tailwind CSS"],
         "inquiryMessage": "Hello, I would like to inquire about building a brand website similar to Namaa Coffee."
+      },
+      {
+        "id": "ahmed-abdelwahed",
+        "slug": "ahmed-abdelwahed",
+        "title": "Ahmed Abdelwahed — Personal Brand & Engineering Bio",
+        "categoryKey": "personal",
+        "categoryLabel": "Personal & Bio Sites",
+        "client": "Ahmed Abdelwahed — Data & Software Engineer",
+        "year": "2026",
+        "url": "ahmedabdelwahed.me",
+        "description": "Production-grade personal portfolio and technical blog built with Next.js App Router and TypeScript, featuring RFC 9727 & WebMCP AI agent discovery, interactive Blobatar, and high-performance design tokens.",
+        "metrics": {
+          "value": "100/100",
+          "label": "Google Lighthouse Score"
+        },
+        "tags": ["Personal Brand", "Next.js 16", "Data Engineering", "WebMCP", "Technical Blog", "Framer Motion"],
+        "inquiryMessage": "Hello, I would like to inquire about building a personal portfolio or bio website similar to ahmedabdelwahed.me."
+      },
+      {
+        "id": "kuwait-showcase",
+        "slug": "state-of-kuwait",
+        "title": "State of Kuwait — Editorial Cultural Showcase",
+        "categoryKey": "editorial",
+        "categoryLabel": "Editorial & Culture",
+        "client": "State of Kuwait — Cultural Showcase",
+        "year": "2026",
+        "url": "kuwait.arssan.com",
+        "liveUrl": "https://kuwait.arssan.workers.dev/",
+        "description": "A high-end editorial and cultural digital platform for the State of Kuwait, merging classical Arabic typography, contemporary documentary layout, and kinetic scrollytelling celebrating 65 years of maritime legacy and modern independence.",
+        "metrics": {
+          "value": "60 FPS",
+          "label": "Kinetic Motion & Scrollytelling"
+        },
+        "tags": ["Editorial Design", "Arabic Typography", "GSAP & Lenis", "Scrollytelling", "Next.js"],
+        "inquiryMessage": "Hello, I would like to inquire about building an interactive editorial and cultural showcase similar to the State of Kuwait platform."
       }
     ],
     "cta": {
@@ -285,7 +345,8 @@
       "description": "Our engineering studio is ready to transform your goals into an ultra-fast, calm platform that commands respect and drives revenue.",
       "button": "Let's Talk on WhatsApp",
       "back_home": "Back to Home",
-      "inquire_btn": "Request Similar Build"
+      "inquire_btn": "Request Similar Build",
+      "visit_btn": "Visit Site"
     }
   },
   "whatsapp": {
