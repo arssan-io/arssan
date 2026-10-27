@@ -1,7 +1,24 @@
+import type { Metadata } from "next";
 import { ColoringContainer } from "@/components/Coloring/ColoringContainer";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "معرض التلوين | Arssan",
+  openGraph: {
+    title: "معرض التلوين | Arssan",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1201,
+        height: 630,
+        alt: "معرض التلوين | Arssan",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "معرض التلوين | Arssan",
+    images: ["/images/og-image.png"],
+  },
 };
 
 export default function ColoringPage() {

@@ -13,11 +13,33 @@ export async function generateMetadata({
   const isAr = locale === "ar";
   const dict = await getDictionary(locale);
 
+  const title = isAr
+    ? "أعمالنا ومشاريعنا السابقة | أرسان الكويت"
+    : "Selected Projects & Portfolio | Arssan Kuwait";
+  const description = dict.projects_page?.subtitle || dict.meta.description;
+
   return {
-    title: isAr
-      ? "أعمالنا ومشاريعنا السابقة | أرسان الكويت"
-      : "Selected Projects & Portfolio | Arssan Kuwait",
-    description: dict.projects_page?.subtitle || dict.meta.description,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `/${locale}/projects`,
+      images: [
+        {
+          url: "/images/og-image.png",
+          width: 1201,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/images/og-image.png"],
+    },
   };
 }
 
