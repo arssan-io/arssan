@@ -151,9 +151,9 @@
       {
         "name": "Enterprise",
         "slug": "enterprise",
-        "price": "950",
-        "currency": "KWD",
-        "period": "per project",
+        "price": "Custom",
+        "currency": "",
+        "period": "Based on requirements",
         "description": "End-to-end custom architecture for established enterprises and complex web platforms",
         "features": [
           "Complimentary custom domain & brand integration",

@@ -56,7 +56,7 @@ export async function GET(request: Request) {
           operationId: "getServicesAndPricing",
           summary: "List Web Engineering Services, KWD Packages, and Portfolio",
           description:
-            "Retrieves Arssan Studio's core capabilities (UI/UX, Next.js, SEO), KWD pricing packages (150, 300, 750 KWD), and featured Kuwait portfolio projects.",
+            "Retrieves Arssan Studio's core capabilities (UI/UX, Next.js, SEO), KWD pricing packages (Starter 150 KWD, Professional 299 KWD, and Custom Enterprise based on requirements), and featured Kuwait portfolio projects.",
           responses: {
             "200": {
               description: "Catalog of services, packages, and projects",

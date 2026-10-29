@@ -49,7 +49,7 @@ export async function POST(request: Request) {
             {
               name: "get_services_and_pricing",
               description:
-                "Retrieve Arssan Studio's web design, Next.js development, and SEO packages in KWD (150, 300, 750 KWD).",
+                "Retrieve Arssan Studio's web design, Next.js development, and SEO packages in KWD (Starter 150 KWD, Professional 299 KWD, and Custom Enterprise based on requirements).",
               inputSchema: { type: "object", properties: {} },
             },
           ],

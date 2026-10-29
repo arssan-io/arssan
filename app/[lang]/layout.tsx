@@ -91,13 +91,13 @@ const WEBMCP_SCRIPT = `
       },
       {
         name: "list-pricing-packages",
-        description: "List Arssan Studio website & platform investment packages in Kuwaiti Dinars (KWD): Basic (150 KWD), Pro (300 KWD), and Custom Enterprise (750+ KWD).",
+        description: "List Arssan Studio website & platform investment packages in Kuwaiti Dinars (KWD): Starter (150 KWD), Professional (299 KWD), and Custom Enterprise (decided based on requirements).",
         inputSchema: {
           type: "object",
           properties: {
             tier: {
               type: "string",
-              enum: ["basic", "pro", "custom", "all"],
+              enum: ["starter", "professional", "enterprise", "basic", "pro", "custom", "all"],
               description: "Package tier to inspect"
             }
           },
@@ -105,12 +105,17 @@ const WEBMCP_SCRIPT = `
         },
         execute: function(input) {
           var packages = [
-            { slug: "basic", name: "Basic Package / الباقة الأساسية", price: "150 KWD", period: "One-time", summary: "Up to 3 pages, bilingual AR/EN, WhatsApp integration, SSL, local SEO, 1 month support." },
-            { slug: "pro", name: "Pro Package / الباقة الاحترافية", price: "300 KWD (was 450 KWD)", period: "One-time", summary: "Up to 10 pages, CMS, KNET/MyFatoorah/Tap payment gateways, advanced Kuwait SEO, GA4, 3 months support." },
-            { slug: "custom", name: "Custom Enterprise / باقة الأعمال المخصصة", price: "From 750 KWD", period: "Project-based", summary: "Unlimited bespoke pages & workflows, custom Next.js & API development, ERP/CRM integrations, 6 months SLA." }
+            { slug: "starter", name: "Starter Package / باقة الانطلاق", price: "150 KWD", period: "One-time", summary: "2 pages, responsive UI/UX, Arabic or English, SSL, 15 days support." },
+            { slug: "professional", name: "Professional Package / الباقة الاحترافية", price: "299 KWD (was 450 KWD)", period: "One-time", summary: "Up to 6 pages, bilingual AR/EN, CMS, Agent Ready, SEO, 2 months support." },
+            { slug: "enterprise", name: "Custom Enterprise / باقة المؤسسات", price: "Custom / حسب المتطلبات", period: "Based on requirements / حسب متطلبات المشروع", summary: "Unlimited bespoke pages & workflows, custom Next.js & API development, ERP/CRM integrations, 6 months SLA." }
           ];
           if (input && input.tier && input.tier !== "all") {
-            packages = packages.filter(function(p) { return p.slug === input.tier; });
+            packages = packages.filter(function(p) {
+              return p.slug === input.tier ||
+                (input.tier === "custom" && p.slug === "enterprise") ||
+                (input.tier === "basic" && p.slug === "starter") ||
+                (input.tier === "pro" && p.slug === "professional");
+            });
           }
           return Promise.resolve({ packages: packages });
         }
@@ -276,7 +281,7 @@ export default async function LangLayout({
             defaultValue="Hello Arssan Studio, I would like to inquire about a web project in Kuwait."
             {...({
               toolparamdescription:
-                "Project inquiry message specifying desired package (Basic 150 KWD, Pro 300 KWD, or Custom 750 KWD) and business goals",
+                "Project inquiry message specifying desired package (Starter 150 KWD, Professional 299 KWD, or Custom Enterprise) and business goals",
             } as Record<string, string>)}
           />
           <button type="submit">Send Inquiry</button>

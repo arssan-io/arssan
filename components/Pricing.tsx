@@ -100,53 +100,70 @@ export function Pricing({ lang, dict }: PricingProps) {
                     {pkg.description}
                   </p>
 
-                  {/* Price Block (KWD / د.ك) */}
+                  {/* Price Block */}
                   <div
-                    className={`mb-5 sm:mb-7 pb-5 sm:pb-7 border-b ${
+                    className={`mb-5 sm:mb-7 pb-5 sm:pb-7 border-b min-h-[82px] sm:min-h-[94px] flex flex-col justify-end ${
                       pkg.popular ? "border-[#ffffff]/12" : "border-[#f3f3f3]"
                     }`}
                   >
-                    <div className="flex items-baseline gap-2 sm:gap-2.5 flex-wrap">
-                      <span className="text-4xl sm:text-5xl md:text-[3.5rem] font-light tracking-[-0.03em] leading-none">
-                        {pkg.price}
-                      </span>
-                      {pkg.originalPrice && (
-                        <span
-                          className={`text-xl sm:text-2xl font-light line-through ${
-                            pkg.popular ? "text-[#ffffff]/45" : "text-[#646f79]/60"
-                          }`}
-                        >
-                          {pkg.originalPrice}
+                    {!pkg.currency || isNaN(Number(pkg.price)) ? (
+                      <div className="flex flex-col gap-1">
+                        <span className="text-2xl sm:text-3xl md:text-[2rem] font-medium tracking-tight text-[#0d0d0d] leading-tight">
+                          {pkg.price}
                         </span>
-                      )}
-                      <div className="flex flex-col">
-                        <span
-                          className={`text-xs sm:text-sm font-semibold ${
-                            pkg.popular ? "text-[#ffffff]" : "text-[#0d0d0d]"
-                          }`}
-                        >
-                          {pkg.currency}
-                        </span>
-                        <span
-                          className={`text-[11px] sm:text-xs ${
-                            pkg.popular ? "text-[#ffffff]/60" : "text-[#646f79]"
-                          }`}
-                        >
-                          {pkg.period}
-                        </span>
+                        {pkg.period && (
+                          <span className="text-[12px] sm:text-[13px] text-[#646f79] font-normal">
+                            {pkg.period}
+                          </span>
+                        )}
                       </div>
-                      {pkg.originalPrice && (
-                        <span
-                          className={`ms-auto text-[11px] font-medium px-2.5 py-0.5 rounded-[64px] ${
-                            pkg.popular
-                              ? "bg-emerald-400/15 text-emerald-300 border border-emerald-400/25"
-                              : "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                          }`}
-                        >
-                          {isAr ? "خصم خاص" : "Special Offer"}
+                    ) : (
+                      <div className="flex items-baseline gap-2 sm:gap-2.5 flex-wrap">
+                        <span className="text-4xl sm:text-5xl md:text-[3.5rem] font-light tracking-[-0.03em] leading-none">
+                          {pkg.price}
                         </span>
-                      )}
-                    </div>
+                        {pkg.originalPrice && (
+                          <span
+                            className={`text-xl sm:text-2xl font-light line-through ${
+                              pkg.popular ? "text-[#ffffff]/45" : "text-[#646f79]/60"
+                            }`}
+                          >
+                            {pkg.originalPrice}
+                          </span>
+                        )}
+                        <div className="flex flex-col">
+                          {pkg.currency && (
+                            <span
+                              className={`text-xs sm:text-sm font-semibold ${
+                                pkg.popular ? "text-[#ffffff]" : "text-[#0d0d0d]"
+                              }`}
+                            >
+                              {pkg.currency}
+                            </span>
+                          )}
+                          {pkg.period && (
+                            <span
+                              className={`text-[11px] sm:text-xs ${
+                                pkg.popular ? "text-[#ffffff]/60" : "text-[#646f79]"
+                              }`}
+                            >
+                              {pkg.period}
+                            </span>
+                          )}
+                        </div>
+                        {pkg.originalPrice && (
+                          <span
+                            className={`ms-auto text-[11px] font-medium px-2.5 py-0.5 rounded-[64px] ${
+                              pkg.popular
+                                ? "bg-emerald-400/15 text-emerald-300 border border-emerald-400/25"
+                                : "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                            }`}
+                          >
+                            {isAr ? "خصم خاص" : "Special Offer"}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   {/* Features List */}

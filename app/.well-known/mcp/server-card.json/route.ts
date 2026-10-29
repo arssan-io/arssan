@@ -49,7 +49,7 @@ export async function GET(request: Request) {
       {
         name: "get_services_and_pricing",
         description:
-          "Retrieve Arssan Studio's core services (UI/UX Design, Next.js Development, Kuwait/GCC SEO) and transparent KWD pricing packages (Basic 150 KWD, Pro 300 KWD, Custom 750+ KWD).",
+          "Retrieve Arssan Studio's core services (UI/UX Design, Next.js Development, Kuwait/GCC SEO) and transparent KWD pricing packages (Starter 150 KWD, Professional 299 KWD, and Custom Enterprise based on requirements).",
         inputSchema: {
           type: "object",
           properties: {

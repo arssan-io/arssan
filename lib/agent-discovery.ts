@@ -152,8 +152,9 @@ Comprehensive solution for growing businesses and e-commerce stores requiring pa
 - High-speed cloud hosting configuration & CDN
 - 3 months of priority support & maintenance
 
-### 3. Custom Package — Starting from 750 KWD (Project-based)
+### 3. Custom Enterprise Package — Tailored to Requirements (Project-based)
 Tailored digital architecture for large enterprises, custom web applications, and complex platforms.
+- Pricing: Custom quote decided based on project requirements (no fixed pricing)
 - Unlimited custom pages & bespoke interactive workflows
 - Full-stack custom Next.js & API development
 - ERP, CRM, and third-party system integrations
@@ -205,7 +206,7 @@ Tailored digital architecture for large enterprises, custom web applications, an
 ## Pricing Packages (Kuwaiti Dinar — KWD)
 - **Basic Package**: **150 KWD** (One-time) — Up to 3 pages, bilingual AR/EN, WhatsApp integration, SSL, local SEO, 1 month support.
 - **Pro Package (Most Popular)**: **300 KWD** *(was 450 KWD)* — Up to 10 pages, CMS dashboard, KNET / Tap / MyFatoorah payment gateways, advanced Kuwait SEO, GA4, 3 months priority support.
-- **Custom Enterprise**: **From 750 KWD** — Unlimited bespoke workflows, full-stack Next.js & custom API engineering, ERP/CRM integrations, 6 months SLA support.
+- **Custom Enterprise**: **Custom Pricing (Based on Requirements)** — Unlimited bespoke workflows, full-stack Next.js & custom API engineering, ERP/CRM integrations, 6 months SLA support.
 
 ---
 
@@ -326,7 +327,7 @@ This skill instructs AI agents on how to query **Arssan Studio (أرسان ال�
 ## Pricing Summary (KWD)
 1. **Basic Package (150 KWD)**: Up to 3 pages, bilingual AR/EN, responsive UI/UX, WhatsApp integration, SSL, basic local SEO, 1 month support.
 2. **Pro Package (300 KWD, discounted from 450 KWD)**: Up to 10 pages, CMS, KNET/MyFatoorah/Tap payment integration, advanced Kuwait SEO, GA4, 3 months support.
-3. **Custom Enterprise (From 750 KWD)**: Unlimited bespoke pages/workflows, custom full-stack Next.js & API architecture, ERP/CRM integration, 6 months SLA support.
+3. **Custom Enterprise (Custom Quote / Based on Requirements)**: Unlimited bespoke pages/workflows, custom full-stack Next.js & API architecture, ERP/CRM integration, 6 months SLA support.
 
 ## Direct Contact
 - **WhatsApp**: https://wa.me/46700265645

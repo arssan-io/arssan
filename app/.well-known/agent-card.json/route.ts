@@ -33,7 +33,7 @@ export async function GET(request: Request) {
         id: "get-services-and-pricing",
         name: "Get Services & KWD Pricing Packages",
         description:
-          "Retrieve Arssan's web design, Next.js engineering, and SEO packages in Kuwaiti Dinars (150 KWD Starter, 299 KWD Professional, 950 KWD Enterprise).",
+          "Retrieve Arssan's web design, Next.js engineering, and SEO packages in Kuwaiti Dinars (150 KWD Starter, 299 KWD Professional, and Custom Enterprise tailored to requirements).",
         tags: ["pricing", "services", "kuwait", "web-design", "nextjs"],
       },
       {

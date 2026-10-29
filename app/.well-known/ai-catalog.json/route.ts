@@ -51,7 +51,7 @@ export async function GET(request: Request) {
         url: `${origin}/.well-known/agent-skills/arssan-studio/SKILL.md`,
         representativeQueries: [
           "how AI agents interact with Arssan Studio Kuwait",
-          "compare Basic 150 KWD, Pro 300 KWD, and Custom 750 KWD packages",
+          "compare Starter 150 KWD, Professional 299 KWD, and Custom Enterprise packages",
           "request a website or e-commerce quote in Kuwait",
         ],
       },
