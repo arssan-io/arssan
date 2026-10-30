@@ -13,42 +13,66 @@ export const AGENT_LINK_HEADER = [
   '</sitemap.xml>; rel="service-desc"',
 ].join(", ");
 
+const ALLOWED_HOST_PATTERNS = [
+  /^localhost(:\d+)?$/i,
+  /^127\.0\.0\.1(:\d+)?$/,
+  /^([a-z0-9-]+\.)*arssan\.(com|io|workers\.dev)$/i,
+  /^([a-z0-9-]+\.)*scptric\.com$/i,
+];
+
+function isAllowedHost(host: string): boolean {
+  if (!host) return false;
+  try {
+    const defaultHost = new URL(DEFAULT_SITE_URL).host;
+    if (host.toLowerCase() === defaultHost.toLowerCase()) {
+      return true;
+    }
+  } catch {}
+
+  return ALLOWED_HOST_PATTERNS.some((pattern) => pattern.test(host.trim()));
+}
+
 export function getSiteOrigin(request?: Request): {
   origin: string;
   hostname: string;
 } {
+  const getFallback = () => {
+    try {
+      const fallbackUrl = new URL(DEFAULT_SITE_URL);
+      return { origin: fallbackUrl.origin, hostname: fallbackUrl.hostname };
+    } catch {
+      return {
+        origin: "https://arssan.arssan.workers.dev",
+        hostname: "arssan.arssan.workers.dev",
+      };
+    }
+  };
+
   if (request) {
     try {
-      const forwardedHost = request.headers.get("x-forwarded-host");
-      const host = forwardedHost || request.headers.get("host");
-      const proto =
-        request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim() ||
-        (host?.includes("localhost") || host?.startsWith("127.0.0.1")
-          ? "http"
-          : "https");
+      const forwardedHost = request.headers.get("x-forwarded-host")?.split(",")[0]?.trim();
+      const rawHost = forwardedHost || request.headers.get("host") || "";
+      const host = rawHost.trim();
 
-      if (host) {
+      if (host && isAllowedHost(host)) {
+        const proto =
+          request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim() ||
+          (host.includes("localhost") || host.startsWith("127.0.0.1")
+            ? "http"
+            : "https");
+
         const origin = `${proto}://${host}`;
         const hostname = host.split(":")[0];
         return { origin, hostname };
       }
 
-      const url = new URL(request.url);
-      return { origin: url.origin, hostname: url.hostname };
+      return getFallback();
     } catch {
-      // Fall back to default site URL
+      return getFallback();
     }
   }
 
-  try {
-    const fallbackUrl = new URL(DEFAULT_SITE_URL);
-    return { origin: fallbackUrl.origin, hostname: fallbackUrl.hostname };
-  } catch {
-    return {
-      origin: "https://arssan.arssan.workers.dev",
-      hostname: "arssan.arssan.workers.dev",
-    };
-  }
+  return getFallback();
 }
 
 export function estimateTokens(text: string): number {

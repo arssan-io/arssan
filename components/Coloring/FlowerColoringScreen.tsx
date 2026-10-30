@@ -3,15 +3,15 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const imgFlowerColoringScreen = "http://localhost:3845/assets/fb016ddbfa2c32d92d73001f4d55875af510c7da.svg";
-const imgFrame352 = "http://localhost:3845/assets/e48e90ca4e6460e31cbc48e16e0f7dce5bd92938.svg";
-const imgFrame447 = "http://localhost:3845/assets/d13d56d22bbb0a76dfbd9077a0b5d1294cf7d1f1.svg";
-const imgFrame446 = "http://localhost:3845/assets/ebbf84e4a8434135aa4637cd04aadece635a4e00.svg";
-const imgVector = "http://localhost:3845/assets/5094119d8fb0b6ae1bc648812fa5bd03769c86a1.svg";
-const imgGroup = "http://localhost:3845/assets/750c03b62d603d95608245c3886e594730aca350.svg";
-const imgVector1 = "http://localhost:3845/assets/fea384c7bec9a63e6258e74f894b04173577734d.svg";
-const imgGroup1 = "http://localhost:3845/assets/db2a40324c6c408c032d0edd389b692bb8089376.svg";
-const imgVector2 = "http://localhost:3845/assets/ee1309df1d00169bdc83b7a37dbf6141768ad38e.svg";
+const imgFlowerColoringScreen = "/images/coloring/background.svg";
+const imgFrame352 = "/images/coloring/back-btn.svg";
+const imgFrame447 = "/images/coloring/done-btn.svg";
+const imgFrame446 = "/images/coloring/undo-btn.svg";
+const imgVector = "/images/coloring/canvas-bg.svg";
+const imgGroup = "/images/coloring/artwork-flower.svg";
+const imgVector1 = "/images/coloring/footer-bg.svg";
+const imgGroup1 = "/images/coloring/colors-palette.svg";
+const imgVector2 = "/images/coloring/bottom-bar.svg";
 
 interface FlowerColoringScreenProps {
     onBack: () => void;

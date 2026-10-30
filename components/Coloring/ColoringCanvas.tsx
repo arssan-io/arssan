@@ -3,30 +3,30 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const imgBackground = "http://localhost:3845/assets/fb016ddbfa2c32d92d73001f4d55875af510c7da.svg";
-const imgBackBtn = "http://localhost:3845/assets/e48e90ca4e6460e31cbc48e16e0f7dce5bd92938.svg";
-const imgDoneBtn = "http://localhost:3845/assets/d13d56d22bbb0a76dfbd9077a0b5d1294cf7d1f1.svg";
-const imgUndoBtn = "http://localhost:3845/assets/ebbf84e4a8434135aa4637cd04aadece635a4e00.svg";
-const imgCanvasBg = "http://localhost:3845/assets/5094119d8fb0b6ae1bc648812fa5bd03769c86a1.svg";
-const imgFooterBg = "http://localhost:3845/assets/fea384c7bec9a63e6258e74f894b04173577734d.svg";
-const imgColors = "http://localhost:3845/assets/db2a40324c6c408c032d0edd389b692bb8089376.svg";
-const imgBottomBar = "http://localhost:3845/assets/ee1309df1d00169bdc83b7a37dbf6141768ad38e.svg";
+const imgBackground = "/images/coloring/background.svg";
+const imgBackBtn = "/images/coloring/back-btn.svg";
+const imgDoneBtn = "/images/coloring/done-btn.svg";
+const imgUndoBtn = "/images/coloring/undo-btn.svg";
+const imgCanvasBg = "/images/coloring/canvas-bg.svg";
+const imgFooterBg = "/images/coloring/footer-bg.svg";
+const imgColors = "/images/coloring/colors-palette.svg";
+const imgBottomBar = "/images/coloring/bottom-bar.svg";
 
 // Artwork Assets
-const imgFlower = "http://localhost:3845/assets/750c03b62d603d95608245c3886e594730aca350.svg";
-const imgFish = "http://localhost:3845/assets/0fc5a38f79e4105dfaa1db7f595516c60b013eee.svg";
-const imgButterfly = "http://localhost:3845/assets/546652de51fc5821cf3bc420abf96d0ea06f4aa5.svg";
+const imgFlower = "/images/coloring/artwork-flower.svg";
+const imgFish = "/images/coloring/artwork-fish.svg";
+const imgButterfly = "/images/coloring/artwork-butterfly.svg";
 
 // Success dialog assets
-const imgOverlay = "http://localhost:3845/assets/0b5546e142db162e72ecbb31636c62e5c1e9d685.svg";
-const imgDialogBg = "http://localhost:3845/assets/b416186338390fb4bda99c8da8f20ed2c0328a57.svg";
-const imgDialogInner = "http://localhost:3845/assets/d55dc7c448744c51a9adfcae5eff31ad54b5247f.svg";
-const imgStarsBg = "http://localhost:3845/assets/796a1ab1ea7613650b72b539851f57fa307ee2d7.svg";
-const imgPaletteIcon = "http://localhost:3845/assets/0bb60f6eb73eb3405d609bcc84b5fb54a08fbb1f.svg";
-const imgSparkleIcon = "http://localhost:3845/assets/d68394a0ac62871fd314a6659ac1031795abd24f.svg";
-const imgStar1 = "http://localhost:3845/assets/2ca4595efabe2d72e5d67a163193e1a45087be54.svg";
-const imgStar2 = "http://localhost:3845/assets/6ec43c887dd2ba76d85c4270f8d91761b50661f2.svg";
-const imgStar3 = "http://localhost:3845/assets/133cbbf6168735250531772a9bf3eb869065db03.svg";
+const imgOverlay = "/images/coloring/overlay.svg";
+const imgDialogBg = "/images/coloring/dialog-bg.svg";
+const imgDialogInner = "/images/coloring/dialog-inner.svg";
+const imgStarsBg = "/images/coloring/stars-bg.svg";
+const imgPaletteIcon = "/images/coloring/palette-icon.svg";
+const imgSparkleIcon = "/images/coloring/sparkle-icon.svg";
+const imgStar1 = "/images/coloring/star1.svg";
+const imgStar2 = "/images/coloring/star2.svg";
+const imgStar3 = "/images/coloring/star3.svg";
 
 interface ColoringCanvasProps {
     artwork: "flower" | "fish" | "butterfly";

@@ -3,15 +3,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const imgColoringMenuScreen = "http://localhost:3845/assets/fb016ddbfa2c32d92d73001f4d55875af510c7da.svg";
-const imgFrame352 = "http://localhost:3845/assets/e48e90ca4e6460e31cbc48e16e0f7dce5bd92938.svg";
-const imgVector = "http://localhost:3845/assets/8496f9ceaba04e3288963d8e814696284f390df2.svg";
-const imgGroup = "http://localhost:3845/assets/3e26af4bc22cb1d70c8c83207ec2f0e84edbe1de.svg";
-const imgFrame472 = "http://localhost:3845/assets/85044214a33b674a5fa81609e48392c81864b78c.svg";
-const imgGroup1 = "http://localhost:3845/assets/c0b0880fb9c72607e4bea4b8e81558b6929f0b00.svg";
-const imgFrame473 = "http://localhost:3845/assets/820225f62180f40a521457d7a4dfc495ab25902f.svg";
-const imgGroup2 = "http://localhost:3845/assets/5bffcaad586cf1a96006d01452eb1835a7721173.svg";
-const imgFrame471 = "http://localhost:3845/assets/47ee9a1db66cae5c4e89d6c265d035a612d3a788.svg";
+const imgColoringMenuScreen = "/images/coloring/background.svg";
+const imgFrame352 = "/images/coloring/back-btn.svg";
+const imgVector = "/images/coloring/card-bg-1.svg";
+const imgGroup = "/images/coloring/thumb-fish.svg";
+const imgFrame472 = "/images/coloring/card-bg-2.svg";
+const imgGroup1 = "/images/coloring/thumb-flower.svg";
+const imgFrame473 = "/images/coloring/card-bg-3.svg";
+const imgGroup2 = "/images/coloring/thumb-butterfly.svg";
+const imgFrame471 = "/images/coloring/bottom-bar.svg";
 
 interface ColoringMenuScreenProps {
     onSelectArtwork: (artwork: "fish" | "flower" | "butterfly") => void;

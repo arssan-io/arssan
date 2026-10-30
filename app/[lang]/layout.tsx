@@ -136,8 +136,10 @@ const WEBMCP_SCRIPT = `
         },
         execute: function(input) {
           if (input && input.section === "projects") {
-            window.location.href = "/en/projects";
-            return Promise.resolve({ navigated: "/en/projects" });
+            var isAr = window.location.pathname.startsWith("/ar");
+            var target = isAr ? "/ar/projects" : "/en/projects";
+            window.location.href = target;
+            return Promise.resolve({ navigated: target });
           }
           var el = document.getElementById(input.section);
           if (el) {
@@ -246,10 +248,6 @@ export default async function LangLayout({
         <link rel="describedby" href="/auth.md" />
         <link rel="service-desc" href="/.well-known/mcp/server-card.json" />
         <link rel="service-doc" href="/.well-known/agent-skills/index.json" />
-        <script
-          id="webmcp-inline"
-          dangerouslySetInnerHTML={{ __html: WEBMCP_SCRIPT }}
-        />
       </head>
       <body
         className={`${

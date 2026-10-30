@@ -40,7 +40,7 @@ export function proxy(request: NextRequest) {
       headers: {
         "Content-Type": "text/markdown; charset=utf-8",
         "x-markdown-tokens": String(estimateTokens(markdown)),
-        Vary: "Accept",
+        Vary: "Accept, Host",
         Link: AGENT_LINK_HEADER,
         "Access-Control-Allow-Origin": "*",
         "Cache-Control": "public, max-age=3600",
