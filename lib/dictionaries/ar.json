@@ -187,138 +187,79 @@
     "subtitle": "استكشف نماذج من المواقع والمنصات الرقمية التي صمّمناها وطوّرناها بمعايير هندسية متقدمة وتوافق تام مع محركات البحث والذكاء الاصطناعي.",
     "all_filter": "جميع المشاريع",
     "categories": {
-      "corporate": "مواقع ومنصات مؤسسية",
-      "ecommerce": "متاجر إلكترونية",
-      "saas": "حلول سحابية وبرمجية",
-      "healthcare": "مراكز طبية وصحية",
-      "personal": "مواقع شخصية وسيرة ذاتية",
-      "editorial": "مواقع تحريرية وثقافية"
+      "automotive": "معارض ومنصات سيارات",
+      "hospitality": "مقاهي وضيافة (لوحة تحكم حية)",
+      "editorial": "مواقع تحريرية وثقافية",
+      "personal": "مواقع شخصية وسيرة ذاتية"
     },
     "stats": [
-      { "value": "100%", "label": "ملكية كاملة للكود والنطاق" },
-      { "value": "98+", "label": "متوسط أداء Google Lighthouse" },
-      { "value": "Agent Ready", "label": "معايير isitagentready.com" },
-      { "value": "0.3s", "label": "سرعة استجابة فائقة على السحابة" }
+      {
+        "value": "100%",
+        "label": "ملكية كاملة للكود والنطاق"
+      },
+      {
+        "value": "98+",
+        "label": "متوسط أداء Google Lighthouse"
+      },
+      {
+        "value": "Agent Ready",
+        "label": "معايير isitagentready.com"
+      },
+      {
+        "value": "0.3s",
+        "label": "سرعة استجابة فائقة على السحابة"
+      }
     ],
     "projects": [
       {
-        "id": "alraya",
-        "slug": "al-raya-capital",
-        "title": "الراية كابيتال للاستثمار وإدارة الأصول",
-        "categoryKey": "corporate",
-        "categoryLabel": "منصات ومواقع مؤسسية",
-        "client": "شركة الراية الاستثمارية — الكويت",
+        "id": "motorati",
+        "slug": "motorati-kuwait",
+        "title": "موتوراتي الكويت — معرض ومنصة سيارات فاخرة",
+        "categoryKey": "automotive",
+        "categoryLabel": "معارض ومنصات سيارات",
+        "client": "موتوراتي لتجارة السيارات — الكويت",
         "year": "2026",
-        "url": "alrayacapital.com",
-        "description": "منصة رقمية مؤسسية لإدارة الأصول وصناديق الاستثمار في الكويت، تتميز بلوحة تحليلات مالية تفاعلية، وتجربة مستخدم ثنائية اللغة مبنية بأعلى معايير الأمان المالي.",
-        "metrics": {
-          "value": "99/100",
-          "label": "أداء Google Lighthouse"
-        },
-        "tags": ["Next.js 16", "TypeScript", "Bilingual RTL/LTR", "Agent Ready", "Security SSL"],
-        "inquiryMessage": "مرحباً، أود الاستفسار عن تفاصيل تصميم وتطوير مشروع مماثل لمنصة الراية كابيتال."
-      },
-      {
-        "id": "rukun",
-        "slug": "rukun-luxury",
-        "title": "متجر رُكُن للأزياء الفاخرة والعطور",
-        "categoryKey": "ecommerce",
-        "categoryLabel": "متاجر إلكترونية",
-        "client": "رُكُن كوليكشن — الكويت والخليج",
-        "year": "2026",
-        "url": "rukunluxury.com",
-        "description": "متجر إلكتروني فاخر يجمع بين الهدوء البصري وسرعة الشراء الفورية عبر الهواتف، مع ربط مباشر لبوابات الدفع الكويتية (KNET / MyFatoorah) ولوحة تحكم متكاملة للمخزون.",
-        "metrics": {
-          "value": "+42%",
-          "label": "ارتفاع معدل التحويل للشراء"
-        },
-        "tags": ["Headless E-Commerce", "KNET & MyFatoorah", "Mobile-First", "Next.js", "Ultra-Fast"],
-        "inquiryMessage": "مرحباً، أود الاستفسار عن بناء متجر إلكتروني فاخر مماثل لمتجر رُكُن."
-      },
-      {
-        "id": "dar-el-nokhba",
-        "slug": "elite-medical",
-        "title": "دار النخبة للاستشارات والعيادات الطبية",
-        "categoryKey": "healthcare",
-        "categoryLabel": "مراكز طبية وصحية",
-        "client": "مجموعة النخبة الطبية — الكويت",
-        "year": "2025",
-        "url": "elitemedical-kw.com",
-        "description": "منصة عيادات ومراكز طبية متطورة توفر حجز مواعيد الأطباء والاستشارات الطبية مع نظام إشعارات تلقائي وتأكيد فوري عبر واتساب، متوافقة كلياً مع الهواتف.",
+        "url": "motorati.arssan.com",
+        "liveUrl": "https://motorati.arssan.workers.dev",
+        "image": "/images/projects/motorati.webp",
+        "description": "معرض سيارات رقمي فاخر وثنائي اللغة لوكالات ومعارض السيارات في الكويت، يتميز باستعراض تفاعلي للموديلات والمواصفات الفنية، واستشارة فورية عبر واتساب، وحساب تمويل الأقساط.",
         "metrics": {
           "value": "100%",
-          "label": "معايير سهولة الوصول WCAG"
+          "label": "تجربة استعراض مثالية للهواتف"
         },
-        "tags": ["Next.js", "WhatsApp Cloud API", "Doctor Booking", "SEO Kuwait", "Bilingual"],
-        "inquiryMessage": "مرحباً، أود الاستفسار عن تطوير منصة طبية وحجز مواعيد مماثلة لدار النخبة."
+        "tags": [
+          "Next.js 16",
+          "واجهة سيارات فاخرة",
+          "عربي / إنجليزي",
+          "Cloudflare Workers",
+          "ربط واتساب مباشر"
+        ],
+        "inquiryMessage": "مرحباً، أود الاستفسار عن تفاصيل تصميم وتطوير معرض سيارات رقمي مماثل لموتوراتي."
       },
       {
-        "id": "muzn-cloud",
-        "slug": "muzn-cloud",
-        "title": "منصة مُزن للبرمجيات السحابية والذكاء الاصطناعي",
-        "categoryKey": "saas",
-        "categoryLabel": "حلول سحابية وبرمجية",
-        "client": "مُزن تك — الكويت والسعودية",
+        "id": "blackbird",
+        "slug": "blackbird-coffee",
+        "title": "بلاك بيرد كافيه ستوديو — قهوة مختصة ولوحة تحكم حية",
+        "categoryKey": "hospitality",
+        "categoryLabel": "مقاهي وضيافة (لوحة تحكم حية)",
+        "client": "بلاك بيرد كوفي ستوديو — الكويت",
         "year": "2026",
-        "url": "muzncloud.io",
-        "description": "واجهة تسويقية وتوثيق هندسي لمنصة حلول سحابية B2B، تم تصميمها وهندستها لتكون معتمدة بالكامل لمعايير الذكاء الاصطناعي والوكلاء وفق isitagentready.com.",
+        "url": "blackbird.arssan.workers.dev",
+        "liveUrl": "https://blackbird.arssan.workers.dev",
+        "image": "/images/projects/blackbird.webp",
+        "description": "موقع استوديو قهوة مختصة في الكويت بهوية معمارية هادئة، مزود بلوحة تحكم حية (Sanity CMS) لإدارة وتحديث قائمة المشروبات والأسعار بالدينار الكويتي فورياً، مع دعم كامل للغتين وساعات العمل الحية.",
         "metrics": {
-          "value": "Agent Ready",
-          "label": "معتمد وفق isitagentready.com"
+          "value": "لوحة تحكم حية",
+          "label": "تحديث فوري لقائمة الأسعار والمنتجات"
         },
-        "tags": ["Agent Ready", "isitagentready.com", "Next.js App Router", "SaaS Architecture", "B2B UI/UX"],
-        "inquiryMessage": "مرحباً، أود الاستفسار عن بناء موقع SaaS متوافق مع معايير Agent Ready مثل منصة مُزن."
-      },
-      {
-        "id": "babtain-engineering",
-        "slug": "babtain-contracting",
-        "title": "مجموعة البابطين للمقاولات والهندسة المعمارية",
-        "categoryKey": "corporate",
-        "categoryLabel": "منصات ومواقع مؤسسية",
-        "client": "البابطين للمقاولات العامة — الكويت",
-        "year": "2025",
-        "url": "babtain-eng.com",
-        "description": "بوابة مؤسسية رائدة تستعرض المشروعات الإنشائية الكبرى في الكويت بمؤثرات تفاعلية هادئة، مع تصدر نتائج البحث المحلي لكلمات البناء والهندسة في الكويت.",
-        "metrics": {
-          "value": "#1 Rank",
-          "label": "صدارة نتائج بحث جوجل في الكويت"
-        },
-        "tags": ["Corporate Web", "Local SEO Kuwait", "CMS Dashboard", "Interactive Showcase", "Next.js"],
-        "inquiryMessage": "مرحباً، أرغب في بناء موقع مؤسسي هندسي مماثل لموقع البابطين."
-      },
-      {
-        "id": "namaa-hospitality",
-        "slug": "namaa-coffee",
-        "title": "نماء كافيه ومحمصة القهوة المختصة",
-        "categoryKey": "ecommerce",
-        "categoryLabel": "متاجر إلكترونية",
-        "client": "نماء للضيافة — الكويت",
-        "year": "2025",
-        "url": "namaacoffee.com",
-        "description": "تجربة رقمية فريدة تبرز قصة العلامة التجارية وتوفر قائمة طعام تفاعلية، مع متجر رقمي لطلب حبوب القهوة واشتراكات الصناديق الشهرية.",
-        "metrics": {
-          "value": "2.4x",
-          "label": "مضاعفة وقت بقاء الزائر"
-        },
-        "tags": ["Brand Experience", "E-Commerce", "Interactive Menu", "Framer Motion", "Tailwind CSS"],
-        "inquiryMessage": "مرحباً، أود الاستفسار عن تصميم وتطوير موقع لعلامة تجارية مماثل لموقع نماء."
-      },
-      {
-        "id": "ahmed-abdelwahed",
-        "slug": "ahmed-abdelwahed",
-        "title": "أحمد عبدالواحد — موقع شخصي وسيرة ذاتية هندسية",
-        "categoryKey": "personal",
-        "categoryLabel": "مواقع شخصية وسيرة ذاتية",
-        "client": "أحمد عبدالواحد — مهندس بيانات وبرمجيات",
-        "year": "2026",
-        "url": "ahmedabdelwahed.me",
-        "description": "منصة سيرة ذاتية وموقع شخصي متكامل لمهندس بيانات، مبني بأحدث تقنيات Next.js وTypeScript، ومزود ببروتوكولات اكتشاف وكلاء الذكاء الاصطناعي (WebMCP و RFC 9727)، ومدونة تقنية تفاعلية وتصميم عصري فائق السرعة.",
-        "metrics": {
-          "value": "100/100",
-          "label": "أداء Google Lighthouse"
-        },
-        "tags": ["Personal Brand", "Next.js 16", "Data Engineering", "WebMCP", "Technical Blog", "Framer Motion"],
-        "inquiryMessage": "مرحباً، أود الاستفسار عن تفاصيل تصميم وتطوير موقع شخصي وسيرة ذاتية احترافية مماثلة لموقع ahmedabdelwahed.me."
+        "tags": [
+          "Sanity Studio v6",
+          "Next.js 16",
+          "لوحة تحكم فورية",
+          "Cloudflare Workers",
+          "عربي / إنجليزي"
+        ],
+        "inquiryMessage": "مرحباً، أود الاستفسار عن تفاصيل تصميم وتطوير موقع مقهى مع لوحة تحكم بالأسعار مماثل لبلاك بيرد."
       },
       {
         "id": "kuwait-showcase",
@@ -330,13 +271,46 @@
         "year": "2026",
         "url": "kuwait.arssan.com",
         "liveUrl": "https://kuwait.arssan.workers.dev/",
+        "image": "/images/projects/kuwait-showcase.webp",
         "description": "منصة رقمية استعراضية وثقافية فاخرة لدولة الكويت، تجمع بين الفن التيبوغرافي العربي الأصيل، والتصميم التحريري المعاصر، وسرد سينمائي تفاعلي فائق النعومة يوثق 65 عاماً من النهضة والاستقلال والتراث البحري.",
         "metrics": {
           "value": "60 FPS",
           "label": "حركة سينمائية وسرد تفاعلي"
         },
-        "tags": ["Editorial Design", "Arabic Typography", "GSAP & Lenis", "Scrollytelling", "Next.js"],
+        "tags": [
+          "Editorial Design",
+          "Arabic Typography",
+          "GSAP & Lenis",
+          "Scrollytelling",
+          "Next.js"
+        ],
         "inquiryMessage": "مرحباً، أود الاستفسار عن تفاصيل تصميم وتطوير موقع تحريري واستعراضي تفاعلي مماثل لمنصة دولة الكويت."
+      },
+      {
+        "id": "ahmed-abdelwahed",
+        "slug": "ahmed-abdelwahed",
+        "title": "أحمد عبدالواحد — موقع شخصي وسيرة ذاتية هندسية",
+        "categoryKey": "personal",
+        "categoryLabel": "مواقع شخصية وسيرة ذاتية",
+        "client": "أحمد عبدالواحد — مهندس بيانات وبرمجيات",
+        "year": "2026",
+        "url": "ahmedabdelwahed.me",
+        "liveUrl": "https://ahmedabdelwahed.me",
+        "image": "/images/projects/ahmed-abdelwahed.webp",
+        "description": "منصة سيرة ذاتية وموقع شخصي متكامل لمهندس بيانات، مبني بأحدث تقنيات Next.js وTypeScript، ومزود ببروتوكولات اكتشاف وكلاء الذكاء الاصطناعي (WebMCP و RFC 9727)، ومدونة تقنية تفاعلية وتصميم عصري فائق السرعة.",
+        "metrics": {
+          "value": "100/100",
+          "label": "أداء Google Lighthouse"
+        },
+        "tags": [
+          "Personal Brand",
+          "Next.js 16",
+          "Data Engineering",
+          "WebMCP",
+          "Technical Blog",
+          "Framer Motion"
+        ],
+        "inquiryMessage": "مرحباً، أود الاستفسار عن تفاصيل تصميم وتطوير موقع شخصي وسيرة ذاتية احترافية مماثلة لموقع ahmedabdelwahed.me."
       }
     ],
     "cta": {

@@ -187,138 +187,79 @@
     "subtitle": "Explore an index of bespoke platforms, corporate websites, and modern web applications engineered with calm aesthetics, agent-readiness, and peak speed.",
     "all_filter": "All Projects",
     "categories": {
-      "corporate": "Corporate & Platforms",
-      "ecommerce": "E-Commerce",
-      "saas": "SaaS & Tech",
-      "healthcare": "Healthcare & Clinics",
-      "personal": "Personal & Bio Sites",
-      "editorial": "Editorial & Culture"
+      "automotive": "Automotive & Showrooms",
+      "hospitality": "Cafés & Hospitality (CMS)",
+      "editorial": "Editorial & Culture",
+      "personal": "Personal & Bio Sites"
     },
     "stats": [
-      { "value": "100%", "label": "Full Source Code Ownership" },
-      { "value": "98+", "label": "Average Google Lighthouse Score" },
-      { "value": "Agent Ready", "label": "Verified on isitagentready.com" },
-      { "value": "0.3s", "label": "Edge Response Time" }
+      {
+        "value": "100%",
+        "label": "Full Source Code Ownership"
+      },
+      {
+        "value": "98+",
+        "label": "Average Google Lighthouse Score"
+      },
+      {
+        "value": "Agent Ready",
+        "label": "Verified on isitagentready.com"
+      },
+      {
+        "value": "0.3s",
+        "label": "Edge Response Time"
+      }
     ],
     "projects": [
       {
-        "id": "alraya",
-        "slug": "al-raya-capital",
-        "title": "Al Raya Capital — Asset Management & Investment",
-        "categoryKey": "corporate",
-        "categoryLabel": "Corporate & Platforms",
-        "client": "Al Raya Investment Co. — Kuwait",
+        "id": "motorati",
+        "slug": "motorati-kuwait",
+        "title": "Motorati Kuwait — Luxury Automotive Dealership",
+        "categoryKey": "automotive",
+        "categoryLabel": "Automotive & Showrooms",
+        "client": "Motorati Automotive — Kuwait",
         "year": "2026",
-        "url": "alrayacapital.com",
-        "description": "A high-performance corporate platform for wealth and asset management in Kuwait, featuring dynamic market dashboards, bilingual RTL/LTR experience, and enterprise financial compliance.",
-        "metrics": {
-          "value": "99/100",
-          "label": "Google Lighthouse Score"
-        },
-        "tags": ["Next.js 16", "TypeScript", "Bilingual RTL/LTR", "Agent Ready", "Security SSL"],
-        "inquiryMessage": "Hello, I would like to inquire about building a platform similar to Al Raya Capital."
-      },
-      {
-        "id": "rukun",
-        "slug": "rukun-luxury",
-        "title": "Rukun Luxury — High-End Fashion & Fragrance",
-        "categoryKey": "ecommerce",
-        "categoryLabel": "E-Commerce",
-        "client": "Rukun Collection — Kuwait & GCC",
-        "year": "2026",
-        "url": "rukunluxury.com",
-        "description": "Minimalist luxury retail storefront combining editorial visual elegance with high-speed mobile checkout, KNET/MyFatoorah gateway integration, and real-time inventory management.",
-        "metrics": {
-          "value": "+42%",
-          "label": "Mobile Conversion Uplift"
-        },
-        "tags": ["Headless E-Commerce", "KNET & MyFatoorah", "Mobile-First", "Next.js", "Ultra-Fast"],
-        "inquiryMessage": "Hello, I would like to inquire about building an e-commerce storefront similar to Rukun Luxury."
-      },
-      {
-        "id": "dar-el-nokhba",
-        "slug": "elite-medical",
-        "title": "Elite Medical Group — Specialized Healthcare Clinics",
-        "categoryKey": "healthcare",
-        "categoryLabel": "Healthcare & Clinics",
-        "client": "Elite Medical Centers — Kuwait",
-        "year": "2025",
-        "url": "elitemedical-kw.com",
-        "description": "Calm, accessible multi-specialty clinical portal featuring instant doctor booking, automated WhatsApp reminders, and localized Kuwait health SEO.",
+        "url": "motorati.arssan.com",
+        "liveUrl": "https://motorati.arssan.workers.dev",
+        "image": "/images/projects/motorati.webp",
+        "description": "A high-end bilingual digital showroom for luxury car dealerships in Kuwait, featuring interactive model discovery, specs comparison, WhatsApp direct consultation, and instant financing inquiries.",
         "metrics": {
           "value": "100%",
-          "label": "WCAG Accessibility Standard"
+          "label": "Mobile-Optimized Showroom"
         },
-        "tags": ["Next.js", "WhatsApp Cloud API", "Doctor Booking", "SEO Kuwait", "Bilingual"],
-        "inquiryMessage": "Hello, I would like to inquire about building a medical booking portal similar to Elite Medical Group."
+        "tags": [
+          "Next.js 16",
+          "Automotive UI",
+          "Bilingual RTL/LTR",
+          "Cloudflare Workers",
+          "WhatsApp Direct"
+        ],
+        "inquiryMessage": "Hello, I would like to inquire about building a digital automotive showroom platform similar to Motorati Kuwait."
       },
       {
-        "id": "muzn-cloud",
-        "slug": "muzn-cloud",
-        "title": "Muzn Cloud — B2B Cloud Infrastructure & AI Suite",
-        "categoryKey": "saas",
-        "categoryLabel": "SaaS & Tech",
-        "client": "Muzn Tech — Kuwait & Saudi Arabia",
+        "id": "blackbird",
+        "slug": "blackbird-coffee",
+        "title": "BLACKBIRD Coffee Studio — Specialty Café & Live CMS",
+        "categoryKey": "hospitality",
+        "categoryLabel": "Cafés & Hospitality (CMS)",
+        "client": "Blackbird Coffee Studio — Kuwait",
         "year": "2026",
-        "url": "muzncloud.io",
-        "description": "High-converting SaaS product marketing site and interactive engineering documentation, structured and verified to meet isitagentready.com web agent standards.",
+        "url": "blackbird.arssan.workers.dev",
+        "liveUrl": "https://blackbird.arssan.workers.dev",
+        "image": "/images/projects/blackbird.webp",
+        "description": "An architectural boutique coffee studio website in Kuwait featuring an embedded Sanity Studio CMS dashboard for real-time menu and price management in KWD, bilingual Arabic/English, and live operating hours.",
         "metrics": {
-          "value": "Agent Ready",
-          "label": "Verified on isitagentready.com"
+          "value": "Live CMS",
+          "label": "Real-time Menu & Pricing Updates"
         },
-        "tags": ["Agent Ready", "isitagentready.com", "Next.js App Router", "SaaS Architecture", "B2B UI/UX"],
-        "inquiryMessage": "Hello, I would like to inquire about building an Agent Ready SaaS website similar to Muzn Cloud."
-      },
-      {
-        "id": "babtain-engineering",
-        "slug": "babtain-contracting",
-        "title": "Babtain Engineering & Contracting Corporation",
-        "categoryKey": "corporate",
-        "categoryLabel": "Corporate & Platforms",
-        "client": "Al-Babtain Contracting — Kuwait",
-        "year": "2025",
-        "url": "babtain-eng.com",
-        "description": "Flagship corporate platform showcasing mega architectural and infrastructure projects in Kuwait, with localized SEO ranking #1 across Kuwait search queries.",
-        "metrics": {
-          "value": "#1 Rank",
-          "label": "Google Search Kuwait Rank"
-        },
-        "tags": ["Corporate Web", "Local SEO Kuwait", "CMS Dashboard", "Interactive Showcase", "Next.js"],
-        "inquiryMessage": "Hello, I would like to inquire about building a corporate engineering website similar to Babtain."
-      },
-      {
-        "id": "namaa-hospitality",
-        "slug": "namaa-coffee",
-        "title": "Namaa Coffee Roasters — Artisan Lifestyle Brand",
-        "categoryKey": "ecommerce",
-        "categoryLabel": "E-Commerce",
-        "client": "Namaa Hospitality — Kuwait",
-        "year": "2025",
-        "url": "namaacoffee.com",
-        "description": "Tactile brand web experience delivering story-driven artisan coffee discovery, digital interactive brew guides, and a subscription coffee box club.",
-        "metrics": {
-          "value": "2.4x",
-          "label": "Average Session Duration"
-        },
-        "tags": ["Brand Experience", "E-Commerce", "Interactive Menu", "Framer Motion", "Tailwind CSS"],
-        "inquiryMessage": "Hello, I would like to inquire about building a brand website similar to Namaa Coffee."
-      },
-      {
-        "id": "ahmed-abdelwahed",
-        "slug": "ahmed-abdelwahed",
-        "title": "Ahmed Abdelwahed — Personal Brand & Engineering Bio",
-        "categoryKey": "personal",
-        "categoryLabel": "Personal & Bio Sites",
-        "client": "Ahmed Abdelwahed — Data & Software Engineer",
-        "year": "2026",
-        "url": "ahmedabdelwahed.me",
-        "description": "Production-grade personal portfolio and technical blog built with Next.js App Router and TypeScript, featuring RFC 9727 & WebMCP AI agent discovery, interactive Blobatar, and high-performance design tokens.",
-        "metrics": {
-          "value": "100/100",
-          "label": "Google Lighthouse Score"
-        },
-        "tags": ["Personal Brand", "Next.js 16", "Data Engineering", "WebMCP", "Technical Blog", "Framer Motion"],
-        "inquiryMessage": "Hello, I would like to inquire about building a personal portfolio or bio website similar to ahmedabdelwahed.me."
+        "tags": [
+          "Sanity Studio v6",
+          "Next.js 16",
+          "Real-Time CMS",
+          "Cloudflare Workers",
+          "Bilingual RTL/LTR"
+        ],
+        "inquiryMessage": "Hello, I would like to inquire about building a hospitality website with a live CMS menu dashboard similar to Blackbird Coffee Studio."
       },
       {
         "id": "kuwait-showcase",
@@ -330,13 +271,46 @@
         "year": "2026",
         "url": "kuwait.arssan.com",
         "liveUrl": "https://kuwait.arssan.workers.dev/",
+        "image": "/images/projects/kuwait-showcase.webp",
         "description": "A high-end editorial and cultural digital platform for the State of Kuwait, merging classical Arabic typography, contemporary documentary layout, and kinetic scrollytelling celebrating 65 years of maritime legacy and modern independence.",
         "metrics": {
           "value": "60 FPS",
           "label": "Kinetic Motion & Scrollytelling"
         },
-        "tags": ["Editorial Design", "Arabic Typography", "GSAP & Lenis", "Scrollytelling", "Next.js"],
+        "tags": [
+          "Editorial Design",
+          "Arabic Typography",
+          "GSAP & Lenis",
+          "Scrollytelling",
+          "Next.js"
+        ],
         "inquiryMessage": "Hello, I would like to inquire about building an interactive editorial and cultural showcase similar to the State of Kuwait platform."
+      },
+      {
+        "id": "ahmed-abdelwahed",
+        "slug": "ahmed-abdelwahed",
+        "title": "Ahmed Abdelwahed — Personal Brand & Engineering Bio",
+        "categoryKey": "personal",
+        "categoryLabel": "Personal & Bio Sites",
+        "client": "Ahmed Abdelwahed — Data & Software Engineer",
+        "year": "2026",
+        "url": "ahmedabdelwahed.me",
+        "liveUrl": "https://ahmedabdelwahed.me",
+        "image": "/images/projects/ahmed-abdelwahed.webp",
+        "description": "Production-grade personal portfolio and technical blog built with Next.js App Router and TypeScript, featuring RFC 9727 & WebMCP AI agent discovery, interactive Blobatar, and high-performance design tokens.",
+        "metrics": {
+          "value": "100/100",
+          "label": "Google Lighthouse Score"
+        },
+        "tags": [
+          "Personal Brand",
+          "Next.js 16",
+          "Data Engineering",
+          "WebMCP",
+          "Technical Blog",
+          "Framer Motion"
+        ],
+        "inquiryMessage": "Hello, I would like to inquire about building a personal portfolio or bio website similar to ahmedabdelwahed.me."
       }
     ],
     "cta": {
