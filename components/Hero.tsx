@@ -403,7 +403,7 @@ export function Hero({ lang, dict }: HeroProps) {
       {/* Background Cinematic Ribbon Image with Next.js Image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
-          src="/images/hero-bg.png"
+          src="/images/hero-bg.webp"
           alt="Arssan Architectural 3D Ribbon Background"
           fill
           priority
