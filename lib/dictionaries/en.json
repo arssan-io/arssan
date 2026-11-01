@@ -219,7 +219,7 @@
         "client": "Motorati Automotive — Kuwait",
         "year": "2026",
         "url": "motorati.arssan.com",
-        "liveUrl": "https://motorati.arssan.workers.dev",
+        "liveUrl": "https://motorati.arssan.com",
         "image": "/images/projects/motorati.webp",
         "description": "A high-end bilingual digital showroom for luxury car dealerships in Kuwait, featuring interactive model discovery, specs comparison, WhatsApp direct consultation, and instant financing inquiries.",
         "metrics": {
@@ -243,8 +243,8 @@
         "categoryLabel": "Cafés & Hospitality (CMS)",
         "client": "Blackbird Coffee Studio — Kuwait",
         "year": "2026",
-        "url": "blackbird.arssan.workers.dev",
-        "liveUrl": "https://blackbird.arssan.workers.dev",
+        "url": "blackbird.arssan.com",
+        "liveUrl": "https://blackbird.arssan.com",
         "image": "/images/projects/blackbird.webp",
         "description": "An architectural boutique coffee studio website in Kuwait featuring an embedded Sanity Studio CMS dashboard for real-time menu and price management in KWD, bilingual Arabic/English, and live operating hours.",
         "metrics": {
@@ -269,7 +269,7 @@
         "client": "State of Kuwait — Cultural Showcase",
         "year": "2026",
         "url": "kuwait.arssan.com",
-        "liveUrl": "https://kuwait.arssan.workers.dev/",
+        "liveUrl": "https://kuwait.arssan.com",
         "image": "/images/projects/kuwait-showcase.webp",
         "description": "A high-end editorial and cultural digital platform for the State of Kuwait, merging classical Arabic typography, contemporary documentary layout, and kinetic scrollytelling celebrating 65 years of maritime legacy and modern independence.",
         "metrics": {

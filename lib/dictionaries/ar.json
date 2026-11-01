@@ -219,7 +219,7 @@
         "client": "موتوراتي لتجارة السيارات — الكويت",
         "year": "2026",
         "url": "motorati.arssan.com",
-        "liveUrl": "https://motorati.arssan.workers.dev",
+        "liveUrl": "https://motorati.arssan.com",
         "image": "/images/projects/motorati.webp",
         "description": "معرض سيارات رقمي فاخر وثنائي اللغة لوكالات ومعارض السيارات في الكويت، يتميز باستعراض تفاعلي للموديلات والمواصفات الفنية، واستشارة فورية عبر واتساب، وحساب تمويل الأقساط.",
         "metrics": {
@@ -243,8 +243,8 @@
         "categoryLabel": "مقاهي وضيافة (لوحة تحكم حية)",
         "client": "بلاك بيرد كوفي ستوديو — الكويت",
         "year": "2026",
-        "url": "blackbird.arssan.workers.dev",
-        "liveUrl": "https://blackbird.arssan.workers.dev",
+        "url": "blackbird.arssan.com",
+        "liveUrl": "https://blackbird.arssan.com",
         "image": "/images/projects/blackbird.webp",
         "description": "موقع استوديو قهوة مختصة في الكويت بهوية معمارية هادئة، مزود بلوحة تحكم حية (Sanity CMS) لإدارة وتحديث قائمة المشروبات والأسعار بالدينار الكويتي فورياً، مع دعم كامل للغتين وساعات العمل الحية.",
         "metrics": {
@@ -269,7 +269,7 @@
         "client": "دولة الكويت — استعراض تحريري وثقافي",
         "year": "2026",
         "url": "kuwait.arssan.com",
-        "liveUrl": "https://kuwait.arssan.workers.dev/",
+        "liveUrl": "https://kuwait.arssan.com",
         "image": "/images/projects/kuwait-showcase.webp",
         "description": "منصة رقمية استعراضية وثقافية فاخرة لدولة الكويت، تجمع بين الفن التيبوغرافي العربي الأصيل، والتصميم التحريري المعاصر، وسرد سينمائي تفاعلي فائق النعومة يوثق 65 عاماً من النهضة والاستقلال والتراث البحري.",
         "metrics": {

@@ -129,7 +129,7 @@ export function getMarkdownRepresentation(
    - Production-grade personal portfolio and technical blog featuring RFC 9727 & WebMCP AI agent discovery.
    - Metric: 100/100 Google Lighthouse Score
 
-8. **State of Kuwait — Editorial Cultural Showcase** (\`https://kuwait.arssan.workers.dev/\`) — Editorial & Culture
+8. **State of Kuwait — Editorial Cultural Showcase** (\`kuwait.arssan.com\`) — Editorial & Culture
    - Editorial and cultural digital platform celebrating 65 years of Kuwaiti maritime legacy and modern independence.
    - Metric: 60 FPS Kinetic Motion & Scrollytelling
 
