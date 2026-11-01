@@ -16,8 +16,6 @@ export async function GET(request: Request) {
     { loc: `${origin}/en/pricing/starter`, changefreq: "monthly", priority: "0.8" },
     { loc: `${origin}/en/pricing/professional`, changefreq: "monthly", priority: "0.8" },
     { loc: `${origin}/en/pricing/enterprise`, changefreq: "monthly", priority: "0.8" },
-    { loc: `${origin}/ar/coloring`, changefreq: "monthly", priority: "0.6" },
-    { loc: `${origin}/en/coloring`, changefreq: "monthly", priority: "0.6" },
     { loc: `${origin}/auth.md`, changefreq: "monthly", priority: "0.7" },
   ];
 

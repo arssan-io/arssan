@@ -12,7 +12,6 @@ interface HeaderProps {
     nav: {
       home: string;
       projects?: string;
-      coloring: string;
       process: string;
       services: string;
       pricing: string;
