@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { AnimateInView } from "./AnimateInView";
 import type { Locale } from "@/lib/i18n";
 
@@ -132,9 +133,11 @@ export function Footer({ lang, dict }: FooterProps) {
             {/* Brand Column (5 cols) */}
             <div className="lg:col-span-5 space-y-4 sm:space-y-5">
               <div className="flex flex-wrap items-center gap-3">
-                <img
+                <Image
                   src="/images/Logo.svg"
                   alt="Arssan"
+                  width={56}
+                  height={32}
                   className="h-7 sm:h-8 w-auto brightness-0"
                 />
                 <a

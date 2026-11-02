@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
 
@@ -94,9 +95,12 @@ export function Header({ lang, dict }: HeaderProps) {
             href={`/${lang}`}
             className="flex items-center relative z-50 transition-opacity duration-150 hover:opacity-80"
           >
-            <img
+            <Image
               src="/images/Logo.svg"
               alt="Arssan"
+              width={56}
+              height={32}
+              priority
               className={`h-7 sm:h-8 w-auto transition-[filter] duration-200 ${
                 isOverHero && !mobileOpen ? "brightness-0 invert" : "brightness-0"
               }`}

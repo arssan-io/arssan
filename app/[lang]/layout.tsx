@@ -167,6 +167,10 @@ const WEBMCP_SCRIPT = `
 })();
 `;
 
+export function generateStaticParams() {
+  return [{ lang: "ar" }, { lang: "en" }];
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -243,11 +247,13 @@ export default async function LangLayout({
       className={`${plusJakarta.variable} ${readexPro.variable} ${ibmPlexMono.variable}`}
     >
       <head>
+        <link rel="preload" as="image" href="/images/hero-bg.webp" type="image/webp" fetchPriority="high" />
         <link rel="api-catalog" href="/.well-known/api-catalog" />
         <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
         <link rel="describedby" href="/auth.md" />
         <link rel="service-desc" href="/.well-known/mcp/server-card.json" />
         <link rel="service-doc" href="/.well-known/agent-skills/index.json" />
+        <link rel="service-doc" href="/.well-known/agent-skills/dns-aid/SKILL.md" />
       </head>
       <body
         className={`${
@@ -273,9 +279,14 @@ export default async function LangLayout({
               "Initiate a web design, Next.js development, or SEO project inquiry with Arssan Studio in Kuwait via WhatsApp",
           } as Record<string, string>)}
         >
+          <label htmlFor="inquiry-message" className="sr-only">
+            Project inquiry message
+          </label>
           <input
+            id="inquiry-message"
             type="text"
             name="text"
+            aria-label="Project inquiry message specifying desired package (Starter 150 KWD, Professional 299 KWD, or Custom Enterprise) and business goals"
             defaultValue="Hello Arssan Studio, I would like to inquire about a web project in Kuwait."
             {...({
               toolparamdescription:

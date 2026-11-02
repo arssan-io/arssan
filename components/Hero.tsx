@@ -188,9 +188,9 @@ function AsanaProjectShowcase({
                   <span className="text-[10px] sm:text-[11px] font-medium text-white/60 uppercase tracking-wider block">
                     {isAr ? "نظام التصميم الثنائي" : "Bilingual Design System"}
                   </span>
-                  <h4 className="text-sm sm:text-base md:text-lg font-medium text-white mt-0.5">
+                  <div className="text-sm sm:text-base md:text-lg font-medium text-white mt-0.5">
                     {isAr ? "واجهة مستخدم عصرية (عربي / English)" : "Executive RTL & LTR Interface"}
-                  </h4>
+                  </div>
                 </div>
                 <span className="self-start xs:self-auto px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[64px] bg-white/[0.1] border border-white/15 text-[10px] sm:text-[11px] font-medium text-white/90">
                   Figma + Design Tokens
@@ -262,9 +262,9 @@ function AsanaProjectShowcase({
                   <span className="text-[10px] sm:text-[11px] font-medium text-white/60 uppercase tracking-wider block">
                     {isAr ? "البنية البرمجية والربط المالي" : "Cloud & Payment Architecture"}
                   </span>
-                  <h4 className="text-sm sm:text-base md:text-lg font-medium text-white mt-0.5">
+                  <div className="text-sm sm:text-base md:text-lg font-medium text-white mt-0.5">
                     {isAr ? "تطوير Next.js + بوابات الدفع الكويتية" : "Next.js 16 + Kuwait Payment Gateways"}
-                  </h4>
+                  </div>
                 </div>
                 <span className="self-start xs:self-auto px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[64px] bg-white text-[#0d0d0d] text-[10px] sm:text-[11px] font-semibold">
                   99.9% Uptime
@@ -315,9 +315,9 @@ function AsanaProjectShowcase({
                   <span className="text-[10px] sm:text-[11px] font-medium text-white/60 uppercase tracking-wider block">
                     {isAr ? "النمو وتصدر نتائج البحث" : "Search Visibility & Conversion"}
                   </span>
-                  <h4 className="text-sm sm:text-base md:text-lg font-medium text-white mt-0.5">
+                  <div className="text-sm sm:text-base md:text-lg font-medium text-white mt-0.5">
                     {isAr ? "تصدّر نتائج بحث جوجل في الكويت" : "Google Kuwait #1 Ranking Architecture"}
-                  </h4>
+                  </div>
                 </div>
                 <span className="self-start xs:self-auto px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[64px] bg-emerald-400/15 border border-emerald-400/30 text-emerald-300 text-[10px] sm:text-[11px] font-medium">
                   +240% ROI
@@ -407,7 +407,7 @@ export function Hero({ lang, dict }: HeroProps) {
           alt="Arssan Architectural 3D Ribbon Background"
           fill
           priority
-          quality={95}
+          unoptimized
           sizes="100vw"
           className="object-cover object-center lg:object-[60%_center] select-none"
         />
@@ -427,59 +427,36 @@ export function Hero({ lang, dict }: HeroProps) {
           {/* Left Column: Asana Display Typography & CTAs (7 cols) */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Top Calm Competence Tagline Pill */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: easeAsana }}
-              className="flex flex-wrap items-center gap-3 mb-6 sm:mb-8"
-            >
+            <div className="flex flex-wrap items-center gap-3 mb-6 sm:mb-8">
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-[64px] bg-white/[0.08] backdrop-blur-md border border-white/15 text-[13px] font-medium text-[#ffffff] shadow-[0_2px_12px_rgba(0,0,0,0.3)]">
                 <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                 <span>{dict.hero.tagline}</span>
               </div>
-            </motion.div>
-
-            {/* Asana Display Hierarchy */}
-            <div className="mb-5 sm:mb-8 space-y-1 sm:space-y-2">
-              {titleLines.map((line, idx) => (
-                <div key={idx} className="py-0.5">
-                  <motion.h1
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: 0.06 + idx * 0.06,
-                      duration: 0.45,
-                      ease: easeAsana,
-                    }}
-                    className={`${
-                      isAr
-                        ? "text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-medium leading-[1.2] sm:leading-[1.24]"
-                        : "text-3xl xs:text-4xl sm:text-5xl md:text-[3.75rem] lg:text-[4.25rem] font-light leading-[1.08] sm:leading-[1.06] tracking-[-0.025em]"
-                    } ${idx === 1 ? "text-[#94a3b8]" : "text-[#ffffff]"}`}
-                  >
-                    {line}
-                  </motion.h1>
-                </div>
-              ))}
             </div>
 
+            {/* Asana Display Hierarchy */}
+            <h1 className="mb-5 sm:mb-8 space-y-1 sm:space-y-2">
+              {titleLines.map((line, idx) => (
+                <span
+                  key={idx}
+                  className={`block py-0.5 ${
+                    isAr
+                      ? "text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-medium leading-[1.2] sm:leading-[1.24]"
+                      : "text-3xl xs:text-4xl sm:text-5xl md:text-[3.75rem] lg:text-[4.25rem] font-light leading-[1.08] sm:leading-[1.06] tracking-[-0.025em]"
+                  } ${idx === 1 ? "text-[#94a3b8]" : "text-[#ffffff]"}`}
+                >
+                  {line}
+                </span>
+              ))}
+            </h1>
+
             {/* Measured Body Lead Copy */}
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.24, duration: 0.45, ease: easeAsana }}
-              className="text-[15px] sm:text-lg text-[#94a3b8] leading-[1.65] max-w-xl mb-6 sm:mb-10 font-normal drop-shadow-sm"
-            >
+            <p className="text-[15px] sm:text-lg text-[#94a3b8] leading-[1.65] max-w-xl mb-6 sm:mb-10 font-normal drop-shadow-sm">
               {dict.hero.description}
-            </motion.p>
+            </p>
 
             {/* High-Affordance Pill Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.45, ease: easeAsana }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5"
-            >
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5">
               <a
                 href={`/${lang}#pricing`}
                 className="group inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-6 sm:px-8 rounded-[64px] bg-[#ffffff] text-[#0d0d0d] text-[14px] sm:text-[15px] font-medium hover:bg-[#f1f5f9] shadow-[0_4px_24px_rgba(255,255,255,0.18)] transition-[background-color,transform,box-shadow] duration-200 active:scale-[0.98]"
@@ -499,7 +476,7 @@ export function Hero({ lang, dict }: HeroProps) {
                 <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
                 <span>{dict.nav.contact}</span>
               </a>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right Column: Interactive Asana Workspace Showcase (5 cols) */}

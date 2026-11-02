@@ -81,7 +81,7 @@ export async function GET(request: Request) {
     "Content-Signal: ai-train=no, search=no, ai-input=no",
     "",
     "# Agentic Resource Discovery (ARD)",
-    `Agentmap: ${origin}/.well-known/ai-catalog.json`,
+    `# Agentmap: ${origin}/.well-known/ai-catalog.json`,
     "",
     `Sitemap: ${origin}/sitemap.xml`,
     "",

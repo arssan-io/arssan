@@ -6,6 +6,10 @@ import { Process } from "@/components/Process";
 import { Services } from "@/components/Services";
 import { Pricing } from "@/components/Pricing";
 
+export function generateStaticParams() {
+  return [{ lang: "ar" }, { lang: "en" }];
+}
+
 export default async function HomePage({
   params,
 }: {

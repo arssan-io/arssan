@@ -3,6 +3,17 @@ import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import Link from "next/link";
 
+export function generateStaticParams() {
+  const packages = ["starter", "professional", "enterprise", "basic", "pro", "custom"];
+  const locales = ["ar", "en"];
+  return locales.flatMap((lang) =>
+    packages.map((pkg) => ({
+      lang,
+      package: pkg,
+    }))
+  );
+}
+
 export async function generateMetadata({
   params,
 }: {

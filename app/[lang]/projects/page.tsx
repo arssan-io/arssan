@@ -3,6 +3,10 @@ import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import { ProjectsView } from "@/components/ProjectsView";
 
+export function generateStaticParams() {
+  return [{ lang: "ar" }, { lang: "en" }];
+}
+
 export async function generateMetadata({
   params,
 }: {

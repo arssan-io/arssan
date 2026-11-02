@@ -12,6 +12,17 @@ export async function GET(request: Request) {
     },
     entries: [
       {
+        identifier: `urn:air:${hostname}:agent:agent-card`,
+        displayName: "Arssan Studio A2A Agent Card",
+        type: "application/a2a-agent-card+json",
+        url: `${origin}/.well-known/agent-card.json`,
+        representativeQueries: [
+          "Arssan Studio autonomous agent capabilities and interfaces",
+          "query Arssan Studio A2A agent card",
+          "connect to Arssan Studio agent in Kuwait",
+        ],
+      },
+      {
         identifier: `urn:air:${hostname}:mcp:server-card`,
         displayName: "Arssan Studio MCP Server",
         type: "application/mcp-server-card+json",
@@ -23,31 +34,9 @@ export async function GET(request: Request) {
         ],
       },
       {
-        identifier: `urn:air:${hostname}:api:catalog`,
-        displayName: "Arssan Studio RFC 9727 API Catalog",
-        type: "application/linkset+json",
-        url: `${origin}/.well-known/api-catalog`,
-        representativeQueries: [
-          "discover Arssan Studio API endpoints and services",
-          "RFC 9727 API catalog for Arssan Kuwait",
-          "list machine-readable documentation and health endpoints",
-        ],
-      },
-      {
-        identifier: `urn:air:${hostname}:api:openapi`,
-        displayName: "Arssan Studio OpenAPI 3.1 Specification",
-        type: "application/vnd.oai.openapi+json",
-        url: `${origin}/api/openapi.json`,
-        representativeQueries: [
-          "OpenAPI specification for Arssan Studio services",
-          "REST API schema for KWD web development packages",
-          "query Arssan Studio health and services endpoints",
-        ],
-      },
-      {
         identifier: `urn:air:${hostname}:skills:arssan-studio`,
         displayName: "Arssan Studio Agent Skill",
-        type: "text/markdown",
+        type: 'text/markdown; profile="urn:air:agent-skills"',
         url: `${origin}/.well-known/agent-skills/arssan-studio/SKILL.md`,
         representativeQueries: [
           "how AI agents interact with Arssan Studio Kuwait",
@@ -56,25 +45,25 @@ export async function GET(request: Request) {
         ],
       },
       {
-        identifier: `urn:air:${hostname}:auth:auth-md`,
-        displayName: "Arssan Studio Agent Registration Guide (Auth.md)",
-        type: "text/markdown",
-        url: `${origin}/auth.md`,
-        representativeQueries: [
-          "how to register an AI agent with Arssan Studio",
-          "OAuth protected resource and authorization server metadata",
-          "auth.md instructions for Arssan Kuwait",
-        ],
-      },
-      {
         identifier: `urn:air:${hostname}:skills:dns-aid`,
         displayName: "Arssan Studio DNS-AID Protocol Specification",
-        type: "text/markdown",
+        type: 'text/markdown; profile="urn:air:agent-skills"',
         url: `${origin}/.well-known/agent-skills/dns-aid/SKILL.md`,
         representativeQueries: [
           "DNS for AI Discovery (DNS-AID) entrypoint records",
           "_index._agents DNS discovery for Arssan Studio",
           "RFC 9460 SVCB and HTTPS records for AI agents",
+        ],
+      },
+      {
+        identifier: `urn:air:${hostname}:auth:auth-md`,
+        displayName: "Arssan Studio Agent Registration Guide (Auth.md)",
+        type: 'text/markdown; profile="urn:air:agent-skills"',
+        url: `${origin}/auth.md`,
+        representativeQueries: [
+          "how to register an AI agent with Arssan Studio",
+          "OAuth protected resource and authorization server metadata",
+          "auth.md instructions for Arssan Kuwait",
         ],
       },
     ],
