@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimateInView } from "./AnimateInView";
 import type { Locale } from "@/lib/i18n";
+import { trackContactClick, trackSocialClick } from "@/lib/analytics";
 
 interface FooterProps {
   lang: Locale;
@@ -112,6 +113,12 @@ export function Footer({ lang, dict }: FooterProps) {
                 href="https://wa.me/46700265645"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  trackContactClick({
+                    source: "footer_contact",
+                    method: "whatsapp",
+                  });
+                }}
                 className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-6 sm:px-8 rounded-[64px] bg-[#ffffff] text-[#0d0e10] font-medium text-[14px] sm:text-[15px] hover:bg-[#f3f3f3] transition-all duration-200 active:scale-[0.98]"
               >
                 <span>{dict.nav.contact}</span>
@@ -169,6 +176,9 @@ export function Footer({ lang, dict }: FooterProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
+                    onClick={() => {
+                      trackSocialClick(social.label.toLowerCase());
+                    }}
                     className="w-9 h-9 sm:w-10 sm:h-10 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] flex items-center justify-center text-[#646f79] hover:text-[#ffffff] hover:bg-[#0d0e10] hover:border-[#0d0e10] transition-all duration-200"
                   >
                     <social.icon className="w-4 h-4" />
@@ -238,6 +248,12 @@ export function Footer({ lang, dict }: FooterProps) {
                     href="https://wa.me/46700265645"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => {
+                      trackContactClick({
+                        source: "footer_contact",
+                        method: "whatsapp",
+                      });
+                    }}
                     className="inline-flex items-center gap-2 hover:text-[#0d0d0d] transition-colors py-0.5"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />

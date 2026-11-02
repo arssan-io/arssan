@@ -10,6 +10,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { GoogleTagManager } from "@/components/GoogleTagManager";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -262,6 +263,7 @@ export default async function LangLayout({
         } antialiased bg-[#ffffff] text-[#0d0d0d] selection:bg-[#0d0e10] selection:text-[#ffffff]`}
       >
         <GoogleAnalytics />
+        <GoogleTagManager />
         <Script id="webmcp-tools" strategy="beforeInteractive">
           {WEBMCP_SCRIPT}
         </Script>

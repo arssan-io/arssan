@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import Link from "next/link";
+import {
+  PackageViewTracker,
+  PackageInquiryButton,
+} from "@/components/PackageTracker";
 
 export function generateStaticParams() {
   const packages = ["starter", "professional", "enterprise", "basic", "pro", "custom"];
@@ -119,6 +123,7 @@ export default async function PricingPackagePage({
         </Link>
 
         <div className="rounded-[20px] border border-[#eceeef] bg-[#ffffff] p-6 sm:p-10 md:p-12 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] text-start">
+          <PackageViewTracker pkg={pkg} />
           {pkg.popular && (
             <div className="inline-flex items-center gap-2 bg-[#f3f3f3] text-[#0d0d0d] text-xs font-medium rounded-[64px] px-3.5 py-1 sm:px-4 sm:py-1.5 mb-5 sm:mb-6 border border-[#e5e7eb]">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
@@ -188,15 +193,10 @@ export default async function PricingPackagePage({
             ))}
           </ul>
 
-          <a
-            href="https://wa.me/46700265645"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 h-11 sm:h-12 px-6 sm:px-8 bg-[#0d0e10] text-[#ffffff] rounded-[64px] text-sm sm:text-base font-medium hover:bg-[#646f79] shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-all duration-200 active:scale-[0.98]"
-          >
-            <span>{dict.nav.contact}</span>
-            <span className="rtl:rotate-180">→</span>
-          </a>
+          <PackageInquiryButton
+            pkg={pkg}
+            contactText={dict.nav.contact}
+          />
         </div>
       </div>
     </div>

@@ -1,8 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { AnimateInView } from "./AnimateInView";
 import type { Locale } from "@/lib/i18n";
+import {
+  trackPackageSelect,
+  trackPricingSectionView,
+  trackContactClick,
+} from "@/lib/analytics";
 
 interface PricingPackage {
   name: string;
@@ -33,8 +39,10 @@ export function Pricing({ lang, dict }: PricingProps) {
   const isAr = lang === "ar";
 
   return (
-    <section
+    <motion.section
       id="pricing"
+      onViewportEnter={() => trackPricingSectionView(dict.pricing.packages.length)}
+      viewport={{ once: true, amount: 0.15 }}
       className="relative py-14 sm:py-18 md:py-24 bg-[#f3f3f3] text-[#0d0d0d] overflow-hidden border-b border-[#e6e8eb]"
     >
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
@@ -194,6 +202,16 @@ export function Pricing({ lang, dict }: PricingProps) {
                 {/* High-Affordance Pill CTA (48px height, 64px radius) */}
                 <Link
                   href={`/${lang}/pricing/${pkg.slug}`}
+                  onClick={() => {
+                    trackPackageSelect({
+                      id: pkg.slug,
+                      name: pkg.name,
+                      price: pkg.price,
+                      originalPrice: pkg.originalPrice,
+                      currency: pkg.currency,
+                      popular: !!pkg.popular,
+                    });
+                  }}
                   className={`group flex items-center justify-center gap-2 h-11 sm:h-12 px-6 rounded-[64px] text-[14px] sm:text-[15px] font-medium transition-[background-color,transform] duration-200 active:scale-[0.98] ${
                     pkg.popular
                       ? "bg-[#ffffff] text-[#0d0e10] hover:bg-[#f3f3f3] shadow-[0_2px_8px_rgba(0,0,0,0.15)]"
@@ -232,6 +250,14 @@ export function Pricing({ lang, dict }: PricingProps) {
               href="https://wa.me/46700265645"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                trackContactClick({
+                  source: "pricing_custom_quote",
+                  method: "whatsapp",
+                  packageId: "custom",
+                  packageName: "Custom Enterprise",
+                });
+              }}
               className="text-[#0d0d0d] font-medium hover:text-[#646f79] underline underline-offset-4 transition-colors whitespace-nowrap self-start md:self-auto pt-1 md:pt-0"
             >
               {isAr ? "تحتاج باقة مخصصة؟ تواصل معنا ←" : "Need a custom quote? Let's talk →"}
@@ -239,6 +265,6 @@ export function Pricing({ lang, dict }: PricingProps) {
           </div>
         </AnimateInView>
       </div>
-    </section>
+    </motion.section>
   );
 }

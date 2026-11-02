@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
+import { trackContactClick, trackLanguageSwitch } from "@/lib/analytics";
 
 interface HeaderProps {
   lang: Locale;
@@ -150,6 +151,9 @@ export function Header({ lang, dict }: HeaderProps) {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href={switchLangHref}
+              onClick={() => {
+                trackLanguageSwitch(lang, otherLang);
+              }}
               className={`px-3.5 py-2 rounded-[64px] text-[13px] font-medium transition-all duration-150 ${
                 isOverHero
                   ? "text-white/80 hover:text-white hover:bg-white/10"
@@ -165,6 +169,12 @@ export function Header({ lang, dict }: HeaderProps) {
               href="https://wa.me/46700265645"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                trackContactClick({
+                  source: "header_contact",
+                  method: "whatsapp",
+                });
+              }}
               className={`group inline-flex items-center justify-center gap-2 h-11 px-5 rounded-[64px] text-[14px] font-medium transition-all duration-200 active:scale-[0.98] ${
                 isOverHero
                   ? "bg-[#ffffff] text-[#0d0d0d] hover:bg-[#f1f5f9] shadow-[0_2px_12px_rgba(255,255,255,0.18)]"
@@ -266,7 +276,10 @@ export function Header({ lang, dict }: HeaderProps) {
               <div className="flex items-center justify-between gap-3">
                 <Link
                   href={switchLangHref}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    trackLanguageSwitch(lang, otherLang);
+                  }}
                   className={`flex-1 h-12 rounded-[64px] bg-[#f3f3f3] flex items-center justify-center text-[#0d0d0d] font-medium ${
                     otherLang === "ar" ? "font-readex-pro text-base" : "font-sans text-sm"
                   }`}
@@ -277,7 +290,13 @@ export function Header({ lang, dict }: HeaderProps) {
                   href="https://wa.me/46700265645"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    trackContactClick({
+                      source: "header_contact",
+                      method: "whatsapp",
+                    });
+                  }}
                   className="flex-[2] h-12 rounded-[64px] bg-[#0d0e10] text-[#ffffff] flex items-center justify-center font-medium text-sm shadow-[0_2px_8px_rgba(0,0,0,0.15)]"
                 >
                   {dict.nav.contact}

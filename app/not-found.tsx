@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { GoogleTagManager } from "@/components/GoogleTagManager";
 
 export default function NotFound() {
   return (
     <html lang="en">
       <body className="min-h-[100svh] flex items-center justify-center bg-[#ffffff] text-[#0d0d0d] px-5 font-sans antialiased">
         <GoogleAnalytics />
+        <GoogleTagManager />
         <div className="text-center p-10 rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] max-w-md w-full">
           <h1 className="text-5xl font-light mb-3 text-[#0d0d0d]">404</h1>
           <p className="text-[#646f79] mb-6 text-sm">

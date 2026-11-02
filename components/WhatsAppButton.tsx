@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { trackContactClick } from "@/lib/analytics";
 
 interface WhatsAppButtonProps {
   dict: {
@@ -15,6 +16,12 @@ export function WhatsAppButton({ dict }: WhatsAppButtonProps) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={dict.whatsapp.tooltip}
+      onClick={() => {
+        trackContactClick({
+          source: "floating_whatsapp",
+          method: "whatsapp",
+        });
+      }}
       className="fixed bottom-6 end-6 z-50 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#0d0e10] text-[#ffffff] rounded-[64px] border border-[#ffffff]/15 shadow-[0_8px_24px_rgba(0,0,0,0.18)] hover:bg-[#646f79] transition-colors duration-200 group"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}

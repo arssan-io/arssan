@@ -6,6 +6,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimateInView } from "./AnimateInView";
 import type { Locale } from "@/lib/i18n";
+import {
+  trackProjectView,
+  trackProjectClick,
+  trackProjectInquiry,
+  trackCategoryFilter,
+} from "@/lib/analytics";
 
 export interface ProjectItem {
   id: string;
@@ -131,7 +137,10 @@ export function ProjectsView({ lang, dict }: ProjectsViewProps) {
               return (
                 <button
                   key={cat.key}
-                  onClick={() => setActiveCategory(cat.key)}
+                  onClick={() => {
+                    setActiveCategory(cat.key);
+                    trackCategoryFilter(cat.key, cat.label);
+                  }}
                   className={`relative flex-shrink-0 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-[64px] text-xs sm:text-[13px] font-medium transition-all duration-200 ${
                     isActive
                       ? "bg-[#0d0e10] text-[#ffffff] shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
@@ -162,6 +171,16 @@ export function ProjectsView({ lang, dict }: ProjectsViewProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.35, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  onViewportEnter={() => {
+                    trackProjectView({
+                      id: project.id,
+                      title: project.title,
+                      client: project.client,
+                      category: project.categoryKey,
+                      url: project.url,
+                    });
+                  }}
+                  viewport={{ once: true, amount: 0.2 }}
                   className="h-full"
                 >
                   <div className="group h-full rounded-[20px] bg-[#ffffff] border border-[#e6e8eb] p-5 sm:p-6 flex flex-col justify-between text-start transition-all duration-300 md:hover:-translate-y-1 hover:border-[#646f79]/40 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.02)]">
@@ -183,6 +202,18 @@ export function ProjectsView({ lang, dict }: ProjectsViewProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                             dir="ltr"
+                            onClick={() => {
+                              trackProjectClick(
+                                {
+                                  id: project.id,
+                                  title: project.title,
+                                  client: project.client,
+                                  category: project.categoryKey,
+                                  url: project.url,
+                                },
+                                "url_pill"
+                              );
+                            }}
                             className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-[64px] bg-[#f8f9fa] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79] hover:text-[#0d0d0d] hover:bg-[#ffffff] transition-all duration-200 group/url"
                             title={isAr ? `زيارة موقع ${project.url}` : `Visit ${project.url}`}
                           >
@@ -203,6 +234,18 @@ export function ProjectsView({ lang, dict }: ProjectsViewProps) {
                           href={projectHref}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => {
+                            trackProjectClick(
+                              {
+                                id: project.id,
+                                title: project.title,
+                                client: project.client,
+                                category: project.categoryKey,
+                                url: project.url,
+                              },
+                              "preview_image"
+                            );
+                          }}
                           className="block relative aspect-[16/10] w-full overflow-hidden bg-[#f4f5f7] cursor-pointer"
                           title={isAr ? `زيارة موقع ${project.url}` : `Visit ${project.url}`}
                         >
@@ -264,6 +307,18 @@ export function ProjectsView({ lang, dict }: ProjectsViewProps) {
                           href={projectHref}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => {
+                            trackProjectClick(
+                              {
+                                id: project.id,
+                                title: project.title,
+                                client: project.client,
+                                category: project.categoryKey,
+                                url: project.url,
+                              },
+                              "visit_button"
+                            );
+                          }}
                           className="inline-flex items-center justify-center gap-1.5 h-9 px-3 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[#0d0d0d] text-xs font-medium hover:bg-[#f3f3f3] hover:border-[#646f79]/40 transition-all duration-200 active:scale-[0.98]"
                           title={isAr ? `زيارة موقع ${project.url}` : `Visit ${project.url}`}
                         >
@@ -277,6 +332,14 @@ export function ProjectsView({ lang, dict }: ProjectsViewProps) {
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => {
+                            trackProjectInquiry({
+                              id: project.id,
+                              title: project.title,
+                              client: project.client,
+                              category: project.categoryKey,
+                            });
+                          }}
                           className="inline-flex items-center justify-center gap-1.5 h-9 px-4 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-xs font-medium hover:bg-[#646f79] transition-all duration-200 active:scale-[0.98]"
                         >
                           <span>{t.cta.inquire_btn}</span>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
 import { FloatingShapes, heroShapes } from "./FloatingShapes";
+import { trackContactClick, trackEvent } from "@/lib/analytics";
 
 interface HeroProps {
   lang: Locale;
@@ -459,6 +460,12 @@ export function Hero({ lang, dict }: HeroProps) {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5">
               <a
                 href={`/${lang}#pricing`}
+                onClick={() => {
+                  trackEvent("hero_cta_click", {
+                    cta_target: "pricing",
+                    cta_label: dict.hero.cta,
+                  });
+                }}
                 className="group inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-6 sm:px-8 rounded-[64px] bg-[#ffffff] text-[#0d0d0d] text-[14px] sm:text-[15px] font-medium hover:bg-[#f1f5f9] shadow-[0_4px_24px_rgba(255,255,255,0.18)] transition-[background-color,transform,box-shadow] duration-200 active:scale-[0.98]"
               >
                 <span>{dict.hero.cta}</span>
@@ -471,6 +478,12 @@ export function Hero({ lang, dict }: HeroProps) {
                 href="https://wa.me/46700265645"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  trackContactClick({
+                    source: "hero_contact",
+                    method: "whatsapp",
+                  });
+                }}
                 className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-7 rounded-[64px] bg-white/[0.08] text-[#ffffff] border border-white/20 hover:bg-white/[0.14] hover:border-white/30 backdrop-blur-md text-[14px] sm:text-[15px] font-medium shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-[background-color,border-color,transform] duration-200 active:scale-[0.98]"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
