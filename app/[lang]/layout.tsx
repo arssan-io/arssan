@@ -9,6 +9,7 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
 import { Footer } from "@/components/Footer";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -260,6 +261,7 @@ export default async function LangLayout({
           rtl ? "font-readex-pro" : "font-sans"
         } antialiased bg-[#ffffff] text-[#0d0d0d] selection:bg-[#0d0e10] selection:text-[#ffffff]`}
       >
+        <GoogleAnalytics />
         <Script id="webmcp-tools" strategy="beforeInteractive">
           {WEBMCP_SCRIPT}
         </Script>
