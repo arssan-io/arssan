@@ -17,7 +17,7 @@ A modern, bilingual (Arabic/English) corporate landing page for **Arssan** — a
 - Custom cursor with smooth tracking
 - Apple-style scroll reveal animations
 - Responsive across all devices
-- SEO optimized
+- SEO optimized & AI Agent Ready (RFC 9727, WebMCP, ARD, MCP, Auth.md, DNS-AID)
 - Floating WhatsApp contact button
 - 3 pricing tiers with standalone pages
 
@@ -65,7 +65,32 @@ Open [http://localhost:3000](http://localhost:3000) — redirects to `/ar` (Arab
 │       ├── Icon.svg
 │       └── Logo.svg
 ├── proxy.ts                  # i18n routing proxy
-└── netlify.toml              # Netlify deployment config
+├── netlify.toml              # Netlify deployment config
+├── dns/                      # DNS for AI Discovery (DNS-AID) records & zones
+│   ├── arssan.com-dns-aid.zone
+│   ├── arssan.com (DNS Records).csv
+│   └── README.md
+└── scripts/
+    └── publish-dns-aid.mjs   # DNS-AID verifier & Cloudflare API publisher
+```
+
+## AI Agent Discovery & DNS-AID
+
+Arssan publishes machine-readable discovery interfaces for autonomous agents and tools:
+- **API Catalog (RFC 9727):** `/.well-known/api-catalog`
+- **Agent Card (A2A):** `/.well-known/agent-card.json`
+- **MCP Server Card:** `/.well-known/mcp/server-card.json`
+- **Agent Skills:** `/.well-known/agent-skills/index.json`
+- **DNS for AI Discovery (DNS-AID):** `_index._agents.arssan.com`, `_a2a._agents.arssan.com`, `_mcp._agents.arssan.com`
+
+Verify DNS-AID records via DNS-over-HTTPS:
+```bash
+npm run dns:verify
+```
+
+Publish to Cloudflare:
+```bash
+CLOUDFLARE_API_TOKEN="..." npm run dns:publish
 ```
 
 ## Deployment

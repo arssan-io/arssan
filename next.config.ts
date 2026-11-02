@@ -26,6 +26,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: "standalone",
   devIndicators: false,
+  experimental: {
+    cpus: 2,
+  },
   async headers() {
     return [
       {

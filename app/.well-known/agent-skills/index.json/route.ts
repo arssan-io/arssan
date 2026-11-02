@@ -3,6 +3,7 @@ import {
   getSiteOrigin,
   getArssanSkillMd,
   getAuthSkillMd,
+  getDnsAidSkillMd,
 } from "@/lib/agent-discovery";
 
 async function sha256Digest(text: string): Promise<string> {
@@ -18,10 +19,12 @@ export async function GET(request: Request) {
 
   const arssanSkillMd = getArssanSkillMd(origin);
   const authSkillMd = getAuthSkillMd(origin);
+  const dnsAidSkillMd = getDnsAidSkillMd(origin);
 
-  const [arssanDigest, authDigest] = await Promise.all([
+  const [arssanDigest, authDigest, dnsAidDigest] = await Promise.all([
     sha256Digest(arssanSkillMd),
     sha256Digest(authSkillMd),
+    sha256Digest(dnsAidSkillMd),
   ]);
 
   const index = {
@@ -42,6 +45,14 @@ export async function GET(request: Request) {
           "Agent authentication and registration instructions for Arssan Studio web services and discovery endpoints.",
         url: `${origin}/.well-known/agent-skills/auth-md/SKILL.md`,
         digest: authDigest,
+      },
+      {
+        name: "dns-aid",
+        type: "skill-md",
+        description:
+          "DNS for AI Discovery (DNS-AID) protocol specification and well-known entrypoint records for autonomous agent discovery.",
+        url: `${origin}/.well-known/agent-skills/dns-aid/SKILL.md`,
+        digest: dnsAidDigest,
       },
     ],
   };

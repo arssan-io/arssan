@@ -19,6 +19,11 @@ export async function GET(request: Request) {
             type: "text/markdown",
             title: "Arssan Studio Agent Registration & Access Guide (Auth.md)",
           },
+          {
+            href: `${origin}/.well-known/agent-skills/dns-aid/SKILL.md`,
+            type: "text/markdown",
+            title: "DNS for AI Discovery (DNS-AID) Specification & Records",
+          },
         ],
         "service-desc": [
           {

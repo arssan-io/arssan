@@ -1,0 +1,5 @@
+name,ttl,type,value
+"_index._agents.arssan.com","3600","HTTPS","1 arssan.com. alpn=h2,h3 port=443"
+"_a2a._agents.arssan.com","3600","HTTPS","1 arssan.com. alpn=a2a port=443"
+"_mcp._agents.arssan.com","3600","HTTPS","1 arssan.com. alpn=mcp port=443"
+"_index._agents.arssan.com","3600","TXT","v=DNS-AID1; uri=https://arssan.com/.well-known/ai-catalog.json"

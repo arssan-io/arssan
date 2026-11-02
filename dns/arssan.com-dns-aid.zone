@@ -1,0 +1,34 @@
+; ==============================================================================
+; DNS for AI Discovery (DNS-AID) Zone File for arssan.com
+; Specifications:
+;   - IETF draft-mozleywilliams-dnsop-dnsaid-02 (DNS for AI Discovery)
+;   - RFC 9460 (Service Binding and Parameter Specification via DNS SVCB/HTTPS)
+;   - isitagentready.com DNS-AID Specification
+; ==============================================================================
+
+$ORIGIN arssan.com.
+$TTL 3600
+
+; ------------------------------------------------------------------------------
+; 1. HTTPS ServiceMode Records (Type 65)
+; ------------------------------------------------------------------------------
+; Organizational Index of discoverable agents & services
+_index._agents  3600  IN  HTTPS  1  arssan.com.  alpn="h2,h3" port=443
+
+; Agent-to-Agent (A2A) protocol discovery entrypoint
+_a2a._agents    3600  IN  HTTPS  1  arssan.com.  alpn="a2a" port=443
+
+; Model Context Protocol (MCP) entrypoint
+_mcp._agents    3600  IN  HTTPS  1  arssan.com.  alpn="mcp" port=443
+
+; ------------------------------------------------------------------------------
+; 2. SVCB ServiceMode Records (Type 64 - RFC 9460)
+; ------------------------------------------------------------------------------
+_index._agents  3600  IN  SVCB   1  arssan.com.  alpn="h2,h3" port=443
+_a2a._agents    3600  IN  SVCB   1  arssan.com.  alpn="a2a" port=443
+_mcp._agents    3600  IN  SVCB   1  arssan.com.  alpn="mcp" port=443
+
+; ------------------------------------------------------------------------------
+; 3. Fallback TXT Index Record
+; ------------------------------------------------------------------------------
+_index._agents  3600  IN  TXT    "v=DNS-AID1; uri=https://arssan.com/.well-known/ai-catalog.json"

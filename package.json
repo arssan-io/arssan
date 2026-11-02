@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "dns:verify": "node scripts/publish-dns-aid.mjs",
+    "dns:publish": "node scripts/publish-dns-aid.mjs --publish"
   },
   "dependencies": {
     "framer-motion": "^12.34.3",

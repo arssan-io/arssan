@@ -43,6 +43,13 @@ export async function GET(request: Request) {
           "Browse featured corporate, e-commerce, healthcare, and SaaS platforms engineered by Arssan.",
         tags: ["portfolio", "projects", "case-studies"],
       },
+      {
+        id: "dns-aid-discovery",
+        name: "DNS for AI Discovery (DNS-AID)",
+        description:
+          "Discover Arssan Studio endpoints, A2A agent card, and MCP tools via DNS-AID well-known SVCB/HTTPS records (_index._agents.arssan.com).",
+        tags: ["dns-aid", "dns", "discovery", "rfc9460", "a2a"],
+      },
     ],
   };
 

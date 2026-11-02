@@ -10,6 +10,7 @@ export const AGENT_LINK_HEADER = [
   '</auth.md>; rel="describedby"',
   '</auth.md>; rel="service-doc"',
   '</.well-known/agent-skills/index.json>; rel="service-doc"',
+  '</.well-known/agent-skills/dns-aid/SKILL.md>; rel="service-doc"',
   '</sitemap.xml>; rel="service-desc"',
 ].join(", ");
 
@@ -141,6 +142,7 @@ export function getMarkdownRepresentation(
 - **MCP Server Card**: ${origin}/.well-known/mcp/server-card.json
 - **Agent Skills Index**: ${origin}/.well-known/agent-skills/index.json
 - **Agent Registration (Auth.md)**: ${origin}/auth.md
+- **DNS for AI Discovery (DNS-AID)**: _index._agents.${new URL(origin).host} (HTTPS/SVCB)
 `;
   }
 
@@ -253,6 +255,11 @@ Tailored digital architecture for large enterprises, custom web applications, an
 - **OAuth Protected Resource Metadata**: \`${origin}/.well-known/oauth-protected-resource\`
 - **OAuth Authorization Server Metadata**: \`${origin}/.well-known/oauth-authorization-server\`
 - **OpenID Connect Configuration**: \`${origin}/.well-known/openid-configuration\`
+- **DNS for AI Discovery (DNS-AID)**:
+  - Agent Index: \`_index._agents.${new URL(origin).host}\` (HTTPS / SVCB, \`alpn="h2,h3" port=443\`)
+  - Agent-to-Agent (A2A): \`_a2a._agents.${new URL(origin).host}\` (HTTPS / SVCB, \`alpn="a2a" port=443\`)
+  - Model Context Protocol (MCP): \`_mcp._agents.${new URL(origin).host}\` (HTTPS / SVCB, \`alpn="mcp" port=443\`)
+  - DNS-AID Skill: \`${origin}/.well-known/agent-skills/dns-aid/SKILL.md\`
 - **XML Sitemap**: \`${origin}/sitemap.xml\`
 `;
 }
@@ -281,6 +288,8 @@ Arssan Studio provides web design (UI/UX), Next.js full-stack development, KNET/
 - **OpenID Connect Discovery**: ${origin}/.well-known/openid-configuration
 - **JWKS Endpoint**: ${origin}/.well-known/jwks.json
 - **Agent Auth Skill**: ${origin}/.well-known/agent-skills/auth-md/SKILL.md
+- **DNS for AI Discovery (DNS-AID) Skill**: ${origin}/.well-known/agent-skills/dns-aid/SKILL.md
+- **DNS-AID Well-Known Records**: \`_index._agents.${new URL(origin).host}\`, \`_a2a._agents.${new URL(origin).host}\`, \`_mcp._agents.${new URL(origin).host}\`
 - **API Catalog (RFC 9727)**: ${origin}/.well-known/api-catalog
 - **ARD Capability Manifest**: ${origin}/.well-known/ai-catalog.json
 - **MCP Server Card**: ${origin}/.well-known/mcp/server-card.json
@@ -385,6 +394,64 @@ Guides automated AI agents on registering their identity with Arssan Studio (\`$
 - **OAuth Protected Resource Metadata**: \`${origin}/.well-known/oauth-protected-resource\`
 - **OAuth Authorization Server Metadata**: \`${origin}/.well-known/oauth-authorization-server\`
 - **OpenID Connect Discovery**: \`${origin}/.well-known/openid-configuration\`
+- **DNS for AI Discovery (DNS-AID)**: \`_index._agents.${new URL(origin).host}\`
+- **DNS-AID Skill**: \`${origin}/.well-known/agent-skills/dns-aid/SKILL.md\`
 - **API Catalog**: \`${origin}/.well-known/api-catalog\`
+`;
+}
+
+export function getDnsAidSkillMd(origin: string): string {
+  let host = "arssan.com";
+  try {
+    host = new URL(origin).host;
+  } catch {}
+
+  return `---
+name: dns-aid
+description: DNS for AI Discovery (DNS-AID) protocol specification and well-known entrypoint records for autonomous agent discovery.
+version: 1.0.0
+author: Arssan Studio (Scptric)
+---
+
+# Implement DNS for AI Discovery (DNS-AID)
+
+Publish DNS for AI Discovery (DNS-AID) records so agents can discover your agent endpoints through DNS.
+
+## Requirements
+
+- Publish DNS for AI Discovery (DNS-AID) records under your domain's \`_agents\` namespace, such as \`_index._agents.${host}\` or \`_a2a._agents.${host}\`
+- Use ServiceMode \`SVCB\` records, or \`HTTPS\` records for HTTPS endpoints, with \`alpn\` and endpoint connection parameters
+- Use numeric \`keyNNNNN\` SvcParamKey names for experimental DNS for AI Discovery (DNS-AID) custom parameters until they are registered
+- Sign public DNS for AI Discovery (DNS-AID) discovery zones with DNSSEC so validating resolvers return authenticated data
+
+## Arssan Studio Discovery Records
+
+\`\`\`dns
+# HTTPS ServiceMode records
+_index._agents.${host}. 3600 IN HTTPS 1 ${host}. alpn="h2,h3" port=443
+_a2a._agents.${host}.   3600 IN HTTPS 1 ${host}. alpn="a2a" port=443
+_mcp._agents.${host}.   3600 IN HTTPS 1 ${host}. alpn="mcp" port=443
+
+# SVCB ServiceMode records (RFC 9460)
+_index._agents.${host}. 3600 IN SVCB 1 ${host}. alpn="h2,h3" port=443
+_a2a._agents.${host}.   3600 IN SVCB 1 ${host}. alpn="a2a" port=443
+_mcp._agents.${host}.   3600 IN SVCB 1 ${host}. alpn="mcp" port=443
+
+# Fallback TXT index record
+_index._agents.${host}. 3600 IN TXT "v=DNS-AID1; uri=${origin}/.well-known/ai-catalog.json"
+\`\`\`
+
+## Validate
+
+The scanner validates DNS for AI Discovery (DNS-AID) via DNS-over-HTTPS. By default, the scanner uses Cloudflare's \`https://cloudflare-dns.com/dns-query\` with automatic fallback to \`https://dns.google/resolve\` on resolver-level failures. Library callers can override the resolver with \`ScanOptions.dohResolverUrl\` (disables fallback).
+
+\`\`\`http
+POST https://isitagentready.com/api/scan
+Content-Type: application/json
+
+{"url": "${origin}"}
+\`\`\`
+
+Check that \`checks.discoverability.dnsAid.status\` is \`"pass"\`.
 `;
 }

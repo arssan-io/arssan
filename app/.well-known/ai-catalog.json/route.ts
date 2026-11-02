@@ -66,6 +66,17 @@ export async function GET(request: Request) {
           "auth.md instructions for Arssan Kuwait",
         ],
       },
+      {
+        identifier: `urn:air:${hostname}:skills:dns-aid`,
+        displayName: "Arssan Studio DNS-AID Protocol Specification",
+        type: "text/markdown",
+        url: `${origin}/.well-known/agent-skills/dns-aid/SKILL.md`,
+        representativeQueries: [
+          "DNS for AI Discovery (DNS-AID) entrypoint records",
+          "_index._agents DNS discovery for Arssan Studio",
+          "RFC 9460 SVCB and HTTPS records for AI agents",
+        ],
+      },
     ],
   };
 
