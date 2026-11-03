@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { draftMode } from "next/headers";
-import { VisualEditing } from "next-sanity/visual-editing";
+import { SanityVisualEditing } from "@/components/SanityVisualEditing";
 import { Plus_Jakarta_Sans, Readex_Pro, IBM_Plex_Mono } from "next/font/google";
 import { isRtl, type Locale } from "@/lib/i18n";
 import { getFullSiteData } from "@/lib/sanity/loaders";
@@ -350,7 +350,7 @@ export default async function LangLayout({
         <WhatsAppButton dict={dict} whatsappUrl={siteConfig.whatsappUrl} />
         <BackToTop dict={dict} />
         <SanityLive />
-        {isDraftMode && <VisualEditing />}
+        {isDraftMode && <SanityVisualEditing />}
       </body>
     </html>
   );

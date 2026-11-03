@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
   compress: true,
   devIndicators: false,
   experimental: {
-    cpus: 2,
+    optimizePackageImports: ["framer-motion", "@sanity/icons", "@sanity/ui"],
   },
   images: {
     formats: ["image/avif", "image/webp"],
