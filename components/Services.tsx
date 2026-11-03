@@ -4,15 +4,26 @@ import { motion } from "framer-motion";
 import { AnimateInView } from "./AnimateInView";
 import { FloatingShapes, servicesShapes } from "./FloatingShapes";
 
+interface ServiceBlock {
+  title: string;
+  description: string;
+  features: string[];
+  metric?: {
+    value: string;
+    label: string;
+    tag: string;
+  };
+}
+
 interface ServicesProps {
   dict: {
     services: {
       badge: string;
       title: string;
       subtitle: string;
-      design: { title: string; description: string; features: string[] };
-      development: { title: string; description: string; features: string[] };
-      seo: { title: string; description: string; features: string[] };
+      design: ServiceBlock;
+      development: ServiceBlock;
+      seo: ServiceBlock;
     };
   };
 }
@@ -43,9 +54,24 @@ const serviceMetrics = {
 
 export function Services({ dict }: ServicesProps) {
   const services = [
-    { key: "design" as const, icon: icons.design, metric: serviceMetrics.design, ...dict.services.design },
-    { key: "development" as const, icon: icons.development, metric: serviceMetrics.development, ...dict.services.development },
-    { key: "seo" as const, icon: icons.seo, metric: serviceMetrics.seo, ...dict.services.seo },
+    {
+      key: "design" as const,
+      icon: icons.design,
+      ...dict.services.design,
+      metric: dict.services.design.metric || serviceMetrics.design,
+    },
+    {
+      key: "development" as const,
+      icon: icons.development,
+      ...dict.services.development,
+      metric: dict.services.development.metric || serviceMetrics.development,
+    },
+    {
+      key: "seo" as const,
+      icon: icons.seo,
+      ...dict.services.seo,
+      metric: dict.services.seo.metric || serviceMetrics.seo,
+    },
   ];
 
   return (

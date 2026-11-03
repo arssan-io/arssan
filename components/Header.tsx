@@ -7,6 +7,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
 import { trackContactClick, trackLanguageSwitch } from "@/lib/analytics";
+import type { SiteContactConfig } from "@/lib/sanity/loaders";
 
 interface HeaderProps {
   lang: Locale;
@@ -14,6 +15,7 @@ interface HeaderProps {
     nav: {
       home: string;
       projects?: string;
+      blog?: string;
       process: string;
       services: string;
       pricing: string;
@@ -21,9 +23,10 @@ interface HeaderProps {
     };
     language: { switch: string };
   };
+  siteConfig?: SiteContactConfig;
 }
 
-export function Header({ lang, dict }: HeaderProps) {
+export function Header({ lang, dict, siteConfig }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isOverHero, setIsOverHero] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -34,6 +37,8 @@ export function Header({ lang, dict }: HeaderProps) {
   const switchLangHref = pathname
     ? pathname.replace(new RegExp(`^/${lang}`), `/${otherLang}`)
     : `/${otherLang}`;
+
+  const whatsappUrl = siteConfig?.whatsappUrl || "https://wa.me/46700265645";
 
   useEffect(() => {
     const updateHeaderState = () => {
@@ -67,12 +72,24 @@ export function Header({ lang, dict }: HeaderProps) {
     };
   }, [mobileOpen]);
 
-  const navItems = [
-    { label: dict.nav.projects || (isAr ? "مشاريعنا" : "Projects"), href: `/${lang}/projects` },
-    { label: dict.nav.services, href: `/${lang}#services` },
-    { label: dict.nav.process, href: `/${lang}#process` },
-    { label: dict.nav.pricing, href: `/${lang}#pricing` },
-  ];
+  const navItems =
+    siteConfig?.headerNavItems && siteConfig.headerNavItems.length > 0
+      ? siteConfig.headerNavItems
+      : [
+          {
+            label: dict.nav.projects || (isAr ? "مشاريعنا" : "Projects"),
+            href: `/${lang}/projects`,
+          },
+          {
+            label: dict.nav.blog || (isAr ? "المدونة" : "Blog"),
+            href: `/${lang}/blog`,
+          },
+          { label: dict.nav.services, href: `/${lang}#services` },
+          { label: dict.nav.process, href: `/${lang}#process` },
+          { label: dict.nav.pricing, href: `/${lang}#pricing` },
+        ];
+
+  const announcement = siteConfig?.announcementBar;
 
   return (
     <>
@@ -90,6 +107,25 @@ export function Header({ lang, dict }: HeaderProps) {
               : "py-3.5 sm:py-5 bg-[#ffffff]/80 border-b border-transparent"
         }`}
       >
+        {announcement?.enabled && announcement.text && !scrolled && (
+          <div className="max-w-[1280px] mx-auto px-5 sm:px-8 pb-2.5 mb-2.5 border-b border-current/10 flex items-center justify-center gap-3 text-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className={isOverHero ? "text-white/90" : "text-[#0d0d0d]"}>
+              {announcement.text}
+            </span>
+            {announcement.linkHref && announcement.linkText && (
+              <Link
+                href={announcement.linkHref}
+                className={`font-semibold underline underline-offset-4 ${
+                  isOverHero ? "text-white" : "text-[#0d0d0d]"
+                }`}
+              >
+                {announcement.linkText}
+              </Link>
+            )}
+          </div>
+        )}
+
         <div className="max-w-[1280px] mx-auto px-5 sm:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <Link
@@ -97,8 +133,8 @@ export function Header({ lang, dict }: HeaderProps) {
             className="flex items-center relative z-50 transition-opacity duration-150 hover:opacity-80"
           >
             <Image
-              src="/images/Logo.svg"
-              alt="Arssan"
+              src={siteConfig?.logoUrl || "/images/Logo.svg"}
+              alt={siteConfig?.siteName || "Arssan"}
               width={56}
               height={32}
               priority
@@ -119,18 +155,24 @@ export function Header({ lang, dict }: HeaderProps) {
           >
             {navItems.map((item) => {
               const isHovered = hoveredNav === item.href;
+              const isActive =
+                pathname &&
+                !item.href.includes("#") &&
+                (pathname === item.href || pathname.startsWith(`${item.href}/`));
               return (
                 <Link
-                  key={item.href}
+                  key={item.href + item.label}
                   href={item.href}
                   onMouseEnter={() => setHoveredNav(item.href)}
                   className={`relative px-4 py-1.5 text-[14px] font-medium transition-colors duration-150 rounded-[64px] ${
                     isOverHero
                       ? "text-white/85 hover:text-white"
-                      : "text-[#0d0d0d]"
+                      : isActive
+                        ? "text-[#0d0d0d] font-semibold"
+                        : "text-[#0d0d0d]"
                   }`}
                 >
-                  {isHovered && (
+                  {(isHovered || (isActive && !hoveredNav)) && (
                     <motion.span
                       layoutId="asana-nav-pill"
                       transition={{ duration: 0.2, ease: "easeInOut" }}
@@ -166,7 +208,7 @@ export function Header({ lang, dict }: HeaderProps) {
             </Link>
 
             <a
-              href="https://wa.me/46700265645"
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
@@ -235,7 +277,7 @@ export function Header({ lang, dict }: HeaderProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden fixed inset-0 bg-[#ffffff] text-[#0d0d0d] z-[45] flex flex-col justify-between px-6 pt-24 pb-10"
+            className="md:hidden fixed inset-0 bg-[#ffffff] text-[#0d0d0d] z-[45] flex flex-col justify-between px-6 pt-24 pb-10 overflow-y-auto"
           >
             <div className="flex flex-col space-y-6">
               <div className="p-4 rounded-[20px] bg-[#f3f3f3] flex items-center justify-between">
@@ -260,7 +302,7 @@ export function Header({ lang, dict }: HeaderProps) {
 
                 {navItems.map((item, idx) => (
                   <Link
-                    key={item.href}
+                    key={item.href + item.label}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-between px-4 py-3.5 rounded-[20px] hover:bg-[#f3f3f3] text-lg font-medium text-[#0d0d0d] transition-colors"
@@ -287,7 +329,7 @@ export function Header({ lang, dict }: HeaderProps) {
                   {dict.language.switch}
                 </Link>
                 <a
-                  href="https://wa.me/46700265645"
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => {

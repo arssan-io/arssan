@@ -7,12 +7,13 @@ import {
   estimateTokens,
 } from "@/lib/agent-discovery";
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Pass through static assets, API routes, well-known discovery endpoints, and root metadata files
+  // Pass through static assets, Studio, API routes, well-known discovery endpoints, and root metadata files
   if (
     pathname.startsWith("/_next") ||
+    pathname.startsWith("/studio") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/.well-known") ||
     pathname.startsWith("/images") ||
@@ -33,7 +34,7 @@ export function proxy(request: NextRequest) {
   const acceptHeader = request.headers.get("accept") || "";
   if (acceptHeader.toLowerCase().includes("text/markdown")) {
     const { origin } = getSiteOrigin(request);
-    const markdown = getMarkdownRepresentation(origin, pathname);
+    const markdown = await getMarkdownRepresentation(origin, pathname);
 
     return new NextResponse(markdown, {
       status: 200,
@@ -72,5 +73,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|images|partners|fonts|favicon.ico).*)"],
+  matcher: ["/((?!_next|studio|images|partners|fonts|favicon.ico).*)"],
 };

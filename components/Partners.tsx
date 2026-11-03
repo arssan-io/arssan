@@ -7,11 +7,12 @@ import type { Locale } from "@/lib/i18n";
 interface PartnerItem {
   id: string;
   name: string;
+  role?: string;
   logo: string;
   url: string;
 }
 
-const partners: PartnerItem[] = [
+const defaultPartners: PartnerItem[] = [
   {
     id: "cloudflare",
     name: "Cloudflare",
@@ -45,6 +46,7 @@ interface PartnersProps {
       badge?: string;
       title?: string;
       subtitle?: string;
+      list?: PartnerItem[];
     };
   };
 }
@@ -54,6 +56,11 @@ export function Partners({ lang = "ar", dict }: PartnersProps = {}) {
   const subtitle =
     dict?.partners?.badge ||
     (isAr ? "شركاء التقنية والحلول السحابية" : "Technology & Cloud Infrastructure Partners");
+
+  const items =
+    dict?.partners?.list && dict.partners.list.length > 0
+      ? dict.partners.list
+      : defaultPartners;
 
   return (
     <section className="py-10 sm:py-14 bg-[#ffffff] border-b border-[#f3f3f3] overflow-hidden">
@@ -68,7 +75,7 @@ export function Partners({ lang = "ar", dict }: PartnersProps = {}) {
         {/* Frameless Logos Row */}
         <AnimateInView delay={0.05}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 lg:gap-16 items-center justify-items-center">
-            {partners.map((partner) => (
+            {items.map((partner) => (
               <a
                 key={partner.id}
                 href={partner.url}

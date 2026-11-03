@@ -8,16 +8,27 @@
     "start": "next start",
     "lint": "eslint",
     "dns:verify": "node scripts/publish-dns-aid.mjs",
-    "dns:publish": "node scripts/publish-dns-aid.mjs --publish"
+    "dns:publish": "node scripts/publish-dns-aid.mjs --publish",
+    "sanity:typegen": "sanity schema extract --path=sanity/extract.json && sanity typegen generate",
+    "sanity:seed": "node --env-file=.env.local scripts/seed-sanity.mjs",
+    "sanity:backup": "sanity dataset export production backups/production.tar.gz"
   },
   "dependencies": {
+    "@portabletext/react": "^8.0.1",
+    "@sanity/code-input": "^7.3.14",
+    "@sanity/document-internationalization": "^6.2.46",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/orderable-document-list": "^2.0.28",
+    "@sanity/vision": "^6.21.0",
     "framer-motion": "^12.34.3",
     "next": "^16.4.3",
+    "next-sanity": "^13.4.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sanity": "^6.21.0",
+    "styled-components": "^6.6.0"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.15.8",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -26,5 +37,8 @@
     "eslint-config-next": "^16.4.3",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@pierre/diffs": "1.6.2"
   }
 }

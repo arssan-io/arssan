@@ -37,12 +37,14 @@ export type ContactTrackData = {
     | "footer_contact"
     | "pricing_custom_quote"
     | "package_page"
-    | "project_card";
+    | "project_card"
+    | "blog_cta";
   method?: "whatsapp" | "email" | "link";
   packageId?: string;
   packageName?: string;
   projectId?: string;
   projectTitle?: string;
+  articleSlug?: string;
 };
 
 // Generic safe event dispatcher
@@ -243,5 +245,50 @@ export function trackLanguageSwitch(fromLang: string, toLang: string) {
 export function trackSocialClick(platform: string) {
   trackEvent("social_click", {
     platform,
+  });
+}
+
+/**
+ * 4. BLOG & EDITORIAL TRACKING
+ */
+
+export function trackBlogView(article: {
+  slug: string;
+  title: string;
+  language: string;
+  category?: string;
+  readingTime?: number;
+}) {
+  trackEvent("view_blog_post", {
+    article_slug: article.slug,
+    article_title: article.title,
+    article_language: article.language,
+    article_category: article.category || "general",
+    reading_time_minutes: article.readingTime || 4,
+  });
+}
+
+export function trackBlogCtaClick(data: {
+  articleSlug: string;
+  ctaHeading: string;
+  targetHref: string;
+  packageSlug?: string;
+}) {
+  trackEvent("blog_cta_click", {
+    article_slug: data.articleSlug,
+    cta_heading: data.ctaHeading,
+    target_href: data.targetHref,
+    package_id: data.packageSlug,
+  });
+}
+
+export function trackBlogShare(data: {
+  articleSlug: string;
+  method: string;
+}) {
+  trackEvent("share", {
+    method: data.method,
+    content_type: "blog_post",
+    item_id: data.articleSlug,
   });
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n";
-import { getDictionary } from "@/lib/dictionaries";
+import { getFullSiteData } from "@/lib/sanity/loaders";
 import { ProjectsView } from "@/components/ProjectsView";
 
 export function generateStaticParams() {
@@ -15,7 +15,7 @@ export async function generateMetadata({
   const { lang } = await params;
   const locale = lang as Locale;
   const isAr = locale === "ar";
-  const dict = await getDictionary(locale);
+  const { dict } = await getFullSiteData(locale);
 
   const title = isAr
     ? "مشاريعنا | أرسان"
@@ -31,7 +31,7 @@ export async function generateMetadata({
       url: `/${locale}/projects`,
       images: [
         {
-          url: "/images/og-image.png",
+          url: dict.meta.ogImageUrl || "/images/og-image.png",
           width: 1201,
           height: 630,
           alt: title,
@@ -42,7 +42,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/og-image.png"],
+      images: [dict.meta.ogImageUrl || "/images/og-image.png"],
     },
   };
 }
@@ -54,7 +54,13 @@ export default async function ProjectsPage({
 }) {
   const { lang } = await params;
   const locale = lang as Locale;
-  const dict = await getDictionary(locale);
+  const { dict, siteConfig } = await getFullSiteData(locale);
 
-  return <ProjectsView lang={locale} dict={dict} />;
+  return (
+    <ProjectsView
+      lang={locale}
+      dict={dict}
+      whatsappUrl={siteConfig.whatsappUrl}
+    />
+  );
 }

@@ -31,6 +31,7 @@ export interface ProjectItem {
   };
   tags: string[];
   inquiryMessage: string;
+  hasCaseStudy?: boolean;
 }
 
 interface ProjectsViewProps {
@@ -54,9 +55,14 @@ interface ProjectsViewProps {
       };
     };
   };
+  whatsappUrl?: string;
 }
 
-export function ProjectsView({ lang, dict }: ProjectsViewProps) {
+export function ProjectsView({
+  lang,
+  dict,
+  whatsappUrl = "https://wa.me/46700265645",
+}: ProjectsViewProps) {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const isAr = lang === "ar";
   const t = dict.projects_page;
@@ -326,8 +332,17 @@ export function ProjectsView({ lang, dict }: ProjectsViewProps) {
                           <span className="text-[11px] opacity-70">↗</span>
                         </a>
 
+                        {project.hasCaseStudy && (
+                          <Link
+                            href={`/${lang}/projects/${project.slug}`}
+                            className="inline-flex items-center justify-center gap-1 h-9 px-3 rounded-[64px] bg-[#f3f3f3] border border-[#e5e7eb] text-[#0d0d0d] text-xs font-medium hover:bg-[#e5e7eb] transition-colors"
+                          >
+                            <span>{isAr ? "تفاصيل المشروع" : "Case Study"}</span>
+                          </Link>
+                        )}
+
                         <a
-                          href={`https://wa.me/46700265645?text=${encodeURIComponent(
+                          href={`${whatsappUrl}?text=${encodeURIComponent(
                             project.inquiryMessage
                           )}`}
                           target="_blank"

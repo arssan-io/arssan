@@ -10,20 +10,27 @@ interface PackageData {
   originalPrice?: string;
   currency: string;
   popular?: boolean;
+  inquiryMessage?: string;
 }
 
 interface PackageInquiryButtonProps {
   pkg: PackageData;
   contactText: string;
+  whatsappUrl?: string;
 }
 
 export function PackageInquiryButton({
   pkg,
   contactText,
+  whatsappUrl = "https://wa.me/46700265645",
 }: PackageInquiryButtonProps) {
+  const href = pkg.inquiryMessage
+    ? `${whatsappUrl}?text=${encodeURIComponent(pkg.inquiryMessage)}`
+    : whatsappUrl;
+
   return (
     <a
-      href="https://wa.me/46700265645"
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => {

@@ -5,17 +5,32 @@ import Image from "next/image";
 import { AnimateInView } from "./AnimateInView";
 import type { Locale } from "@/lib/i18n";
 import { trackContactClick, trackSocialClick } from "@/lib/analytics";
+import type { SiteContactConfig } from "@/lib/sanity/loaders";
 
 interface FooterProps {
   lang: Locale;
   dict: {
-    nav: { home: string; projects?: string; process: string; services: string; pricing: string; contact: string };
+    nav: {
+      home: string;
+      projects?: string;
+      blog?: string;
+      process: string;
+      services: string;
+      pricing: string;
+      contact: string;
+    };
     footer: {
       bio: string;
       description: string;
       rights: string;
       links: { title: string };
       services_title: string;
+      statusText?: string;
+      preFooterCta?: {
+        badge?: string;
+        title?: string;
+        description?: string;
+      };
     };
     services: {
       design: { title: string };
@@ -23,6 +38,7 @@ interface FooterProps {
       seo: { title: string };
     };
   };
+  siteConfig?: SiteContactConfig;
 }
 
 function IconInstagram({ className }: { className?: string }) {
@@ -61,13 +77,17 @@ function IconScptric({ className }: { className?: string }) {
   );
 }
 
-export function Footer({ lang, dict }: FooterProps) {
+export function Footer({ lang, dict, siteConfig }: FooterProps) {
   const year = new Date().getFullYear();
   const isAr = lang === "ar";
+  const whatsappUrl = siteConfig?.whatsappUrl || "https://wa.me/46700265645";
+  const whatsappDisplay = siteConfig?.whatsappDisplay || "+46 70 026 56 45";
+  const email = siteConfig?.email || "info@arssan.com";
 
   const quickLinks = [
     { label: dict.nav.home, href: `/${lang}` },
     { label: dict.nav.projects || (isAr ? "مشاريعنا" : "Projects"), href: `/${lang}/projects` },
+    { label: dict.nav.blog || (isAr ? "المدونة" : "Blog"), href: `/${lang}/blog` },
     { label: dict.nav.services, href: `/${lang}#services` },
     { label: dict.nav.process, href: `/${lang}#process` },
     { label: dict.nav.pricing, href: `/${lang}#pricing` },
@@ -79,11 +99,37 @@ export function Footer({ lang, dict }: FooterProps) {
     { label: dict.services.seo.title, href: `/${lang}#services` },
   ];
 
-  const socialLinks = [
-    { label: "Instagram", href: "https://instagram.com/arssan.io", icon: IconInstagram },
-    { label: "X", href: "https://x.com/arssan_co", icon: IconX },
-    { label: "Facebook", href: "https://facebook.com/arssan.co", icon: IconFacebook },
-  ];
+  const iconMap: Record<string, typeof IconInstagram> = {
+    instagram: IconInstagram,
+    x: IconX,
+    facebook: IconFacebook,
+  };
+
+  const socialLinks = (
+    siteConfig?.socialLinks || [
+      { platform: "instagram", label: "Instagram", url: "https://instagram.com/arssan.io" },
+      { platform: "x", label: "X", url: "https://x.com/arssan_co" },
+      { platform: "facebook", label: "Facebook", url: "https://facebook.com/arssan.co" },
+    ]
+  ).map((s) => ({
+    label: s.label,
+    href: s.url,
+    icon: iconMap[s.platform] || IconInstagram,
+  }));
+
+  const ctaBadge =
+    dict.footer.preFooterCta?.badge ||
+    (isAr ? "استشارة مجانية لمشروعك في الكويت" : "Free Executive Discovery Call");
+  const ctaTitle =
+    dict.footer.preFooterCta?.title ||
+    (isAr
+      ? "هل أنت مستعد لبناء حضور رقمي يليق بعلامتك التجارية؟"
+      : "Ready to build a calm, high-performing digital platform?");
+  const ctaDesc =
+    dict.footer.preFooterCta?.description ||
+    (isAr
+      ? "تواصل مع فريقنا مباشرة عبر واتساب لمناقشة تفاصيل مشروعك واختيار الباقة الأنسب لأهدافك."
+      : "Connect directly with our team to scope your project, timeline, and KWD package.");
 
   return (
     <footer className="relative bg-[#ffffff] text-[#0d0d0d] overflow-hidden pt-12 sm:pt-16 md:pt-20">
@@ -94,23 +140,19 @@ export function Footer({ lang, dict }: FooterProps) {
             <div className="max-w-2xl space-y-2.5 sm:space-y-3 relative z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1 rounded-[64px] bg-[#ffffff]/10 border border-[#ffffff]/15 text-[11px] sm:text-[12px] font-medium text-[#ffffff]/90">
                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>{isAr ? "استشارة مجانية لمشروعك في الكويت" : "Free Executive Discovery Call"}</span>
+                <span>{ctaBadge}</span>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[-0.02em] leading-[1.25]">
-                {isAr
-                  ? "هل أنت مستعد لبناء حضور رقمي يليق بعلامتك التجارية؟"
-                  : "Ready to build a calm, high-performing digital platform?"}
+                {ctaTitle}
               </h3>
               <p className="text-[13px] sm:text-base text-[#ffffff]/70 leading-[1.6]">
-                {isAr
-                  ? "تواصل مع فريقنا مباشرة عبر واتساب لمناقشة تفاصيل مشروعك واختيار الباقة الأنسب لأهدافك."
-                  : "Connect directly with our team to scope your project, timeline, and KWD package."}
+                {ctaDesc}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full lg:w-auto relative z-10">
               <a
-                href="https://wa.me/46700265645"
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
@@ -141,21 +183,22 @@ export function Footer({ lang, dict }: FooterProps) {
             <div className="lg:col-span-5 space-y-4 sm:space-y-5">
               <div className="flex flex-wrap items-center gap-3">
                 <Image
-                  src="/images/Logo.svg"
-                  alt="Arssan"
+                  src={siteConfig?.logoUrl || "/images/Logo.svg"}
+                  alt={siteConfig?.siteName || "Arssan"}
                   width={56}
                   height={32}
                   className="h-7 sm:h-8 w-auto brightness-0"
                 />
                 <a
-                  href="https://scptric.com"
+                  href={siteConfig?.parentOrgUrl || "https://scptric.com"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e6e8eb] text-[#0d0d0d] hover:bg-[#e8eaed] hover:border-[#646f79]/30 transition-all duration-150 group"
                 >
                   <IconScptric className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0d0d0d] group-hover:text-black transition-colors flex-shrink-0" />
                   <span className="text-[11px] sm:text-[12px] font-medium text-[#646f79] group-hover:text-[#0d0d0d] transition-colors">
-                    {isAr ? "ذراع سكبترك للويب • Scptric" : "Scptric Web Arm"}
+                    {siteConfig?.parentOrgBadge ||
+                      (isAr ? "ذراع سكبترك للويب • Scptric" : "Scptric Web Arm")}
                   </span>
                   <span className="text-[10px] text-[#646f79] font-mono group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-transform">
                     ↗
@@ -187,9 +230,8 @@ export function Footer({ lang, dict }: FooterProps) {
               </div>
             </div>
 
-            {/* Links Columns: 2-column grid on mobile (Quick Links + Capabilities), full columns on desktop */}
+            {/* Links Columns */}
             <div className="lg:col-span-4 grid grid-cols-2 gap-6 sm:gap-8">
-              {/* Quick Links */}
               <div>
                 <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-5 text-[#0d0d0d]">
                   {dict.footer.links.title}
@@ -208,7 +250,6 @@ export function Footer({ lang, dict }: FooterProps) {
                 </ul>
               </div>
 
-              {/* Capabilities Links */}
               <div>
                 <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-5 text-[#0d0d0d]">
                   {dict.footer.services_title}
@@ -228,7 +269,7 @@ export function Footer({ lang, dict }: FooterProps) {
               </div>
             </div>
 
-            {/* Contact Info (3 cols on lg) */}
+            {/* Contact Info */}
             <div className="lg:col-span-3 pt-4 sm:pt-0 border-t border-[#f3f3f3] lg:border-t-0">
               <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-5 text-[#0d0d0d]">
                 {dict.nav.contact}
@@ -236,16 +277,16 @@ export function Footer({ lang, dict }: FooterProps) {
               <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[14px] text-[#646f79]">
                 <li>
                   <a
-                    href="mailto:info@arssan.com"
+                    href={`mailto:${email}`}
                     className="inline-flex items-center gap-2 hover:text-[#0d0d0d] transition-colors py-0.5"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                    <span>info@arssan.com</span>
+                    <span>{email}</span>
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://wa.me/46700265645"
+                    href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {
@@ -258,7 +299,7 @@ export function Footer({ lang, dict }: FooterProps) {
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
                     <span dir="ltr" className="font-mono text-[13px]">
-                      +46 70 026 56 45
+                      {whatsappDisplay}
                     </span>
                   </a>
                 </li>
@@ -270,13 +311,16 @@ export function Footer({ lang, dict }: FooterProps) {
         {/* Bottom Sub-bar */}
         <div className="py-6 sm:py-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-3.5 sm:gap-4 text-xs sm:text-[13px] text-[#646f79]">
           <p className="text-center sm:text-start">
-            &copy; {year} Arssan. {dict.footer.rights}.
+            &copy; {year} {siteConfig?.siteName || "Arssan"}. {dict.footer.rights}.
           </p>
 
           <div className="flex items-center justify-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] font-medium text-[11px] sm:text-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-              <span>{isAr ? "جميع الأنظمة تعمل بكفاءة" : "All Systems Operational"}</span>
+              <span>
+                {dict.footer.statusText ||
+                  (isAr ? "جميع الأنظمة تعمل بكفاءة" : "All Systems Operational")}
+              </span>
             </span>
           </div>
         </div>

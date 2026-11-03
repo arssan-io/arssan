@@ -8,7 +8,7 @@ import {
 
 export async function GET(request: Request) {
   const { origin } = getSiteOrigin(request);
-  const content = getMarkdownRepresentation(origin, "/");
+  const content = await getMarkdownRepresentation(origin, "/");
 
   return new NextResponse(content, {
     status: 200,

@@ -7,12 +7,13 @@ interface WhatsAppButtonProps {
   dict: {
     whatsapp: { tooltip: string };
   };
+  whatsappUrl?: string;
 }
 
-export function WhatsAppButton({ dict }: WhatsAppButtonProps) {
+export function WhatsAppButton({ dict, whatsappUrl = "https://wa.me/46700265645" }: WhatsAppButtonProps) {
   return (
     <motion.a
-      href="https://wa.me/46700265645"
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={dict.whatsapp.tooltip}

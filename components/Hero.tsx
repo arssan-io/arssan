@@ -20,11 +20,15 @@ interface HeroProps {
       title_line3: string;
       description: string;
       cta: string;
+      ctaHref?: string;
       pipeline_design: string;
       pipeline_dev: string;
       pipeline_seo: string;
+      startingPriceNote?: string;
+      backgroundImageUrl?: string;
     };
   };
+  whatsappUrl?: string;
 }
 
 const easeAsana = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -32,9 +36,11 @@ const easeAsana = [0.22, 1, 0.36, 1] as [number, number, number, number];
 function AsanaProjectShowcase({
   lang,
   labels,
+  startingPriceNote,
 }: {
   lang: Locale;
   labels: { design: string; dev: string; seo: string };
+  startingPriceNote?: string;
 }) {
   const isAr = lang === "ar";
   const [activeTab, setActiveTab] = useState<0 | 1 | 2>(0);
@@ -376,9 +382,10 @@ function AsanaProjectShowcase({
             <div className="flex items-center gap-1.5 sm:gap-2">
               <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 flex-shrink-0" />
               <span className="truncate">
-                {isAr
-                  ? "الباقات تبدأ من 150 د.ك • تسليم احترافي سريع"
-                  : "Packages from 150 KWD • Rapid Executive Delivery"}
+                {startingPriceNote ||
+                  (isAr
+                    ? "الباقات تبدأ من 150 د.ك • تسليم احترافي سريع"
+                    : "Packages from 150 KWD • Rapid Executive Delivery")}
               </span>
             </div>
           </div>
@@ -388,13 +395,16 @@ function AsanaProjectShowcase({
   );
 }
 
-export function Hero({ lang, dict }: HeroProps) {
+export function Hero({ lang, dict, whatsappUrl = "https://wa.me/46700265645" }: HeroProps) {
   const isAr = lang === "ar";
   const titleLines = [
     dict.hero.title_line1,
     dict.hero.title_line2,
     dict.hero.title_line3,
   ];
+  const ctaHref = dict.hero.ctaHref?.startsWith("#")
+    ? `/${lang}${dict.hero.ctaHref}`
+    : dict.hero.ctaHref || `/${lang}#pricing`;
 
   return (
     <section
@@ -404,7 +414,7 @@ export function Hero({ lang, dict }: HeroProps) {
       {/* Background Cinematic Ribbon Image with Next.js Image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
-          src="/images/hero-bg.webp"
+          src={dict.hero.backgroundImageUrl || "/images/hero-bg.webp"}
           alt="Arssan Architectural 3D Ribbon Background"
           fill
           priority
@@ -459,7 +469,7 @@ export function Hero({ lang, dict }: HeroProps) {
             {/* High-Affordance Pill Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5">
               <a
-                href={`/${lang}#pricing`}
+                href={ctaHref}
                 onClick={() => {
                   trackEvent("hero_cta_click", {
                     cta_target: "pricing",
@@ -475,7 +485,7 @@ export function Hero({ lang, dict }: HeroProps) {
               </a>
 
               <a
-                href="https://wa.me/46700265645"
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
@@ -496,6 +506,7 @@ export function Hero({ lang, dict }: HeroProps) {
           <div className="lg:col-span-5">
             <AsanaProjectShowcase
               lang={lang}
+              startingPriceNote={dict.hero.startingPriceNote}
               labels={{
                 design: dict.hero.pipeline_design,
                 dev: dict.hero.pipeline_dev,

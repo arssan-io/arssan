@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity/visual-editing";
 import { Plus_Jakarta_Sans, Readex_Pro, IBM_Plex_Mono } from "next/font/google";
 import { isRtl, type Locale } from "@/lib/i18n";
-import { getDictionary } from "@/lib/dictionaries";
+import { getFullSiteData } from "@/lib/sanity/loaders";
+import { SanityLive } from "@/lib/sanity/live";
 import { DEFAULT_SITE_URL } from "@/lib/agent-discovery";
 import { Header } from "@/components/Header";
 import { CustomCursor } from "@/components/CustomCursor";
@@ -33,9 +36,24 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const WEBMCP_SCRIPT = `
+function buildWebMcpScript(config: {
+  company: string;
+  parent: string;
+  email: string;
+  whatsapp: string;
+  packages: Array<{
+    slug: string;
+    name: string;
+    price: string;
+    period: string;
+    summary: string;
+  }>;
+}): string {
+  const safeData = JSON.stringify(config).replace(/</g, "\\u003c");
+  return `
 (function() {
   try {
+    var cmsData = ${safeData};
     var controller = typeof AbortController !== "undefined" ? new AbortController() : { signal: undefined };
     var mc = (typeof document !== "undefined" && document.modelContext) ||
              (typeof navigator !== "undefined" && navigator.modelContext);
@@ -82,18 +100,18 @@ const WEBMCP_SCRIPT = `
         },
         execute: function() {
           return Promise.resolve({
-            company: "Arssan | أرسان",
-            parent: "Scptric (https://scptric.com)",
+            company: cmsData.company,
+            parent: cmsData.parent,
             market: "State of Kuwait & GCC",
-            email: "info@arssan.com",
-            whatsapp: "https://wa.me/46700265645",
+            email: cmsData.email,
+            whatsapp: cmsData.whatsapp,
             website: window.location.origin
           });
         }
       },
       {
         name: "list-pricing-packages",
-        description: "List Arssan Studio website & platform investment packages in Kuwaiti Dinars (KWD): Starter (150 KWD), Professional (299 KWD), and Custom Enterprise (decided based on requirements).",
+        description: "List Arssan Studio website & platform investment packages in Kuwaiti Dinars (KWD).",
         inputSchema: {
           type: "object",
           properties: {
@@ -106,11 +124,7 @@ const WEBMCP_SCRIPT = `
           required: []
         },
         execute: function(input) {
-          var packages = [
-            { slug: "starter", name: "Starter Package / باقة الانطلاق", price: "150 KWD", period: "One-time", summary: "2 pages, responsive UI/UX, Arabic or English, SSL, 15 days support." },
-            { slug: "professional", name: "Professional Package / الباقة الاحترافية", price: "299 KWD (was 450 KWD)", period: "One-time", summary: "Up to 6 pages, bilingual AR/EN, CMS, Agent Ready, SEO, 2 months support." },
-            { slug: "enterprise", name: "Custom Enterprise / باقة المؤسسات", price: "Custom / حسب المتطلبات", period: "Based on requirements / حسب متطلبات المشروع", summary: "Unlimited bespoke pages & workflows, custom Next.js & API development, ERP/CRM integrations, 6 months SLA." }
-          ];
+          var packages = cmsData.packages || [];
           if (input && input.tier && input.tier !== "all") {
             packages = packages.filter(function(p) {
               return p.slug === input.tier ||
@@ -124,24 +138,29 @@ const WEBMCP_SCRIPT = `
       },
       {
         name: "navigate-to-section",
-        description: "Scroll smoothly to a section on the Arssan Studio page (hero, services, process, pricing) or navigate to the projects showcase.",
+        description: "Scroll smoothly to a section on the Arssan Studio page (hero, services, process, pricing) or navigate to the projects showcase or blog.",
         inputSchema: {
           type: "object",
           properties: {
             section: {
               type: "string",
-              enum: ["hero", "services", "process", "pricing", "projects"],
+              enum: ["hero", "services", "process", "pricing", "projects", "blog"],
               description: "Section identifier to navigate to"
             }
           },
           required: ["section"]
         },
         execute: function(input) {
+          var isAr = window.location.pathname.startsWith("/ar");
           if (input && input.section === "projects") {
-            var isAr = window.location.pathname.startsWith("/ar");
             var target = isAr ? "/ar/projects" : "/en/projects";
             window.location.href = target;
             return Promise.resolve({ navigated: target });
+          }
+          if (input && input.section === "blog") {
+            var blogTarget = isAr ? "/ar/blog" : "/en/blog";
+            window.location.href = blogTarget;
+            return Promise.resolve({ navigated: blogTarget });
           }
           var el = document.getElementById(input.section);
           if (el) {
@@ -168,6 +187,7 @@ const WEBMCP_SCRIPT = `
   }
 })();
 `;
+}
 
 export function generateStaticParams() {
   return [{ lang: "ar" }, { lang: "en" }];
@@ -181,7 +201,7 @@ export async function generateMetadata({
   const { lang } = await params;
   const locale = lang as Locale;
   const isAr = locale === "ar";
-  const dict = await getDictionary(locale);
+  const { dict, siteConfig } = await getFullSiteData(locale);
 
   return {
     metadataBase: new URL(DEFAULT_SITE_URL),
@@ -191,12 +211,12 @@ export async function generateMetadata({
       title: dict.meta.title,
       description: dict.meta.description,
       url: `/${locale}`,
-      siteName: isAr ? "أرسان" : "Arssan",
+      siteName: siteConfig.siteName || (isAr ? "أرسان" : "Arssan"),
       locale: isAr ? "ar_KW" : "en_US",
       type: "website",
       images: [
         {
-          url: "/images/og-image.png",
+          url: dict.meta.ogImageUrl || "/images/og-image.png",
           width: 1201,
           height: 630,
           alt: dict.meta.title,
@@ -207,7 +227,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: dict.meta.title,
       description: dict.meta.description,
-      images: ["/images/og-image.png"],
+      images: [dict.meta.ogImageUrl || "/images/og-image.png"],
     },
     icons: {
       icon: [
@@ -240,7 +260,22 @@ export default async function LangLayout({
   const { lang } = await params;
   const locale = lang as Locale;
   const rtl = isRtl(locale);
-  const dict = await getDictionary(locale);
+  const { dict, siteConfig } = await getFullSiteData(locale);
+  const { isEnabled: isDraftMode } = await draftMode();
+
+  const webMcpScript = buildWebMcpScript({
+    company: "Arssan | أرسان",
+    parent: `${siteConfig.parentOrgName} (${siteConfig.parentOrgUrl})`,
+    email: siteConfig.email,
+    whatsapp: siteConfig.whatsappUrl,
+    packages: dict.pricing.packages.map((p) => ({
+      slug: p.slug,
+      name: p.name,
+      price: p.currency ? `${p.price} ${p.currency}` : p.price,
+      period: p.period,
+      summary: p.description,
+    })),
+  });
 
   return (
     <html
@@ -249,13 +284,25 @@ export default async function LangLayout({
       className={`${plusJakarta.variable} ${readexPro.variable} ${ibmPlexMono.variable}`}
     >
       <head>
-        <link rel="preload" as="image" href="/images/hero-bg.webp" type="image/webp" fetchPriority="high" />
+        <link
+          rel="preload"
+          as="image"
+          href={dict.hero.backgroundImageUrl || "/images/hero-bg.webp"}
+          type="image/webp"
+          fetchPriority="high"
+        />
         <link rel="api-catalog" href="/.well-known/api-catalog" />
         <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
         <link rel="describedby" href="/auth.md" />
         <link rel="service-desc" href="/.well-known/mcp/server-card.json" />
         <link rel="service-doc" href="/.well-known/agent-skills/index.json" />
         <link rel="service-doc" href="/.well-known/agent-skills/dns-aid/SKILL.md" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${siteConfig.siteName} RSS Feed`}
+          href={`/${locale}/blog/rss.xml`}
+        />
       </head>
       <body
         className={`${
@@ -265,14 +312,14 @@ export default async function LangLayout({
         <GoogleAnalytics />
         <GoogleTagManager />
         <Script id="webmcp-tools" strategy="beforeInteractive">
-          {WEBMCP_SCRIPT}
+          {webMcpScript}
         </Script>
         <CustomCursor />
-        <Header lang={locale} dict={dict} />
+        <Header lang={locale} dict={dict} siteConfig={siteConfig} />
         <main>{children}</main>
         {/* Declarative WebMCP Tool Form for Agent Discovery */}
         <form
-          action="https://wa.me/46700265645"
+          action={siteConfig.whatsappUrl}
           method="get"
           target="_blank"
           className="sr-only"
@@ -290,18 +337,20 @@ export default async function LangLayout({
             id="inquiry-message"
             type="text"
             name="text"
-            aria-label="Project inquiry message specifying desired package (Starter 150 KWD, Professional 299 KWD, or Custom Enterprise) and business goals"
-            defaultValue="Hello Arssan Studio, I would like to inquire about a web project in Kuwait."
+            aria-label="Project inquiry message specifying desired package and business goals"
+            defaultValue={siteConfig.defaultWhatsappMessage}
             {...({
               toolparamdescription:
-                "Project inquiry message specifying desired package (Starter 150 KWD, Professional 299 KWD, or Custom Enterprise) and business goals",
+                "Project inquiry message specifying desired package and business goals",
             } as Record<string, string>)}
           />
           <button type="submit">Send Inquiry</button>
         </form>
-        <Footer lang={locale} dict={dict} />
-        <WhatsAppButton dict={dict} />
+        <Footer lang={locale} dict={dict} siteConfig={siteConfig} />
+        <WhatsAppButton dict={dict} whatsappUrl={siteConfig.whatsappUrl} />
         <BackToTop dict={dict} />
+        <SanityLive />
+        {isDraftMode && <VisualEditing />}
       </body>
     </html>
   );

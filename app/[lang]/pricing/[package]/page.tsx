@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n";
-import { getDictionary } from "@/lib/dictionaries";
+import { getPackageBySlug } from "@/lib/sanity/loaders";
 import Link from "next/link";
 import {
   PackageViewTracker,
@@ -26,23 +26,15 @@ export async function generateMetadata({
   const { lang, package: pkgSlug } = await params;
   const locale = lang as Locale;
   const isAr = locale === "ar";
-  const dict = await getDictionary(locale);
-  const normalizedSlug =
-    pkgSlug === "basic"
-      ? "starter"
-      : pkgSlug === "pro"
-      ? "professional"
-      : pkgSlug === "custom"
-      ? "enterprise"
-      : pkgSlug;
-  const pkg = dict.pricing.packages.find(
-    (p: { slug: string }) => p.slug === pkgSlug || p.slug === normalizedSlug
-  );
+  const { pkg, dict } = await getPackageBySlug(locale, pkgSlug);
 
   const title = pkg
-    ? `${pkg.name} | ${isAr ? "باقات أرسان الكويت" : "Arssan Kuwait Packages"}`
+    ? pkg.seo?.metaTitle ||
+      `${pkg.name} | ${isAr ? "باقات أرسان الكويت" : "Arssan Kuwait Packages"}`
     : dict.meta.title;
-  const description = pkg ? pkg.description : dict.meta.description;
+  const description = pkg
+    ? pkg.seo?.metaDescription || pkg.description
+    : dict.meta.description;
 
   return {
     title,
@@ -53,7 +45,7 @@ export async function generateMetadata({
       url: `/${locale}/pricing/${pkgSlug}`,
       images: [
         {
-          url: "/images/og-image.png",
+          url: pkg?.seo?.ogImageUrl || dict.meta.ogImageUrl || "/images/og-image.png",
           width: 1201,
           height: 630,
           alt: title,
@@ -64,7 +56,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/og-image.png"],
+      images: [pkg?.seo?.ogImageUrl || dict.meta.ogImageUrl || "/images/og-image.png"],
     },
   };
 }
@@ -77,18 +69,7 @@ export default async function PricingPackagePage({
   const { lang, package: pkgSlug } = await params;
   const locale = lang as Locale;
   const isAr = locale === "ar";
-  const dict = await getDictionary(locale);
-  const normalizedSlug =
-    pkgSlug === "basic"
-      ? "starter"
-      : pkgSlug === "pro"
-      ? "professional"
-      : pkgSlug === "custom"
-      ? "enterprise"
-      : pkgSlug;
-  const pkg = dict.pricing.packages.find(
-    (p: { slug: string }) => p.slug === pkgSlug || p.slug === normalizedSlug
-  );
+  const { pkg, dict, siteConfig } = await getPackageBySlug(locale, pkgSlug);
 
   if (!pkg) {
     return (
@@ -170,14 +151,15 @@ export default async function PricingPackagePage({
               </div>
               {pkg.originalPrice && (
                 <span className="ms-auto text-xs font-medium px-2.5 py-1 rounded-[64px] bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  {isAr ? "خصم خاص" : "Special Offer"}
+                  {dict.pricing.specialOfferBadge || (isAr ? "خصم خاص" : "Special Offer")}
                 </span>
               )}
             </div>
           )}
 
           <h2 className="text-xs font-medium uppercase tracking-wider mb-4 sm:mb-5 text-[#646f79]">
-            {isAr ? "المميزات المشمولة في الباقة" : "Included Deliverables"}
+            {dict.pricing.includedDeliverablesLabel ||
+              (isAr ? "المميزات المشمولة في الباقة" : "Included Deliverables")}
           </h2>
 
           <ul className="space-y-3 sm:space-y-3.5 mb-8 sm:mb-10 text-[13px] sm:text-base">
@@ -196,6 +178,7 @@ export default async function PricingPackagePage({
           <PackageInquiryButton
             pkg={pkg}
             contactText={dict.nav.contact}
+            whatsappUrl={siteConfig.whatsappUrl}
           />
         </div>
       </div>

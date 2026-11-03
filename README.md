@@ -8,7 +8,8 @@ A modern, bilingual (Arabic/English) corporate landing page for **Arssan** — a
 - **Styling:** Tailwind CSS 4
 - **Animations:** Framer Motion
 - **Language:** TypeScript
-- **Deployment:** Netlify
+- **CMS:** Sanity (Embedded Studio at `/studio`)
+- **DNS & Deployment:** Cloudflare (`arssan.com`)
 
 ## Features
 
@@ -65,7 +66,8 @@ Open [http://localhost:3000](http://localhost:3000) — redirects to `/ar` (Arab
 │       ├── Icon.svg
 │       └── Logo.svg
 ├── proxy.ts                  # i18n routing proxy
-├── netlify.toml              # Netlify deployment config
+├── sanity/                   # Sanity CMS schemas & structure
+├── sanity.config.ts          # Embedded Sanity Studio config
 ├── dns/                      # DNS for AI Discovery (DNS-AID) records & zones
 │   ├── arssan.com-dns-aid.zone
 │   ├── arssan.com (DNS Records).csv
@@ -95,4 +97,4 @@ CLOUDFLARE_API_TOKEN="..." npm run dns:publish
 
 ## Deployment
 
-Pre-configured for Netlify. Push to GitHub and connect the repo to Netlify — it will auto-detect the Next.js setup via `@netlify/plugin-nextjs`.
+Hosted with **Cloudflare** on `arssan.com`. Configure the Sanity environment variables (`NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `NEXT_PUBLIC_SANITY_API_VERSION`, `SANITY_API_READ_TOKEN`, `SANITY_REVALIDATE_SECRET`) in your Cloudflare deployment environment.

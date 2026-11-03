@@ -76,63 +76,77 @@ export function getSiteOrigin(request?: Request): {
   return getFallback();
 }
 
+import { getFullSiteData, getLatestBlogPosts } from "@/lib/sanity/loaders";
+
 export function estimateTokens(text: string): number {
   return Math.max(1, Math.ceil(text.length / 4));
 }
 
-export function getMarkdownRepresentation(
+export async function getMarkdownRepresentation(
   origin: string,
   pathname = "/"
-): string {
+): Promise<string> {
   const isProjects = pathname.includes("/projects");
   const isPricing = pathname.includes("/pricing");
+  const isBlog = pathname.includes("/blog");
+
+  const [{ dict, siteConfig }, latestPosts] = await Promise.all([
+    getFullSiteData("en"),
+    getLatestBlogPosts("en", 6),
+  ]);
+
+  if (isBlog) {
+    const postsMd =
+      latestPosts.length > 0
+        ? latestPosts
+            .map(
+              (p, i) =>
+                `${i + 1}. **[${p.title}](${origin}/en/blog/${p.slug})** (${p.readingTimeMinutes} min read)\n   - ${p.excerpt}`
+            )
+            .join("\n\n")
+        : "Articles are managed via Arssan Sanity CMS.";
+
+    return `# Arssan | أرسان — Engineering & Design Blog
+
+> ${dict.blog.subtitle}
+
+- **Official Website**: ${origin}
+- **Blog URL**: ${origin}/en/blog
+- **RSS Feed**: ${origin}/en/blog/rss.xml
+- **WhatsApp Direct**: ${siteConfig.whatsappUrl}
+- **Email**: ${siteConfig.email}
+
+---
+
+## Latest Articles
+
+${postsMd}
+`;
+  }
 
   if (isProjects) {
+    const projectsMd = dict.projects_page.projects
+      .map(
+        (p, i) =>
+          `${i + 1}. **${p.title}** (\`${p.url}\`) — ${p.categoryLabel}\n   - ${p.description}\n   - Metric: ${p.metrics.value} (${p.metrics.label})`
+      )
+      .join("\n\n");
+
     return `# Arssan | أرسان — Projects & Portfolio
 
-> High-performing websites, e-commerce platforms, and digital experiences engineered for leading brands in Kuwait and the GCC.
+> ${dict.projects_page.subtitle}
 
 - **Official Website**: ${origin}
 - **Portfolio URL**: ${origin}/en/projects
-- **Parent Organization**: Scptric (https://scptric.com)
-- **WhatsApp Direct**: https://wa.me/46700265645
-- **Email**: info@arssan.com
+- **Parent Organization**: ${siteConfig.parentOrgName} (${siteConfig.parentOrgUrl})
+- **WhatsApp Direct**: ${siteConfig.whatsappUrl}
+- **Email**: ${siteConfig.email}
 
 ---
 
 ## Featured Case Studies
 
-1. **Al-Dar Luxury Real Estate Portal** (\`aldar-kw.com\`) — Corporate & Real Estate
-   - Interactive bilingual property portal with 3D virtual tours and high-speed search filtering.
-   - Metric: +185% Qualified Leads Growth
-
-2. **Maison Oud — Luxury Perfumery Store** (\`maisonoud.kw\`) — E-Commerce
-   - Full-scale luxury e-commerce store integrated with KNET, Apple Pay, MyFatoorah, and automatedGCC shipping.
-   - Metric: 0.4s Page Load Speed
-
-3. **Elite Medical Group & Clinics** (\`elitemedical.com.kw\`) — Healthcare & Clinics
-   - Patient portal and instant appointment booking platform connected with WhatsApp notifications.
-   - Metric: AAA WCAG Accessibility Standard
-
-4. **Muzn Cloud — B2B Cloud Infrastructure & AI Suite** (\`muzncloud.io\`) — SaaS & Tech
-   - High-converting SaaS marketing site structured and verified to meet isitagentready.com web agent standards.
-   - Metric: Agent Ready (Verified on isitagentready.com)
-
-5. **Babtain Engineering & Contracting Corporation** (\`babtain-eng.com\`) — Corporate & Platforms
-   - Flagship corporate platform showcasing mega infrastructure projects in Kuwait, ranking #1 on Google Kuwait.
-   - Metric: #1 Google Search Kuwait Rank
-
-6. **Namaa Coffee Roasters — Artisan Lifestyle Brand** (\`namaacoffee.com\`) — E-Commerce
-   - Tactile brand web experience with interactive brew guides and subscription club.
-   - Metric: 2.4x Average Session Duration
-
-7. **Ahmed Abdelwahed — Personal Brand & Engineering Bio** (\`ahmedabdelwahed.me\`) — Personal & Bio Sites
-   - Production-grade personal portfolio and technical blog featuring RFC 9727 & WebMCP AI agent discovery.
-   - Metric: 100/100 Google Lighthouse Score
-
-8. **State of Kuwait — Editorial Cultural Showcase** (\`kuwait.arssan.com\`) — Editorial & Culture
-   - Editorial and cultural digital platform celebrating 65 years of Kuwaiti maritime legacy and modern independence.
-   - Metric: 60 FPS Kinetic Motion & Scrollytelling
+${projectsMd}
 
 ---
 
@@ -147,100 +161,86 @@ export function getMarkdownRepresentation(
   }
 
   if (isPricing) {
+    const pkgsMd = dict.pricing.packages
+      .map(
+        (pkg, i) =>
+          `### ${i + 1}. ${pkg.name}${pkg.popular ? " (Most Popular)" : ""} — ${
+            pkg.currency ? `${pkg.price} ${pkg.currency}` : pkg.price
+          } (${pkg.period})\n${pkg.description}\n${pkg.features
+            .map((f: string) => `- ${f}`)
+            .join("\n")}`
+      )
+      .join("\n\n");
+
     return `# Arssan | أرسان — Pricing Packages
 
-> Transparent, structured investment tiers in Kuwaiti Dinars (KWD) for startups, growing enterprises, and custom digital platforms.
+> ${dict.pricing.subtitle}
 
 - **Official Website**: ${origin}
-- **WhatsApp Direct**: https://wa.me/46700265645
-- **Email**: info@arssan.com
+- **WhatsApp Direct**: ${siteConfig.whatsappUrl}
+- **Email**: ${siteConfig.email}
 
 ---
 
 ## Packages & Investment Tiers
 
-### 1. Basic Package — 150 KWD (One-time payment)
-Ideal for startups, personal brands, and professional company profiles in Kuwait.
-- Custom responsive UI/UX design (up to 3 pages)
-- Full Arabic (RTL) & English (LTR) support
-- Direct WhatsApp & social media integration
-- Mobile-first speed optimization & SSL security
-- Basic local Google SEO setup for Kuwait
-- 1 month of complimentary technical support
-
-### 2. Pro Package (Most Popular) — 300 KWD (Discounted from 450 KWD, One-time payment)
-Comprehensive solution for growing businesses and e-commerce stores requiring payment gateways and CMS control.
-- Bespoke UI/UX design system (up to 10 pages)
-- Easy-to-use Content Management System (CMS)
-- Payment gateway integration (KNET, MyFatoorah, Tap, Apple Pay)
-- Advanced technical & local SEO for Kuwait & GCC rankings
-- Google Analytics 4 & conversion tracking setup
-- High-speed cloud hosting configuration & CDN
-- 3 months of priority support & maintenance
-
-### 3. Custom Enterprise Package — Tailored to Requirements (Project-based)
-Tailored digital architecture for large enterprises, custom web applications, and complex platforms.
-- Pricing: Custom quote decided based on project requirements (no fixed pricing)
-- Unlimited custom pages & bespoke interactive workflows
-- Full-stack custom Next.js & API development
-- ERP, CRM, and third-party system integrations
-- Dedicated cloud infrastructure & enterprise security
-- Comprehensive UI/UX research, prototyping & testing
-- 6 months of dedicated SLA technical support & consulting
+${pkgsMd}
 `;
   }
 
+  const pkgsSummaryMd = dict.pricing.packages
+    .map(
+      (pkg) =>
+        `- **${pkg.name}${pkg.popular ? " (Most Popular)" : ""}**: **${
+          pkg.currency ? `${pkg.price} ${pkg.currency}` : pkg.price
+        }**${pkg.originalPrice ? ` *(was ${pkg.originalPrice} ${pkg.currency})*` : ""} — ${
+          pkg.description
+        }`
+    )
+    .join("\n");
+
+  const projectsSummaryMd = dict.projects_page.projects
+    .map((p) => `- **${p.title}** (\`${p.url}\`): ${p.description}`)
+    .join("\n");
+
   return `# Arssan | أرسان — Web Design & Digital Engineering
 
-> Arssan is the specialized web design and digital engineering arm of Scptric (https://scptric.com), architecting high-performance websites, e-commerce platforms, and agent-ready digital experiences for ambitious teams in Kuwait and the GCC.
+> ${dict.meta.description}
 
 ---
 
 ## Company Overview
 - **Name**: Arssan Studio (أرسان لتصميم وتطوير المواقع)
-- **Parent Company**: Scptric (سكبترك — https://scptric.com)
+- **Parent Company**: ${siteConfig.parentOrgName} (${siteConfig.parentOrgUrl})
 - **Primary Market**: State of Kuwait & Gulf Cooperation Council (GCC)
 - **Supported Languages**: Arabic (العربية - RTL) & English (LTR)
 - **Official Website**: ${origin}
-- **Direct WhatsApp**: [https://wa.me/46700265645](https://wa.me/46700265645)
-- **Email**: [info@arssan.com](mailto:info@arssan.com)
+- **Blog**: ${origin}/en/blog
+- **Direct WhatsApp**: [${siteConfig.whatsappUrl}](${siteConfig.whatsappUrl})
+- **Email**: [${siteConfig.email}](mailto:${siteConfig.email})
 
 ---
 
 ## Core Capabilities & Services
 
-### 01. UI/UX Design & Brand Systems (تصميم واجهات وتجربة المستخدم)
-- Bilingual RTL (Arabic) & LTR (English) executive design systems
-- Interactive Figma prototypes & design tokens
-- Conversion-focused landing pages and WCAG AAA (18.5:1) contrast compliance
-- Mobile-first responsive layouts across all breakpoints
+### 01. ${dict.services.design.title}
+${dict.services.design.features.map((f: string) => `- ${f}`).join("\n")}
 
-### 02. Web & Platform Development (تطوير المواقع والمنصات الرقمية)
-- Modern Next.js 16 App Router & TypeScript cloud architecture (< 0.4s load times, 99.9% uptime)
-- Kuwaiti & GCC payment gateway integrations (KNET, Tap Payments, MyFatoorah, Apple Pay)
-- Headless CMS & Sanity content management dashboards
-- Enterprise SSL security, Cloudflare CDN, and edge caching
+### 02. ${dict.services.development.title}
+${dict.services.development.features.map((f: string) => `- ${f}`).join("\n")}
 
-### 03. SEO & Digital Growth (تحسين محركات البحث والنمو الرقمي)
-- Local SEO tailored for Kuwait & GCC search intent
-- 99/100 Core Web Vitals optimization
-- Technical schema markup, OpenGraph, and full AI Agent Readiness (RFC 9727, WebMCP, ARD, MCP)
-- Google Analytics 4 & conversion funnel tracking
+### 03. ${dict.services.seo.title}
+${dict.services.seo.features.map((f: string) => `- ${f}`).join("\n")}
 
 ---
 
 ## Pricing Packages (Kuwaiti Dinar — KWD)
-- **Basic Package**: **150 KWD** (One-time) — Up to 3 pages, bilingual AR/EN, WhatsApp integration, SSL, local SEO, 1 month support.
-- **Pro Package (Most Popular)**: **300 KWD** *(was 450 KWD)* — Up to 10 pages, CMS dashboard, KNET / Tap / MyFatoorah payment gateways, advanced Kuwait SEO, GA4, 3 months priority support.
-- **Custom Enterprise**: **Custom Pricing (Based on Requirements)** — Unlimited bespoke workflows, full-stack Next.js & custom API engineering, ERP/CRM integrations, 6 months SLA support.
+${pkgsSummaryMd}
 
 ---
 
-## Methodology & Execution Pipeline
-1. **Discovery & Strategy**: Analyzing business objectives, target audience in Kuwait, and competitors.
-2. **UI/UX Architecture**: Crafting interactive wireframes and bilingual visual systems in Figma.
-3. **Engineering & Integration**: Building fast, secure codebases and integrating KNET/payment gateways.
-4. **Launch & Growth**: Rigorous QA testing, deployment, and continuous SEO & performance monitoring.
+## Featured Portfolio Projects
+${projectsSummaryMd}
 
 ---
 
@@ -261,6 +261,7 @@ Tailored digital architecture for large enterprises, custom web applications, an
   - Model Context Protocol (MCP): \`_mcp._agents.${new URL(origin).host}\` (HTTPS / SVCB, \`alpn="mcp" port=443\`)
   - DNS-AID Skill: \`${origin}/.well-known/agent-skills/dns-aid/SKILL.md\`
 - **XML Sitemap**: \`${origin}/sitemap.xml\`
+- **RSS Feed (EN / AR)**: \`${origin}/en/blog/rss.xml\` · \`${origin}/ar/blog/rss.xml\`
 `;
 }
 

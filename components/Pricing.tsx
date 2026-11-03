@@ -30,13 +30,26 @@ interface PricingProps {
       badge: string;
       title: string;
       subtitle: string;
+      mostPopularBadge?: string;
+      specialOfferBadge?: string;
+      assuranceBullets?: string[];
+      customQuoteCta?: string;
       packages: PricingPackage[];
     };
   };
+  whatsappUrl?: string;
 }
 
-export function Pricing({ lang, dict }: PricingProps) {
+export function Pricing({ lang, dict, whatsappUrl = "https://wa.me/46700265645" }: PricingProps) {
   const isAr = lang === "ar";
+  const bullets =
+    dict.pricing.assuranceBullets && dict.pricing.assuranceBullets.length > 0
+      ? dict.pricing.assuranceBullets
+      : [
+          isAr ? "دفعات مرنة وميسّرة على مراحل المشروع" : "Flexible Milestone Payments in KWD",
+          isAr ? "ملكية كاملة للكود البرمجي والنطاق" : "100% Source Code & Domain Ownership",
+          isAr ? "دعم فني مباشر عبر واتساب واجتماعات دورية" : "Direct WhatsApp & Executive Support",
+        ];
 
   return (
     <motion.section
@@ -90,7 +103,10 @@ export function Pricing({ lang, dict }: PricingProps) {
                     {pkg.popular ? (
                       <span className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-[64px] bg-[#ffffff]/12 border border-[#ffffff]/20 text-[11px] sm:text-[12px] font-medium text-[#ffffff]">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>{isAr ? "الأكثر اختياراً" : "Most Popular"}</span>
+                        <span>
+                          {dict.pricing.mostPopularBadge ||
+                            (isAr ? "الأكثر اختياراً" : "Most Popular")}
+                        </span>
                       </span>
                     ) : (
                       <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[64px] bg-[#f3f3f3] text-[11px] sm:text-[12px] font-mono text-[#646f79]">
@@ -167,7 +183,8 @@ export function Pricing({ lang, dict }: PricingProps) {
                                 : "bg-emerald-50 text-emerald-700 border border-emerald-200"
                             }`}
                           >
-                            {isAr ? "خصم خاص" : "Special Offer"}
+                            {dict.pricing.specialOfferBadge ||
+                              (isAr ? "خصم خاص" : "Special Offer")}
                           </span>
                         )}
                       </div>
@@ -232,22 +249,29 @@ export function Pricing({ lang, dict }: PricingProps) {
         <AnimateInView delay={0.25} className="mt-6 sm:mt-8">
           <div className="rounded-[20px] bg-[#ffffff] border border-[#eceeef] p-4 sm:px-8 sm:py-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] flex flex-col md:flex-row items-start md:items-center justify-between gap-3.5 sm:gap-4 text-[12px] sm:text-[14px] text-[#646f79]">
             <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-start gap-2.5 sm:gap-6 w-full md:w-auto">
-              <span className="flex items-center gap-2 text-[#0d0d0d] font-medium">
-                <span className="w-2 h-2 rounded-full bg-emerald-600 flex-shrink-0" />
-                <span>{isAr ? "دفعات مرنة وميسّرة على مراحل المشروع" : "Flexible Milestone Payments in KWD"}</span>
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#646f79] flex-shrink-0" />
-                <span>{isAr ? "ملكية كاملة للكود البرمجي والنطاق" : "100% Source Code & Domain Ownership"}</span>
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#646f79] flex-shrink-0" />
-                <span>{isAr ? "دعم فني مباشر عبر واتساب واجتماعات دورية" : "Direct WhatsApp & Executive Support"}</span>
-              </span>
+              {bullets.map((bullet, idx) => (
+                <span
+                  key={bullet}
+                  className={
+                    idx === 0
+                      ? "flex items-center gap-2 text-[#0d0d0d] font-medium"
+                      : "flex items-center gap-2"
+                  }
+                >
+                  <span
+                    className={
+                      idx === 0
+                        ? "w-2 h-2 rounded-full bg-emerald-600 flex-shrink-0"
+                        : "w-1.5 h-1.5 rounded-full bg-[#646f79] flex-shrink-0"
+                    }
+                  />
+                  <span>{bullet}</span>
+                </span>
+              ))}
             </div>
 
             <a
-              href="https://wa.me/46700265645"
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
@@ -260,7 +284,8 @@ export function Pricing({ lang, dict }: PricingProps) {
               }}
               className="text-[#0d0d0d] font-medium hover:text-[#646f79] underline underline-offset-4 transition-colors whitespace-nowrap self-start md:self-auto pt-1 md:pt-0"
             >
-              {isAr ? "تحتاج باقة مخصصة؟ تواصل معنا ←" : "Need a custom quote? Let's talk →"}
+              {dict.pricing.customQuoteCta ||
+                (isAr ? "تحتاج باقة مخصصة؟ تواصل معنا ←" : "Need a custom quote? Let's talk →")}
             </a>
           </div>
         </AnimateInView>

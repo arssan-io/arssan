@@ -6,6 +6,7 @@
   "nav": {
     "home": "Home",
     "projects": "Projects",
+    "blog": "Blog",
     "process": "Methodology",
     "services": "Services",
     "pricing": "Pricing",
@@ -320,6 +321,40 @@
       "back_home": "Back to Home",
       "inquire_btn": "Request Similar Build",
       "visit_btn": "Visit Site"
+    }
+  },
+  "blog": {
+    "badge": "Editorial & Engineering Journal",
+    "title": "Insights on calm digital architecture & commercial growth",
+    "subtitle": "Deep dives on Next.js engineering, bilingual RTL/LTR design systems, headless Sanity CMS workflows, and Kuwait & GCC search strategies.",
+    "all_filter": "All Articles",
+    "featured_badge": "Featured Insight",
+    "min_read": "min read",
+    "read_article": "Read Article",
+    "back_to_blog": "Back to Blog",
+    "on_this_page": "On this page",
+    "share_article": "Share article",
+    "copy_link": "Copy link",
+    "link_copied": "Copied",
+    "written_by": "Written by",
+    "published_on": "Published",
+    "updated_on": "Updated",
+    "switch_language_prompt": "Read in Arabic",
+    "related_title": "Continue Reading",
+    "related_subtitle": "More articles from Arssan Engineering",
+    "empty_title": "New engineering insights are on the way",
+    "empty_subtitle": "We are preparing in-depth articles on web architecture, UI/UX systems, and digital growth in Kuwait.",
+    "prev_page": "Previous",
+    "next_page": "Next",
+    "latest_home_badge": "From the Journal",
+    "latest_home_title": "Latest Engineering & Design Insights",
+    "latest_home_cta": "Explore All Articles",
+    "cta": {
+      "badge": "Build With Arssan",
+      "title": "Ready to turn these engineering standards into your next platform?",
+      "description": "Talk directly with our studio in Kuwait to scope your website, custom platform, or headless CMS.",
+      "button": "Discuss Your Project on WhatsApp",
+      "packages_button": "Explore KWD Packages"
     }
   },
   "whatsapp": {
