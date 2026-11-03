@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { AnimateInView } from "./AnimateInView";
-import { FloatingShapes, servicesShapes } from "./FloatingShapes";
 
 interface ServiceBlock {
   title: string;
@@ -79,8 +78,6 @@ export function Services({ dict }: ServicesProps) {
       id="services"
       className="relative py-14 sm:py-18 md:py-24 bg-[#ffffff] text-[#0d0d0d] overflow-hidden border-b border-[#f3f3f3]"
     >
-      <FloatingShapes shapes={servicesShapes} color="text-[#646f79]" />
-
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
         <AnimateInView className="mb-8 sm:mb-10 md:mb-14">
@@ -104,17 +101,17 @@ export function Services({ dict }: ServicesProps) {
         {/* Asana Minimal-Maximalist Service Cards */}
         <div className="space-y-4 sm:space-y-6">
           {services.map((service, idx) => (
-            <AnimateInView key={service.key} variant="fadeUp" delay={idx * 0.06}>
-              <div className="group relative rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] p-5 sm:p-7 md:p-10 md:hover:-translate-y-0.5 hover:border-[#646f79]/40 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] transition-[transform,border-color,box-shadow] duration-200 text-start">
+            <AnimateInView key={service.key} variant="fadeUp" delay={idx * 0.05}>
+              <div className="group relative rounded-[20px] bg-[#f3f3f3] border border-[#e6e8eb] p-5 sm:p-7 md:p-10 hover:border-[#646f79]/30 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.06)] transition-[border-color,box-shadow] duration-200 text-start">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
                   {/* Left / Main Content (8 cols) */}
                   <div className="lg:col-span-8 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
                     {/* Number & Icon Column */}
                     <div className="flex sm:flex-col items-center sm:items-start gap-3 flex-shrink-0">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[14px] bg-[#ffffff] border border-[#e5e7eb] shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-center text-[#0d0d0d] group-hover:bg-[#0d0e10] group-hover:text-[#ffffff] transition-colors duration-200">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[14px] bg-[#ffffff] border border-[#e5e7eb] shadow-[0_1px_3px_rgba(0,0,0,0.04)] flex items-center justify-center text-[#0d0d0d] group-hover:bg-[#0d0e10] group-hover:text-[#ffffff] transition-colors duration-150">
                         {service.icon}
                       </div>
-                      <span className="font-mono text-xs font-medium text-[#646f79] px-2.5 py-0.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb]">
+                      <span className="font-mono tabular-nums text-xs font-medium text-[#646f79] px-2.5 py-0.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb]">
                         0{idx + 1}
                       </span>
                     </div>
@@ -133,7 +130,7 @@ export function Services({ dict }: ServicesProps) {
                         {service.features.map((feature) => (
                           <span
                             key={feature}
-                            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[#0d0d0d] px-3 py-1 sm:px-4 sm:py-1.5 text-[12px] sm:text-[13px] font-medium shadow-[0_1px_3px_rgba(0,0,0,0.03)] group-hover:border-[#646f79]/30 transition-colors duration-200"
+                            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[#0d0d0d] px-3 py-1 sm:px-4 sm:py-1.5 text-[12px] sm:text-[13px] font-normal shadow-[0_1px_2px_rgba(0,0,0,0.02)] group-hover:border-[#646f79]/20 transition-colors duration-150"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#646f79] group-hover:bg-[#0d0e10] transition-colors" />
                             <span>{feature}</span>
@@ -145,16 +142,16 @@ export function Services({ dict }: ServicesProps) {
 
                   {/* Right Column: Elevated White Benchmark Card (4 cols) */}
                   <div className="lg:col-span-4">
-                    <div className="rounded-[16px] bg-[#ffffff] border border-[#eceeef] p-4 sm:p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col justify-between min-h-auto sm:min-h-[160px] group-hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.10)] transition-shadow duration-200">
+                    <div className="rounded-[14px] bg-[#ffffff] border border-[#eceeef] p-4 sm:p-6 shadow-[0_1px_4px_rgba(0,0,0,0.04)] flex flex-col justify-between min-h-auto sm:min-h-[160px] group-hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.08)] transition-shadow duration-150">
                       <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-mono uppercase tracking-wider text-[#646f79] px-2.5 py-1 rounded-[64px] bg-[#f3f3f3]">
+                        <span className="text-[11px] font-mono text-[#646f79] px-2.5 py-1 rounded-[64px] bg-[#f3f3f3]">
                           {service.metric.tag}
                         </span>
                         <span className="w-2 h-2 rounded-full bg-emerald-600" />
                       </div>
 
                       <div className="my-4">
-                        <div className="text-3xl sm:text-4xl font-light tracking-tight text-[#0d0d0d]">
+                        <div className="text-3xl sm:text-4xl font-light tracking-tight text-[#0d0d0d] font-mono tabular-nums">
                           {service.metric.value}
                         </div>
                         <div className="text-[13px] text-[#646f79] mt-1 font-normal">
@@ -167,7 +164,7 @@ export function Services({ dict }: ServicesProps) {
                           initial={{ scaleX: 0.35 }}
                           whileInView={{ scaleX: 1 }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.65, delay: 0.15 + idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                          transition={{ duration: 0.5, delay: 0.1 + idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
                           className="w-full h-full rounded-full bg-[#0d0e10] origin-left rtl:origin-right"
                         />
                       </div>

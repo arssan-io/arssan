@@ -4,5 +4,5 @@ import { NextStudio } from "next-sanity/studio/client-component";
 import config from "@/sanity.config";
 
 export default function StudioInner() {
-  return <NextStudio config={config} />;
+  return <NextStudio config={config} scheme="dark" />;
 }

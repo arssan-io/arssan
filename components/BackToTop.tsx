@@ -46,11 +46,11 @@ export function BackToTop({ dict, tooltip }: BackToTopProps) {
           onClick={scrollToTop}
           aria-label={label}
           className="fixed bottom-5 start-5 sm:bottom-6 sm:start-6 z-40 flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#ffffff]/90 hover:bg-[#0d0e10] text-[#0d0d0d] hover:text-[#ffffff] border border-[#e6e8eb] hover:border-[#0d0e10] shadow-[0_6px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_10px_28px_rgba(13,14,16,0.18)] backdrop-blur-md transition-colors duration-200 group"
-          initial={{ scale: 0, opacity: 0, y: 12 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0, opacity: 0, y: 12 }}
-          transition={{ type: "spring", stiffness: 280, damping: 22 }}
-          whileTap={{ scale: 0.92 }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 8 }}
+          transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          whileTap={{ scale: 0.97 }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -67,7 +67,7 @@ export function Partners({ lang = "ar", dict }: PartnersProps = {}) {
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Subtle Minimalist Subtitle */}
         <AnimateInView className="text-center mb-6 sm:mb-8">
-          <p className="text-xs sm:text-[13px] font-mono uppercase tracking-wider text-[#9ca3af] font-medium">
+          <p className="text-xs sm:text-[13px] font-mono text-[#9ca3af] font-normal">
             {subtitle}
           </p>
         </AnimateInView>
@@ -81,7 +81,7 @@ export function Partners({ lang = "ar", dict }: PartnersProps = {}) {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center p-2 transition-all duration-300 opacity-60 hover:opacity-100 hover:scale-105"
+                className="flex items-center justify-center p-2 opacity-50 hover:opacity-100 transition-opacity duration-150"
                 title={partner.name}
               >
                 <Image

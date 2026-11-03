@@ -23,16 +23,14 @@ export function WhatsAppButton({ dict, whatsappUrl = "https://wa.me/46700265645"
           method: "whatsapp",
         });
       }}
-      className="fixed bottom-6 end-6 z-50 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#0d0e10] text-[#ffffff] rounded-[64px] border border-[#ffffff]/15 shadow-[0_8px_24px_rgba(0,0,0,0.18)] hover:bg-[#646f79] transition-colors duration-200 group"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 0.8, type: "spring", stiffness: 260, damping: 22 }}
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.94 }}
+      className="fixed bottom-6 end-6 z-50 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#0d0e10] text-[#ffffff] rounded-[64px] border border-[#ffffff]/15 shadow-[0_4px_16px_rgba(0,0,0,0.2)] hover:bg-[#646f79] transition-colors duration-150 group"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.3, duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      whileTap={{ scale: 0.97 }}
     >
-      {/* Live status pulse dot */}
+      {/* Live status dot */}
       <span className="absolute top-0 right-0 -mt-0.5 -mr-0.5 flex h-3 w-3">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-[#ffffff]"></span>
       </span>
 

@@ -1,5 +1,18 @@
 import type { StructureResolver } from "sanity/structure";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
+import { CogIcon } from "@sanity/icons/Cog";
+import { HomeIcon } from "@sanity/icons/Home";
+import { CreditCardIcon } from "@sanity/icons/CreditCard";
+import { CaseIcon } from "@sanity/icons/Case";
+import { UsersIcon } from "@sanity/icons/Users";
+import { EditIcon } from "@sanity/icons/Edit";
+import { TranslateIcon } from "@sanity/icons/Translate";
+import { StarIcon } from "@sanity/icons/Star";
+import { ClockIcon } from "@sanity/icons/Clock";
+import { TransferIcon } from "@sanity/icons/Transfer";
+import { DocumentTextIcon } from "@sanity/icons/DocumentText";
+import { TagIcon } from "@sanity/icons/Tag";
+import { UserIcon } from "@sanity/icons/User";
 
 export const structure: StructureResolver = (S, context) =>
   S.list()
@@ -7,81 +20,92 @@ export const structure: StructureResolver = (S, context) =>
     .items([
       // 1. Site Settings Singleton
       S.listItem()
-        .title("⚙️ Site Settings & Contact")
+        .title("Site settings & contact")
         .id("siteSettings")
+        .icon(CogIcon)
         .child(
           S.document()
             .schemaType("siteSettings")
             .documentId("siteSettings")
-            .title("Site Settings & Contact Info")
+            .title("Site settings & contact info")
         ),
 
       // 2. Home Page Singleton
       S.listItem()
-        .title("🏠 Home Page Content")
+        .title("Home page content")
         .id("homePage")
+        .icon(HomeIcon)
         .child(
           S.document()
             .schemaType("homePage")
             .documentId("homePage")
-            .title("Home Page (Hero, Partners, Process, Services)")
+            .title("Home page content")
         ),
 
       S.divider(),
 
       // 3. Packages & Pricing Group
       S.listItem()
-        .title("💳 Packages & Pricing (KWD)")
+        .title("Packages & pricing (KWD)")
+        .icon(CreditCardIcon)
         .child(
           S.list()
-            .title("Packages & Pricing")
+            .title("Packages & pricing")
             .items([
               S.listItem()
-                .title("Section Header & Assurance Strip")
+                .title("Pricing section header")
                 .id("pricingSection")
+                .icon(DocumentTextIcon)
                 .child(
                   S.document()
                     .schemaType("pricingSection")
                     .documentId("pricingSection")
-                    .title("Pricing Section Header")
+                    .title("Pricing section header")
                 ),
               S.divider(),
               orderableDocumentListDeskItem({
                 type: "package",
-                title: "Pricing Tiers (Drag to Reorder)",
+                title: "Pricing tiers (reorderable)",
+                icon: CreditCardIcon,
                 S,
                 context,
               }),
-              S.documentTypeListItem("package").title("All Pricing Packages"),
+              S.documentTypeListItem("package")
+                .title("All pricing packages")
+                .icon(CreditCardIcon),
             ])
         ),
 
       // 4. Portfolio Projects Group
       S.listItem()
-        .title("🗂️ Projects & Portfolio")
+        .title("Projects & portfolio")
+        .icon(CaseIcon)
         .child(
           S.list()
-            .title("Projects & Portfolio")
+            .title("Projects & portfolio")
             .items([
               S.listItem()
-                .title("Projects Page Header & Benchmarks")
+                .title("Projects page header & stats")
                 .id("projectsPage")
+                .icon(DocumentTextIcon)
                 .child(
                   S.document()
                     .schemaType("projectsPage")
                     .documentId("projectsPage")
-                    .title("Projects Page Header & Stats")
+                    .title("Projects page header & stats")
                 ),
               S.divider(),
               orderableDocumentListDeskItem({
                 type: "project",
-                title: "Portfolio Projects (Drag to Reorder)",
+                title: "Portfolio projects (reorderable)",
+                icon: CaseIcon,
                 S,
                 context,
               }),
               orderableDocumentListDeskItem({
                 type: "projectCategory",
-                title: "Project Categories (Drag to Reorder)",
+                title: "Project categories (reorderable)",
+                icon: TagIcon,
                 S,
                 context,
               }),
@@ -91,7 +115,8 @@ export const structure: StructureResolver = (S, context) =>
       // 5. Technology Partners
       orderableDocumentListDeskItem({
         type: "partner",
-        title: "🤝 Technology Partners (Drag to Reorder)",
+        title: "Technology partners (reorderable)",
+        icon: UsersIcon,
         S,
         context,
       }),
@@ -100,52 +125,65 @@ export const structure: StructureResolver = (S, context) =>
 
       // 6. Blog Editorial Suite
       S.listItem()
-        .title("✍️ Blog & Editorial")
+        .title("Editorial suite")
+        .icon(EditIcon)
         .child(
           S.list()
-            .title("Blog & Editorial")
+            .title("Editorial suite")
             .items([
-              S.documentTypeListItem("post").title("All Articles"),
+              S.documentTypeListItem("post")
+                .title("All articles")
+                .icon(DocumentTextIcon),
               S.listItem()
-                .title("🇵🇸/🇰🇼 Arabic Articles (العربية)")
+                .title("Arabic articles")
+                .icon(TranslateIcon)
                 .child(
                   S.documentList()
-                    .title("Arabic Articles")
+                    .title("Arabic articles")
                     .schemaType("post")
                     .filter('_type == "post" && language == "ar"')
                 ),
               S.listItem()
-                .title("🇬🇧 English Articles")
+                .title("English articles")
+                .icon(TranslateIcon)
                 .child(
                   S.documentList()
-                    .title("English Articles")
+                    .title("English articles")
                     .schemaType("post")
                     .filter('_type == "post" && language == "en"')
                 ),
               S.listItem()
-                .title("★ Featured Articles")
+                .title("Featured articles")
+                .icon(StarIcon)
                 .child(
                   S.documentList()
-                    .title("Featured Articles")
+                    .title("Featured articles")
                     .schemaType("post")
                     .filter('_type == "post" && featured == true')
                 ),
               S.listItem()
-                .title("🕒 Scheduled Articles")
+                .title("Scheduled articles")
+                .icon(ClockIcon)
                 .child(
                   S.documentList()
-                    .title("Scheduled Articles")
+                    .title("Scheduled articles")
                     .schemaType("post")
                     .filter('_type == "post" && publishedAt > now()')
                 ),
               S.divider(),
-              S.documentTypeListItem("blogCategory").title("Blog Categories"),
-              S.documentTypeListItem("author").title("Authors"),
+              S.documentTypeListItem("blogCategory")
+                .title("Blog categories")
+                .icon(TagIcon),
+              S.documentTypeListItem("author")
+                .title("Authors")
+                .icon(UserIcon),
             ])
         ),
 
       S.divider(),
 
       // 7. Redirects
-      S.documentTypeListItem("redirect").title("🔀 URL Redirects"),
+      S.documentTypeListItem("redirect")
+        .title("URL redirects")
+        .icon(TransferIcon),
     ]);

@@ -8,7 +8,6 @@ import { getFullSiteData } from "@/lib/sanity/loaders";
 import { SanityLive } from "@/lib/sanity/live";
 import { DEFAULT_SITE_URL } from "@/lib/agent-discovery";
 import { Header } from "@/components/Header";
-import { CustomCursor } from "@/components/CustomCursor";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
 import { Footer } from "@/components/Footer";
@@ -314,7 +313,6 @@ export default async function LangLayout({
         <Script id="webmcp-tools" strategy="beforeInteractive">
           {webMcpScript}
         </Script>
-        <CustomCursor />
         <Header lang={locale} dict={dict} siteConfig={siteConfig} />
         <main>{children}</main>
         {/* Declarative WebMCP Tool Form for Agent Discovery */}

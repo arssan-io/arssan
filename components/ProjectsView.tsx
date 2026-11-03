@@ -97,8 +97,8 @@ export function ProjectsView({
         <AnimateInView className="mb-8 sm:mb-10 md:mb-12">
           <div className="flex flex-col items-start text-start max-w-3xl">
             {/* Asana Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e5e7eb] text-[12px] sm:text-[13px] font-medium text-[#646f79] mb-3 sm:mb-4 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e5e7eb] text-[12px] sm:text-[13px] font-medium text-[#646f79] mb-3 sm:mb-4 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+              <span className="w-2 h-2 rounded-full bg-emerald-600" />
               <span>{t.badge}</span>
             </div>
 
@@ -189,10 +189,10 @@ export function ProjectsView({
                   viewport={{ once: true, amount: 0.2 }}
                   className="h-full"
                 >
-                  <div className="group h-full rounded-[20px] bg-[#ffffff] border border-[#e6e8eb] p-5 sm:p-6 flex flex-col justify-between text-start transition-all duration-300 md:hover:-translate-y-1 hover:border-[#646f79]/40 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.02)]">
+                  <div className="group h-full rounded-[20px] bg-[#ffffff] border border-[#e6e8eb] p-5 sm:p-6 flex flex-col justify-between text-start transition-[border-color,box-shadow] duration-200 hover:border-[#646f79]/30 hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.06)]">
                     <div>
                       {/* Architectural Mockup Header (Browser Frame) */}
-                      <div className="mb-5 rounded-[14px] bg-[#fafafa] border border-[#eceeef] overflow-hidden transition-colors duration-200 group-hover:border-[#d1d5db]">
+                      <div className="mb-5 rounded-[14px] bg-[#fafafa] border border-[#eceeef] overflow-hidden transition-colors duration-150 group-hover:border-[#d1d5db]">
                         {/* Browser Top Chrome */}
                         <div className="px-4 py-2.5 bg-[#ffffff] border-b border-[#eceeef] flex items-center justify-between gap-3">
                           {/* 3 Window Control Dots */}
@@ -220,7 +220,7 @@ export function ProjectsView({
                                 "url_pill"
                               );
                             }}
-                            className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-[64px] bg-[#f8f9fa] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79] hover:text-[#0d0d0d] hover:bg-[#ffffff] transition-all duration-200 group/url"
+                            className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-[64px] bg-[#f8f9fa] border border-[#e5e7eb] text-[11px] font-mono text-[#646f79] hover:text-[#0d0d0d] hover:bg-[#ffffff] transition-all duration-150 group/url"
                             title={isAr ? `زيارة موقع ${project.url}` : `Visit ${project.url}`}
                           >
                             <span className="text-[10px] text-[#9ca3af]">https://</span>
@@ -260,7 +260,7 @@ export function ProjectsView({
                             alt={project.title}
                             fill
                             sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 560px"
-                            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                            className="object-cover object-top opacity-95 group-hover:opacity-100 transition-opacity duration-200"
                             priority={idx < 2}
                           />
                         </a>
@@ -268,10 +268,10 @@ export function ProjectsView({
 
                       {/* Metadata Header */}
                       <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="text-xs font-mono uppercase tracking-wider text-[#646f79] truncate">
+                        <span className="text-xs font-mono text-[#646f79] truncate">
                           {project.client}
                         </span>
-                        <span className="text-xs font-mono text-[#9ca3af]">
+                        <span className="text-xs font-mono tabular-nums text-[#9ca3af]">
                           0{idx + 1}
                         </span>
                       </div>

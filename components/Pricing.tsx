@@ -88,10 +88,10 @@ export function Pricing({ lang, dict, whatsappUrl = "https://wa.me/46700265645" 
               className="h-full"
             >
               <div
-                className={`relative h-full rounded-[20px] p-6 sm:p-7 md:p-9 flex flex-col justify-between text-start border md:hover:-translate-y-1.5 transition-[transform,border-color,box-shadow] duration-200 ${
+                className={`relative h-full rounded-[20px] p-6 sm:p-7 md:p-9 flex flex-col justify-between text-start border transition-[border-color,box-shadow] duration-200 ${
                   pkg.popular
-                    ? "bg-[#0d0e10] text-[#ffffff] border-[#0d0e10] shadow-[0_20px_48px_-12px_rgba(13,14,16,0.28),0_2px_8px_rgba(0,0,0,0.12)]"
-                    : "bg-[#ffffff] text-[#0d0d0d] border-[#eceeef] shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)]"
+                    ? "bg-[#0d0e10] text-[#ffffff] border-[#0d0e10] shadow-[0_16px_40px_-12px_rgba(13,14,16,0.25)]"
+                    : "bg-[#ffffff] text-[#0d0d0d] border-[#eceeef] shadow-[0_1px_4px_rgba(0,0,0,0.04)] hover:border-[#646f79]/30 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.08)]"
                 }`}
               >
                 <div>
@@ -102,14 +102,14 @@ export function Pricing({ lang, dict, whatsappUrl = "https://wa.me/46700265645" 
                     </h3>
                     {pkg.popular ? (
                       <span className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-[64px] bg-[#ffffff]/12 border border-[#ffffff]/20 text-[11px] sm:text-[12px] font-medium text-[#ffffff]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                         <span>
                           {dict.pricing.mostPopularBadge ||
                             (isAr ? "الأكثر اختياراً" : "Most Popular")}
                         </span>
                       </span>
                     ) : (
-                      <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[64px] bg-[#f3f3f3] text-[11px] sm:text-[12px] font-mono text-[#646f79]">
+                      <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-[64px] bg-[#f3f3f3] text-[11px] sm:text-[12px] font-mono tabular-nums text-[#646f79]">
                         0{idx + 1}
                       </span>
                     )}
@@ -143,12 +143,12 @@ export function Pricing({ lang, dict, whatsappUrl = "https://wa.me/46700265645" 
                       </div>
                     ) : (
                       <div className="flex items-baseline gap-2 sm:gap-2.5 flex-wrap">
-                        <span className="text-4xl sm:text-5xl md:text-[3.5rem] font-light tracking-[-0.03em] leading-none">
+                        <span className="text-4xl sm:text-5xl md:text-[3.5rem] font-light tracking-[-0.03em] leading-none font-mono tabular-nums">
                           {pkg.price}
                         </span>
                         {pkg.originalPrice && (
                           <span
-                            className={`text-xl sm:text-2xl font-light line-through ${
+                            className={`text-xl sm:text-2xl font-light line-through font-mono tabular-nums ${
                               pkg.popular ? "text-[#ffffff]/45" : "text-[#646f79]/60"
                             }`}
                           >

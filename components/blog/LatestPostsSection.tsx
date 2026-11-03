@@ -32,7 +32,7 @@ export function LatestPostsSection({
         <AnimateInView className="mb-8 sm:mb-10 md:mb-14">
           <div className="flex flex-col items-start text-start">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-[64px] bg-[#f3f3f3] border border-[#e5e7eb] text-[12px] sm:text-[13px] font-medium text-[#646f79] mb-4 sm:mb-5">
-              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-emerald-600" />
               <span>{labels.latest_home_badge}</span>
             </div>
 

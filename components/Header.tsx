@@ -109,7 +109,7 @@ export function Header({ lang, dict, siteConfig }: HeaderProps) {
       >
         {announcement?.enabled && announcement.text && !scrolled && (
           <div className="max-w-[1280px] mx-auto px-5 sm:px-8 pb-2.5 mb-2.5 border-b border-current/10 flex items-center justify-center gap-3 text-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
             <span className={isOverHero ? "text-white/90" : "text-[#0d0d0d]"}>
               {announcement.text}
             </span>

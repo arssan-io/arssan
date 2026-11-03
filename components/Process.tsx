@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { AnimateInView } from "./AnimateInView";
-import { FloatingShapes, processShapes } from "./FloatingShapes";
 
 interface ProcessStep {
   num: string;
@@ -27,7 +26,7 @@ function StepVisual({ index, isActive }: { index: number; isActive: boolean }) {
     return (
       <div className="h-28 rounded-[12px] bg-[#f3f3f3] border border-[#e8eaed] p-3.5 flex flex-col justify-between overflow-hidden relative">
         <div className="flex items-center justify-between text-[11px] font-mono text-[#646f79]">
-          <span>UX.FLOW</span>
+          <span>UX architecture</span>
           <span className="px-2 py-0.5 rounded-[4px] bg-[#ffffff] text-[#0d0d0d] font-medium">
             RTL + LTR
           </span>
@@ -36,10 +35,10 @@ function StepVisual({ index, isActive }: { index: number; isActive: boolean }) {
           {[0, 1, 2].map((node) => (
             <div
               key={node}
-              className={`flex-1 h-11 rounded-[8px] bg-[#ffffff] border p-2 flex flex-col justify-between shadow-2xs transition-[transform,border-color] duration-300 ${
+              className={`flex-1 h-11 rounded-[8px] bg-[#ffffff] border p-2 flex flex-col justify-between shadow-2xs transition-colors duration-200 ${
                 isActive && node === 1
-                  ? "border-[#0d0e10] scale-[1.03]"
-                  : "border-[#e5e7eb] scale-100"
+                  ? "border-[#0d0e10]"
+                  : "border-[#e5e7eb]"
               }`}
             >
               <span className="w-6 h-1.5 rounded-full bg-[#0d0e10]" />
@@ -56,15 +55,15 @@ function StepVisual({ index, isActive }: { index: number; isActive: boolean }) {
     return (
       <div className="h-28 rounded-[12px] bg-[#f3f3f3] border border-[#e8eaed] p-3.5 flex flex-col justify-between overflow-hidden relative">
         <div className="flex items-center justify-between text-[11px] font-mono text-[#646f79]">
-          <span>NEXT.JS 16</span>
+          <span>Next.js 16</span>
           <span className="px-2 py-0.5 rounded-[4px] bg-[#0d0e10] text-[#ffffff] font-medium">
-            KNET / API
+            KNET ready
           </span>
         </div>
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-[11px] text-[#0d0d0d] font-mono bg-[#ffffff] px-2.5 py-1.5 rounded-[8px] border border-[#e5e7eb]">
-            <span>✓ build.compile()</span>
-            <span className="text-emerald-700 font-semibold">12ms</span>
+            <span>build.compile()</span>
+            <span className="text-emerald-700 font-semibold tabular-nums">12ms</span>
           </div>
           <div className="w-full h-2 rounded-full bg-[#ffffff] border border-[#e5e7eb] overflow-hidden p-0.5">
             <div
@@ -82,8 +81,8 @@ function StepVisual({ index, isActive }: { index: number; isActive: boolean }) {
   return (
     <div className="h-28 rounded-[12px] bg-[#f3f3f3] border border-[#e8eaed] p-3.5 flex flex-col justify-between overflow-hidden relative">
       <div className="flex items-center justify-between text-[11px] font-mono text-[#646f79]">
-        <span>SEO.KW</span>
-        <span className="px-2 py-0.5 rounded-[4px] bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium">
+        <span>Kuwait SEO</span>
+        <span className="px-2 py-0.5 rounded-[4px] bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium tabular-nums">
           99/100 CWV
         </span>
       </div>
@@ -93,9 +92,9 @@ function StepVisual({ index, isActive }: { index: number; isActive: boolean }) {
             key={i}
             style={{
               height: `${bar}%`,
-              transitionDelay: `${i * 30}ms`,
+              transitionDelay: `${i * 20}ms`,
             }}
-            className={`flex-1 rounded-t-[4px] origin-bottom transition-transform duration-300 ease-out ${
+            className={`flex-1 rounded-t-[4px] origin-bottom transition-transform duration-250 ease-out ${
               isActive ? "scale-y-100" : "scale-y-[0.82]"
             } ${i === 4 ? "bg-[#0d0e10]" : "bg-[#646f79]/45"}`}
           />
@@ -113,13 +112,11 @@ export function Process({ dict }: ProcessProps) {
       id="process"
       className="relative py-14 sm:py-18 md:py-24 bg-[#f3f3f3] text-[#0d0d0d] overflow-hidden border-b border-[#e6e8eb]"
     >
-      <FloatingShapes shapes={processShapes} color="text-[#646f79]" />
-
       <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Section Header */}
         <AnimateInView className="mb-8 sm:mb-10 md:mb-14">
           <div className="flex flex-col items-start text-start">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[12px] sm:text-[13px] font-medium text-[#646f79] mb-4 sm:mb-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-[64px] bg-[#ffffff] border border-[#e5e7eb] text-[12px] sm:text-[13px] font-medium text-[#646f79] mb-4 sm:mb-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
               <span className="w-2 h-2 rounded-full bg-[#0d0e10]" />
               <span>{dict.process.badge}</span>
             </div>
@@ -143,22 +140,22 @@ export function Process({ dict }: ProcessProps) {
               <AnimateInView
                 key={step.num}
                 variant="fadeUp"
-                delay={idx * 0.06}
+                delay={idx * 0.05}
                 className="h-full"
               >
                 <div
                   onMouseEnter={() => setActiveIdx(idx)}
-                  className={`group h-full rounded-[20px] bg-[#ffffff] p-5 sm:p-7 md:p-8 flex flex-col justify-between text-start border md:hover:-translate-y-1 transition-[transform,border-color,box-shadow] duration-200 ${
+                  className={`group h-full rounded-[20px] bg-[#ffffff] p-5 sm:p-7 md:p-8 flex flex-col justify-between text-start border transition-[border-color,box-shadow] duration-200 ${
                     isActive
-                      ? "border-[#0d0e10]/25 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)]"
-                      : "border-[#eceeef] shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+                      ? "border-[#0d0e10]/25 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.08)]"
+                      : "border-[#eceeef] shadow-[0_1px_4px_rgba(0,0,0,0.03)] hover:border-[#dcdfe3]"
                   }`}
                 >
                   <div>
                     {/* Top Step Indicator */}
                     <div className="flex items-center justify-between mb-6">
                       <span
-                        className={`inline-flex items-center justify-center w-10 h-10 rounded-[12px] font-mono text-sm font-semibold transition-colors duration-200 ${
+                        className={`inline-flex items-center justify-center w-10 h-10 rounded-[12px] font-mono tabular-nums text-sm font-medium transition-colors duration-150 ${
                           isActive
                             ? "bg-[#0d0e10] text-[#ffffff]"
                             : "bg-[#f3f3f3] text-[#0d0d0d]"
@@ -166,7 +163,7 @@ export function Process({ dict }: ProcessProps) {
                       >
                         {step.num}
                       </span>
-                      <span className="text-[12px] font-mono text-[#646f79] px-3 py-1 rounded-[64px] bg-[#f3f3f3]">
+                      <span className="text-[12px] font-mono tabular-nums text-[#646f79] px-3 py-1 rounded-[64px] bg-[#f3f3f3]">
                         0{idx + 1} / 03
                       </span>
                     </div>
@@ -193,7 +190,7 @@ export function Process({ dict }: ProcessProps) {
                       {[0, 1, 2].map((dot) => (
                         <span
                           key={dot}
-                          className={`h-1.5 rounded-full transition-all duration-200 ${
+                          className={`h-1.5 rounded-full transition-all duration-150 ${
                             dot === idx
                               ? "w-6 bg-[#0d0e10]"
                               : "w-1.5 bg-[#646f79]/30"
@@ -201,7 +198,7 @@ export function Process({ dict }: ProcessProps) {
                         />
                       ))}
                     </div>
-                    <span className="font-mono text-[#0d0d0d] transition-transform duration-200 group-hover:translate-x-1">
+                    <span className="font-mono text-[#0d0d0d] transition-transform duration-150 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180">
                       →
                     </span>
                   </div>

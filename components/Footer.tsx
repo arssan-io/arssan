@@ -139,7 +139,7 @@ export function Footer({ lang, dict, siteConfig }: FooterProps) {
           <div className="rounded-[20px] bg-[#0d0e10] text-[#ffffff] p-6 sm:p-10 md:p-12 lg:p-16 shadow-[0_20px_48px_-12px_rgba(13,14,16,0.22)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8 text-start relative overflow-hidden">
             <div className="max-w-2xl space-y-2.5 sm:space-y-3 relative z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1 rounded-[64px] bg-[#ffffff]/10 border border-[#ffffff]/15 text-[11px] sm:text-[12px] font-medium text-[#ffffff]/90">
-                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400" />
                 <span>{ctaBadge}</span>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[-0.02em] leading-[1.25]">
@@ -233,7 +233,7 @@ export function Footer({ lang, dict, siteConfig }: FooterProps) {
             {/* Links Columns */}
             <div className="lg:col-span-4 grid grid-cols-2 gap-6 sm:gap-8">
               <div>
-                <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-5 text-[#0d0d0d]">
+                <h4 className="text-xs font-medium mb-4 sm:mb-5 text-[#0d0d0d]">
                   {dict.footer.links.title}
                 </h4>
                 <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[14px]">
@@ -251,7 +251,7 @@ export function Footer({ lang, dict, siteConfig }: FooterProps) {
               </div>
 
               <div>
-                <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-5 text-[#0d0d0d]">
+                <h4 className="text-xs font-medium mb-4 sm:mb-5 text-[#0d0d0d]">
                   {dict.footer.services_title}
                 </h4>
                 <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[14px]">
@@ -271,7 +271,7 @@ export function Footer({ lang, dict, siteConfig }: FooterProps) {
 
             {/* Contact Info */}
             <div className="lg:col-span-3 pt-4 sm:pt-0 border-t border-[#f3f3f3] lg:border-t-0">
-              <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-5 text-[#0d0d0d]">
+              <h4 className="text-xs font-medium mb-4 sm:mb-5 text-[#0d0d0d]">
                 {dict.nav.contact}
               </h4>
               <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[14px] text-[#646f79]">
@@ -298,7 +298,7 @@ export function Footer({ lang, dict, siteConfig }: FooterProps) {
                     className="inline-flex items-center gap-2 hover:text-[#0d0d0d] transition-colors py-0.5"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                    <span dir="ltr" className="font-mono text-[13px]">
+                    <span dir="ltr" className="font-mono tabular-nums text-[13px]">
                       {whatsappDisplay}
                     </span>
                   </a>
@@ -315,8 +315,8 @@ export function Footer({ lang, dict, siteConfig }: FooterProps) {
           </p>
 
           <div className="flex items-center justify-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] font-medium text-[11px] sm:text-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] bg-[#f3f3f3] text-[#0d0d0d] font-normal text-[11px] sm:text-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
               <span>
                 {dict.footer.statusText ||
                   (isAr ? "جميع الأنظمة تعمل بكفاءة" : "All Systems Operational")}

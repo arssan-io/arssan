@@ -52,7 +52,7 @@ export function FeaturedPostCard({
                 sizes="(max-width: 1024px) 100vw, 680px"
                 placeholder={post.coverImage.lqip ? "blur" : "empty"}
                 blurDataURL={post.coverImage.lqip}
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                className="object-cover opacity-95 group-hover:opacity-100 transition-opacity duration-200"
               />
             ) : (
               <div className="absolute inset-0 bg-asana-grid flex flex-col justify-between p-6 sm:p-8 bg-[#0d0e10] text-[#ffffff]">
@@ -76,7 +76,7 @@ export function FeaturedPostCard({
             {/* Top Pills: Featured + Category + Reading Time */}
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[64px] bg-[#0d0e10] text-[#ffffff] text-xs font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span>{labels.featured_badge}</span>
               </span>
 
@@ -168,7 +168,7 @@ export function PostCard({ post, lang, index = 0, labels }: PostCardProps) {
   const href = `/${lang}/blog/${post.slug}`;
 
   return (
-    <article className="group h-full rounded-[20px] bg-[#ffffff] border border-[#e6e8eb] p-4 sm:p-5 flex flex-col justify-between text-start transition-all duration-300 md:hover:-translate-y-1 hover:border-[#646f79]/40 hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.06),0_2px_8px_rgba(0,0,0,0.02)]">
+    <article className="group h-full rounded-[20px] bg-[#ffffff] border border-[#e6e8eb] p-4 sm:p-5 flex flex-col justify-between text-start transition-[border-color,box-shadow] duration-200 hover:border-[#646f79]/30 hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.06)]">
       <div>
         {/* 16:9 Cover Image */}
         <Link
@@ -183,7 +183,7 @@ export function PostCard({ post, lang, index = 0, labels }: PostCardProps) {
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 380px"
               placeholder={post.coverImage.lqip ? "blur" : "empty"}
               blurDataURL={post.coverImage.lqip}
-              className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+              className="object-cover opacity-95 group-hover:opacity-100 transition-opacity duration-200"
             />
           ) : (
             <div className="absolute inset-0 bg-[#0d0e10] text-[#ffffff] p-5 flex flex-col justify-between">
