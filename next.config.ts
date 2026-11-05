@@ -29,6 +29,7 @@ const nextConfig: NextConfig = {
   compress: true,
   devIndicators: false,
   experimental: {
+    cpus: 4,
     optimizePackageImports: ["framer-motion", "@sanity/icons", "@sanity/ui"],
   },
   images: {
@@ -46,6 +47,16 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         headers: securityHeaders,
+      },
+      {
+        source: "/favicon.ico",
+        headers: [
+          ...securityHeaders,
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
       },
       {
         source: "/images/:path*",

@@ -76,8 +76,6 @@ export function getSiteOrigin(request?: Request): {
   return getFallback();
 }
 
-import { getFullSiteData, getLatestBlogPosts } from "@/lib/sanity/loaders";
-
 export function estimateTokens(text: string): number {
   return Math.max(1, Math.ceil(text.length / 4));
 }
@@ -89,6 +87,10 @@ export async function getMarkdownRepresentation(
   const isProjects = pathname.includes("/projects");
   const isPricing = pathname.includes("/pricing");
   const isBlog = pathname.includes("/blog");
+
+  const { getFullSiteData, getLatestBlogPosts } = await import(
+    "@/lib/sanity/loaders"
+  );
 
   const [{ dict, siteConfig }, latestPosts] = await Promise.all([
     getFullSiteData("en"),

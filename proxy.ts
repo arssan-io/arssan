@@ -19,10 +19,12 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith("/images") ||
     pathname.startsWith("/partners") ||
     pathname.startsWith("/fonts") ||
+    pathname === "/favicon.ico" ||
     pathname === "/robots.txt" ||
     pathname === "/sitemap.xml" ||
     pathname === "/auth.md" ||
     pathname === "/llms.txt" ||
+    pathname === "/_headers" ||
     pathname.includes(".")
   ) {
     const res = NextResponse.next();
@@ -31,8 +33,8 @@ export async function proxy(request: NextRequest) {
   }
 
   // Markdown Content Negotiation for AI Agents (Accept: text/markdown)
-  const acceptHeader = request.headers.get("accept") || "";
-  if (acceptHeader.toLowerCase().includes("text/markdown")) {
+  const acceptHeader = request.headers.get("accept");
+  if (acceptHeader && acceptHeader.toLowerCase().includes("text/markdown")) {
     const { origin } = getSiteOrigin(request);
     const markdown = await getMarkdownRepresentation(origin, pathname);
 
@@ -73,5 +75,7 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|studio|images|partners|fonts|favicon.ico).*)"],
+  matcher: [
+    "/((?!_next|studio|api|\\.well-known|images|partners|fonts|_headers|favicon\\.ico|robots\\.txt|sitemap\\.xml|auth\\.md|llms\\.txt|.*\\.(?:ico|png|jpg|jpeg|svg|webp|gif|css|js|txt|xml|json|woff2?|webmanifest)).*)",
+  ],
 };
