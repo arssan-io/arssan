@@ -74,6 +74,9 @@ export interface BlogPostSummary {
     alt: string;
     caption?: string;
     lqip?: string;
+    width?: number;
+    height?: number;
+    aspectRatio?: number;
   };
   categories: BlogCategoryItem[];
   tags: string[];

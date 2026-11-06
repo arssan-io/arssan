@@ -635,6 +635,15 @@ function mapPostSummary(raw: any, locale: Locale): BlogPostSummary {
           alt: (raw.coverImage?.alt || raw.title) as string,
           caption: raw.coverImage?.caption as string | undefined,
           lqip: raw.coverImage?.asset?.metadata?.lqip as string | undefined,
+          width: raw.coverImage?.asset?.metadata?.dimensions?.width as
+            | number
+            | undefined,
+          height: raw.coverImage?.asset?.metadata?.dimensions?.height as
+            | number
+            | undefined,
+          aspectRatio: raw.coverImage?.asset?.metadata?.dimensions?.aspectRatio as
+            | number
+            | undefined,
         }
       : undefined,
     categories,

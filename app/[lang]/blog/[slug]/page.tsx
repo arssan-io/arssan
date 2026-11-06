@@ -88,8 +88,8 @@ export async function generateMetadata({
       images: [
         {
           url: ogImage,
-          width: 1200,
-          height: 630,
+          width: post.coverImage?.width || 1200,
+          height: post.coverImage?.height || 630,
           alt: post.coverImage?.alt || post.title,
         },
       ],
@@ -280,19 +280,27 @@ export default async function BlogPostPage({
           </div>
         </header>
 
-        {/* Cover Image (16:9, 20px radius) */}
+        {/* Cover Image (Real image size, complete without cutting) */}
         {post.coverImage?.url && (
           <figure className="mb-10 sm:mb-14">
-            <div className="relative aspect-[16/9] max-h-[540px] w-full rounded-[20px] overflow-hidden bg-[#f3f3f3] border border-[#e6e8eb] shadow-[0_8px_24px_-6px_rgba(0,0,0,0.06)]">
+            <div
+              className="relative w-full rounded-[20px] overflow-hidden bg-[#f3f3f3] border border-[#e6e8eb] shadow-[0_8px_24px_-6px_rgba(0,0,0,0.06)] mx-auto"
+              style={
+                post.coverImage.width
+                  ? { maxWidth: `${post.coverImage.width}px` }
+                  : undefined
+              }
+            >
               <Image
                 src={post.coverImage.url}
                 alt={post.coverImage.alt || post.title}
-                fill
+                width={post.coverImage.width || 1200}
+                height={post.coverImage.height || 675}
                 priority
                 sizes="(max-width: 1280px) 100vw, 1200px"
                 placeholder={post.coverImage.lqip ? "blur" : "empty"}
                 blurDataURL={post.coverImage.lqip}
-                className="object-cover"
+                className="w-full h-auto block"
               />
             </div>
             {post.coverImage.caption && (
